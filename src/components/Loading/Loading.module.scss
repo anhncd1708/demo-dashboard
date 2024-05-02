@@ -1,0 +1,45 @@
+/* 
+ * Background Loading Styles
+ * 
+ * This code block defines the styles for a loading screen that covers the entire
+ * viewport with a semi-transparent background and a centered loading indicator.
+ */
+
+ .bgLoading {
+    /* Set the background color to white */
+    background-color: white;
+
+    /* Position the loading screen at the top left corner of the viewport,
+     * and make it cover the entire viewport */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /* Center the loading indicator both horizontally and vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Set a high z-index value to ensure the loading screen appears above all
+     * other elements on the page */
+    z-index: 9999;
+}
+
+/* 
+ * Loading Content Styles
+ * 
+ * This code block defines the styles for the loading indicator content, which
+ * is centered both horizontally and vertically.
+ */
+
+.loadingContent {
+    /* Center the loading indicator text horizontally */
+    text-align: center;
+
+    /* Center the loading indicator content both horizontally and vertically */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
