@@ -9,7 +9,7 @@ import Cookies from "js-cookie";
 
 const SideBar = ({ children }) => {
   const { collapseSidebar } = useProSidebar();
-  const [userRole, setUserRole] = useState("manager"); // Change role as needed
+  const [userRole, setUserRole] = useState(); // Change role as needed
 
   // Get the navigation items based on the user's role
   const navItems = navData[userRole] || [];
@@ -17,7 +17,9 @@ const SideBar = ({ children }) => {
   useEffect(() => {
     const user = JSON.parse(Cookies.get("user"));
     if (user) {
+      console.log(user);
       setUserRole(String(user?.role).toLowerCase());
+      console.log(userRole);
     }
   }, []);
 

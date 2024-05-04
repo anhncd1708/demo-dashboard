@@ -12,56 +12,57 @@ import Cookies from "js-cookie";
 import PrivateRoute from './util/PrivateRoute';
 import Loading from "./components/Loading/Loading"
 import Sidebar from './components/Sidebar/Sidebar';
-
+import Login from './components/Login/Login';
+import Dashboard from './components/Dashboard/Dashboard';
 
 
 
 const App = () => {
-const user = {
-  id: 1,
-  username: "anhncd1708",
-  password: "123",
-  created_at: "2024-05-01T00:00:00",
-  updated_at: "2024-05-01T00:00:00",
-  deleted_at: "2024-05-01T00:00:00",
-  role: "admin",
-  email: "anhncd1708@gmail.com",
-  active: true,
-}
-
-  const initData = () => {
-    Cookies.set("user",  JSON.stringify(user));
-  };
-
-
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
+  const location = useLocation();
+
   useEffect(() => {
-    initData();
+    let userTmp = Cookies.get('user');
+    const token = Cookies.get('token');
+    
+      
+    if (userTmp) {
+      setLoading(true)
+      setUser(JSON.parse(userTmp));
+      console.log(user)
+      setLoading(false);
+    }
+  
   }, []);
+
+  if (!user) {
+    let userTmp = Cookies.get('user');
+    if (!userTmp 
+      && location.pathname !== '/login' && location.pathname !== '/register'
+      && location.pathname !== '/forgot-password' ) {
+      return (window.location.href = '/login');
+    }
+  }
 
 
   return loading ? (
     <Loading/>
   ) : (
     <>
-    <Sidebar>
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-    </Sidebar>
+    { user && user.role === 'ADMIN' ? (
+       <Sidebar>
+        <Routes>
+          <Route element={<PrivateRoute />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Route>
+        </Routes>
+        </Sidebar>
+    ) : (
+      <Routes>
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    ) }
     </>
   );
 }
