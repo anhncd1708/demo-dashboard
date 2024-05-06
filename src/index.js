@@ -9,12 +9,13 @@ import { applyMiddleware, compose, createStore } from "redux";
 import { BrowserRouter } from 'react-router-dom';
 import { ProSidebarProvider } from 'react-pro-sidebar';
 import { thunk } from 'redux-thunk';
+import { HelmetProvider } from 'react-helmet-async';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const composeEnhancers =
   (typeof window !== "undefined" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 const enhancer = composeEnhancers(
-  // applyMiddleware(logger),
+  applyMiddleware(logger),
   applyMiddleware(thunk)
   // other store enhancers if any
 );
@@ -22,11 +23,13 @@ const enhancer = composeEnhancers(
 const store = createStore(rootReducer, enhancer);
 root.render(
   <Provider store={store}>
+    <HelmetProvider>
     <ProSidebarProvider>
       <BrowserRouter>
         <App />
       </BrowserRouter>
     </ProSidebarProvider>
+    </HelmetProvider>
   </Provider>
 );
 

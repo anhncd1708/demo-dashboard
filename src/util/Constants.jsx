@@ -20,6 +20,32 @@ export const navData = {
       path: "/dashboard",
     },
     {
+      label: "Quản lý",
+      icon: <GridViewRoundedIcon />,
+      subItems: [
+        {
+          label: "Nhân viên",
+          icon: <PeopleAltIcon />,
+          path: "/employees",
+        },
+        {
+          label: "Khách hàng",
+          icon: <ReportIcon />,
+          path: "/profile-details",
+        },
+        {
+          label: "Người môi giới",
+          icon: <ReportIcon />,
+          path: "/appraisal",
+        },
+        {
+          label: "Biểu phí",
+          icon: <ReportIcon />,
+          path: "/appraisal-criteria",
+        },
+      ],
+    },
+    {
       label: "Hợp đồng thẩm định",
       icon: <GridViewRoundedIcon />,
       subItems: [

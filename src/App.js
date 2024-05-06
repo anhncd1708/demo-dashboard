@@ -1,11 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { useEffect } from 'react';
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import 'boxicons/css/boxicons.min.css';
-import { fetchData, postData } from './services/AppService';
+import {  Route, Routes, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import Cookies from "js-cookie";
 
@@ -14,6 +10,8 @@ import Loading from "./components/Loading/Loading"
 import Sidebar from './components/Sidebar/Sidebar';
 import Login from './components/Login/Login';
 import Dashboard from './components/Dashboard/Dashboard';
+import EmpPage from './pages/employees';
+import ThemeProvider from './theme';
 
 
 
@@ -25,8 +23,6 @@ const App = () => {
   useEffect(() => {
     let userTmp = Cookies.get('user');
     const token = Cookies.get('token');
-
-
     if (userTmp) {
       setLoading(true)
       setUser(JSON.parse(userTmp));
@@ -49,12 +45,13 @@ const App = () => {
   return loading ? (
     <Loading />
   ) : (
-    <>
+    <ThemeProvider>
       {user && user.role === 'ADMIN' ? (
         <Sidebar>
           <Routes>
             <Route element={<PrivateRoute />}>
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/employees" element={<EmpPage />} />
             </Route>
           </Routes>
         </Sidebar>
@@ -63,7 +60,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
         </Routes>
       )}
-    </>
+    </ThemeProvider>
   );
 }
 
