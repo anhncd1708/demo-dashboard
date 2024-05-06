@@ -7,6 +7,7 @@ import Axios from "../../../config/axios/axios/axios";
 import { CustomizedToast } from "../../../components/Toast/ToastCustom";
 import { Navigate } from "react-router-dom";
 import { useState } from "react";
+import axios from "axios";
 
 export const createAction = ({ type, payload }) => {
   return { type, payload };
@@ -86,6 +87,7 @@ export const getListEmployee = (token) => {
   return async (dispatch) => {
     try {
       const res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_EMPLOYEE, null, token);
+
       dispatch(
         createAction({
           type: PATH_ACTION.GET_LIST_EMPLOYEE,
