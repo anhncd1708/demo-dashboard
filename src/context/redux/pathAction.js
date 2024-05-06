@@ -1,0 +1,5 @@
+export const LOGIN_USER = "LOGIN_USER";
+export const GET_LIST_HISTORY = "GET_LIST_HISTORY";
+//admin
+export const GET_LIST_ACCOUNT = "GET_LIST_ACCOUNT";
+export const GET_LIST_EMPLOYEE = "GET_LIST_EMPLOYEE";

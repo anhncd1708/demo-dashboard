@@ -25,44 +25,44 @@ const App = () => {
   useEffect(() => {
     let userTmp = Cookies.get('user');
     const token = Cookies.get('token');
-    
-      
+
+
     if (userTmp) {
       setLoading(true)
       setUser(JSON.parse(userTmp));
       console.log(user)
       setLoading(false);
     }
-  
+
   }, []);
 
   if (!user) {
     let userTmp = Cookies.get('user');
-    if (!userTmp 
+    if (!userTmp
       && location.pathname !== '/login' && location.pathname !== '/register'
-      && location.pathname !== '/forgot-password' ) {
+      && location.pathname !== '/forgot-password') {
       return (window.location.href = '/login');
     }
   }
 
 
   return loading ? (
-    <Loading/>
+    <Loading />
   ) : (
     <>
-    { user && user.role === 'ADMIN' ? (
-       <Sidebar>
-        <Routes>
-          <Route element={<PrivateRoute />}>
-            <Route path="/dashboard" element={<Dashboard />} />
-          </Route>
-        </Routes>
+      {user && user.role === 'ADMIN' ? (
+        <Sidebar>
+          <Routes>
+            <Route element={<PrivateRoute />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+            </Route>
+          </Routes>
         </Sidebar>
-    ) : (
-      <Routes>
-        <Route path="/login" element={<Login />} />
-      </Routes>
-    ) }
+      ) : (
+        <Routes>
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      )}
     </>
   );
 }
