@@ -14,7 +14,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 const composeEnhancers =
   (typeof window !== "undefined" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 const enhancer = composeEnhancers(
-  // applyMiddleware(logger),
+  applyMiddleware(logger),
   applyMiddleware(thunk)
   // other store enhancers if any
 );
