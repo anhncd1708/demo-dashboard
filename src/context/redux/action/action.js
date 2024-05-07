@@ -1,13 +1,10 @@
 /// gọi axios
-import * as PATH_ACTION from "../pathAction";
+import * as PATH_ACTION from "../PathAction";
 import { jwtDecode } from "jwt-decode";
 import * as API_DOMAIN from "./api_domain";
 import { URL_API } from "../../../config/axios/url/url";
 import Axios from "../../../config/axios/axios/axios";
 import { CustomizedToast } from "../../../components/Toast/ToastCustom";
-import { Navigate } from "react-router-dom";
-import { useState } from "react";
-import axios from "axios";
 
 export const createAction = ({ type, payload }) => {
   return { type, payload };
@@ -98,4 +95,197 @@ export const getListEmployee = (token) => {
   };
 };
 
+export const getListCustomer = (token) => {
+  return async (dispatch) => {
+    try {
+      const res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_CUSTOMER, null, token);
 
+      dispatch(
+        createAction({
+          type: PATH_ACTION.GET_LIST_CUSTOMER,
+          payload: res.data
+        })
+      );
+    } catch (err) { }
+  };
+};
+
+export const getListBroker = (token) => {
+  return async (dispatch) => {
+    try {
+      const res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_BROKER, null, token);
+
+      dispatch(
+        createAction({
+          type: PATH_ACTION.GET_LIST_BROKER,
+          payload: res.data
+        })
+      );
+    } catch (err) { }
+  };
+};
+
+export const getListCustomerType = (token) => {
+  return async (dispatch) => {
+    try {
+      const res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_CUSTOMER_TYPE, null, token);
+
+      dispatch(
+        createAction({
+          type: PATH_ACTION.GET_LIST_CUSTOMER_TYPE,
+          payload: res.data
+        })
+      );
+    } catch (err) { }
+  };
+};
+
+export const getListVocative = (token) => {
+  return async (dispatch) => {
+    try {
+      const res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_VOCATIVE, null, token);
+
+      dispatch(
+        createAction({
+          type: PATH_ACTION.GET_LIST_VOCATIVE,
+          payload: res.data
+        })
+      );
+    } catch (err) { }
+  };
+};
+
+export const getListEmployeePositions = (token) => {
+  return async (dispatch) => {
+    try {
+      const res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_EMPLOYEE_POSITIONS, null, token);
+
+      dispatch(
+        createAction({
+          type: PATH_ACTION.GET_LIST_EMPLOYEE_POSITIONS,
+          payload: res.data
+        })
+      );
+    } catch (err) { }
+  };
+};
+
+export const getListBrief = (token) => {
+  return async (dispatch) => {
+    try {
+      const res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_BRIEF, null, token);
+
+      dispatch(
+        createAction({
+          type: PATH_ACTION.GET_LIST_BRIEF,
+          payload: res.data
+        })
+      );
+    } catch (err) { }
+  };
+};
+
+export const getListBriefPoint = (token) => {
+  return async (dispatch) => {
+    try {
+      const res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_BRIEF_POINT, null, token);
+
+      dispatch(
+        createAction({
+          type: PATH_ACTION.GET_LIST_BRIEF_POINT,
+          payload: res.data
+        })
+      );
+    } catch (err) { }
+  };
+};
+
+export const getListAsset = (token) => {
+  return async (dispatch) => {
+    try {
+      const res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_ASSET, null, token);
+
+      dispatch(
+        createAction({
+          type: PATH_ACTION.GET_LIST_ASSET,
+          payload: res.data
+        })
+      );
+    } catch (err) { }
+  };
+};
+
+export const getListAssetType = (token) => {
+  return async (dispatch) => {
+    try {
+      const res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_ASSET_TYPE, null, token);
+
+      dispatch(
+        createAction({
+          type: PATH_ACTION.GET_LIST_ASSET_TYPE,
+          payload: res.data
+        })
+      );
+    } catch (err) { }
+  };
+};
+
+export const getListAppraisalPlan = (token) => {
+  return async (dispatch) => {
+    try {
+      const res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_APPRAISAL_PLAN, null, token);
+
+      dispatch(
+        createAction({
+          type: PATH_ACTION.GET_LIST_APPRAISAL_PLAN,
+          payload: res.data
+        })
+      );
+    } catch (err) { }
+  };
+};
+
+export const getListAppraisalPlanDetail = (token) => {
+  return async (dispatch) => {
+    try {
+      const res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_APPRAISAL_PLAN_DETAIL, null, token);
+
+      dispatch(
+        createAction({
+          type: PATH_ACTION.GET_LIST_APPRAISAL_PLAN_DETAIL,
+          payload: res.data
+        })
+      );
+    } catch (err) { }
+  };
+};
+
+export const getListAppraisalPlanType = (token) => {
+  return async (dispatch) => {
+    try {
+      const res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_APPRAISAL_PLAN_TYPE, null, token);
+
+      dispatch(
+        createAction({
+          type: PATH_ACTION.GET_LIST_APPRAISAL_PLAN_TYPE,
+          payload: res.data
+        })
+      );
+    } catch (err) { }
+  };
+};
+
+export const getListAppraisalDocumentDetail = (token) => {
+  return async (dispatch) => {
+    try {
+      const res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_APPRAISAL_DOCUMENT_DETAIL, null, token);
+
+      dispatch(
+        createAction({
+          type: PATH_ACTION.GET_LIST_APPRAISAL_DOCUMENT_DETAIL,
+          payload: res.data
+        })
+      );
+    } catch (err) { }
+  };
+};

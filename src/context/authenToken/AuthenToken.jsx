@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import jwt_decode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 import { useDispatch } from "react-redux";
 
 //----------------------------------------------------------------
@@ -17,7 +17,7 @@ export const ProviderToken = ({ children }) => {
 
   useEffect(() => {
     if (token) {
-      const decoded = jwt_decode(token);
+      const decoded = jwtDecode(token);
       setDecode(decoded);
     }
   }, [dispatch, id, setDecode]);
