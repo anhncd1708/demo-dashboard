@@ -1,4 +1,4 @@
-import * as PATH_ACTION from "../PathAction";
+import * as PATH_ACTION from "../pathAction";
 const initialState = {
   currentUser: [],
   accounts: [],

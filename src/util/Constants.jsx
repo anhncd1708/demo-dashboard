@@ -12,76 +12,79 @@ export const STATUS_CODE = {
   SUCCESS: 200,
 };
 
-export const navData = {
-  admin: [
-    {
-      label: "Thống kê",
-      icon: <GridViewRoundedIcon />,
-      path: "/dashboard",
-    },
-    {
-      label: "Quản lý",
-      icon: <GridViewRoundedIcon />,
-      subItems: [
-        {
-          label: "Nhân viên",
-          icon: <PeopleAltIcon />,
-          path: "/employees",
-        },
-        {
-          label: "Khách hàng",
-          icon: <ReportIcon />,
-          path: "/profile-details",
-        },
-        {
-          label: "Người môi giới",
-          icon: <ReportIcon />,
-          path: "/appraisal",
-        },
-        {
-          label: "Biểu phí",
-          icon: <ReportIcon />,
-          path: "/appraisal-criteria",
-        },
-      ],
-    },
-    {
-      label: "Hợp đồng thẩm định",
-      icon: <GridViewRoundedIcon />,
-      subItems: [
-        {
-          label: "Tiêu chí đánh giá",
-          icon: <PeopleAltIcon />,
-          path: "/evaluation",
-        },
-        {
-          label: "Chi tiết hồ sơ",
-          icon: <ReportIcon />,
-          path: "/profile-details",
-        },
-        {
-          label: "Thẩm định cá nhân",
-          icon: <ReportIcon />,
-          path: "/appraisal",
-        },
-        {
-          label: "Tiêu chí thẩm định cá nhân",
-          icon: <ReportIcon />,
-          path: "/appraisal-criteria",
-        },
-      ],
-    },
-    {
-      label: "Mẫu tiêu chí đánh giá",
-      icon: <SettingsIcon />,
-      path: "/evaluation-form",
-    },
+export const navData = [
+  {
+    label: "Thống kê",
+    icon: <GridViewRoundedIcon />,
+    path: "/",
+  },
+  {
+    label: "Quản lý",
+    icon: <GridViewRoundedIcon />,
+    subItems: [
+      {
+        label: "Nhân viên",
+        icon: <PeopleAltIcon />,
+        path: "/employees",
+      },
+      {
+        label: "Khách hàng",
+        icon: <ReportIcon />,
+        path: "/profile-details",
+      },
+      {
+        label: "Người môi giới",
+        icon: <ReportIcon />,
+        path: "/appraisal",
+      },
+      {
+        label: "Biểu phí",
+        icon: <ReportIcon />,
+        path: "/appraisal-criteria",
+      },
+    ],
+  },
+  {
+    label: "Hợp đồng thẩm định",
+    icon: <GridViewRoundedIcon />,
+    subItems: [
+      {
+        label: "Tiêu chí đánh giá",
+        icon: <PeopleAltIcon />,
+        path: "/evaluation",
+      },
+      {
+        label: "Chi tiết hồ sơ",
+        icon: <ReportIcon />,
+        path: "/profile-details",
+      },
+      {
+        label: "Thẩm định cá nhân",
+        icon: <ReportIcon />,
+        path: "/appraisal",
+      },
+      {
+        label: "Tiêu chí thẩm định cá nhân",
+        icon: <ReportIcon />,
+        path: "/appraisal-criteria",
+      },
+    ],
+  },
+  {
+    label: "Khác",
+    subItems: [
+      {
+        label: "Mẫu tiêu chí đánh giá",
+        icon: <SettingsIcon />,
+        path: "/evaluation-form",
+      },
+      {
+        label: "Khác",
+        icon: <Person2OutlinedIcon />,
+        path: "/other",
+      },
+    ],
+  },
 
-    {
-      label: "Khác",
-      icon: <Person2OutlinedIcon />,
-      path: "/other",
-    },
-    // Add more manager-specific items
-  ],
-};
+  // Add more manager-specific items
+];

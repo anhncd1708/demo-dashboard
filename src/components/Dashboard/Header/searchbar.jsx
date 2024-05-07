@@ -10,9 +10,9 @@ import {
   ClickAwayListener,
 } from "@mui/material";
 
-import { bgBlur } from "../../theme/css";
+import { bgBlur } from "../../../theme/css";
 
-import Iconify from "../Iconify/iconify";
+import Iconify from "../../Iconify/iconify";
 
 // ----------------------------------------------------------------------
 

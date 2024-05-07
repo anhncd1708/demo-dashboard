@@ -1,5 +1,5 @@
-import { useState } from "react";
-
+import { startTransition, useState } from "react";
+import Cookies from "js-cookie";
 import {
   alpha,
   Box,
@@ -10,6 +10,8 @@ import {
   Typography,
   IconButton,
 } from "@mui/material";
+
+import { useRouter } from "../../../routes/hooks";
 
 // ----------------------------------------------------------------------
 
@@ -39,13 +41,21 @@ const account = {
 
 export default function AccountPopover() {
   const [open, setOpen] = useState(null);
-
+  const router = useRouter();
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
   };
 
   const handleClose = () => {
     setOpen(null);
+  };
+
+  const handleLogout = () => {
+    Cookies.remove("user");
+    Cookies.remove("token");
+    startTransition(() => {
+      router.push("/login");
+    });
   };
 
   return (
@@ -112,7 +122,7 @@ export default function AccountPopover() {
         <MenuItem
           disableRipple
           disableTouchRipple
-          onClick={handleClose}
+          onClick={handleLogout}
           sx={{ typography: "body2", color: "error.main", py: 1.5 }}
         >
           Logout

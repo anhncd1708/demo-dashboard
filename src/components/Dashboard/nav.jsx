@@ -10,24 +10,39 @@ import {
   alpha,
   Typography,
   ListItemButton,
+  ListSubheader,
+  List,
 } from "@mui/material";
 
-import { usePathname } from "src/routes/hooks";
-import { RouterLink } from "src/routes/components";
+import { usePathname } from "../../routes/hooks";
+import { RouterLink } from "../../routes/components";
 
-import { useResponsive } from "src/hooks/use-responsive";
+import { useResponsive } from "../../hooks/use-responsive";
 
-import { account } from "src/_mock/account";
+import Scrollbar from "../Scrollbar";
 
-import Logo from "src/components/logo";
-import Scrollbar from "src/components/scrollbar";
+import { NAV } from "./Header/config-layout";
+// import navConfig from "./config-navigation";
 
-import { NAV } from "./config-layout";
-import navConfig from "./config-navigation";
+import { navData } from "../../util/Constants";
 
 // ----------------------------------------------------------------------
 
 export default function Nav({ openNav, onCloseNav }) {
+  const account = {
+    id: 1,
+    username: "admin",
+    password: "admin",
+    fullname: "Admin",
+    created_at: "2024-05-01T00:00:00",
+    updated_at: "2024-05-01T00:00:00",
+    deleted_at: "2024-05-01T00:00:00",
+    role: "ADMIN",
+    email: "admin@gmail.com",
+    active: true,
+    photoURL: "../../assets/avatar/avatar_9.jpg",
+  };
+
   const pathname = usePathname();
 
   const upLg = useResponsive("up", "lg");
@@ -55,7 +70,7 @@ export default function Nav({ openNav, onCloseNav }) {
       <Avatar src={account.photoURL} alt="photoURL" />
 
       <Box sx={{ ml: 2 }}>
-        <Typography variant="subtitle2">{account.displayName}</Typography>
+        <Typography variant="subtitle2">{account.fullname}</Typography>
 
         <Typography variant="body2" sx={{ color: "text.secondary" }}>
           {account.role}
@@ -66,43 +81,43 @@ export default function Nav({ openNav, onCloseNav }) {
 
   const renderMenu = (
     <Stack component="nav" spacing={0.5} sx={{ px: 2 }}>
-      {navConfig.map((item) => (
-        <NavItem key={item.title} item={item} />
-      ))}
+      {navData.map((item) =>
+        item.subItems ? (
+          <List
+            sx={{
+              minHeight: 44,
+              borderRadius: 0.75,
+              typography: "body2",
+              textTransform: "capitalize",
+              fontWeight: "fontWeightMedium",
+            }}
+            component="nav"
+            aria-labelledby="nested-list-subheader"
+            subheader={
+              <ListSubheader
+                sx={{
+                  minHeight: 44,
+                  borderRadius: 0.75,
+                  backgroundColor: "transparent",
+                  textTransform: "capitalize",
+                  fontWeight: "fontWeightMedium",
+                }}
+                component="div"
+                id="nested-list-subheader"
+              >
+                {item.label}
+              </ListSubheader>
+            }
+          >
+            {item.subItems.map((subItem, subIndex) => (
+              <NavItem key={subIndex} item={subItem} />
+            ))}
+          </List>
+        ) : (
+          <NavItem key={item.label} item={item} />
+        )
+      )}
     </Stack>
-  );
-
-  const renderUpgrade = (
-    <Box sx={{ px: 2.5, pb: 3, mt: 10 }}>
-      <Stack
-        alignItems="center"
-        spacing={3}
-        sx={{ pt: 5, borderRadius: 2, position: "relative" }}
-      >
-        <Box
-          component="img"
-          src="/assets/illustrations/illustration_avatar.png"
-          sx={{ width: 100, position: "absolute", top: -50 }}
-        />
-
-        <Box sx={{ textAlign: "center" }}>
-          <Typography variant="h6">Get more?</Typography>
-
-          <Typography variant="body2" sx={{ color: "text.secondary", mt: 1 }}>
-            From only $69
-          </Typography>
-        </Box>
-
-        <Button
-          href="https://material-ui.com/store/items/minimal-dashboard/"
-          target="_blank"
-          variant="contained"
-          color="inherit"
-        >
-          Upgrade to Pro
-        </Button>
-      </Stack>
-    </Box>
   );
 
   const renderContent = (
@@ -116,15 +131,13 @@ export default function Nav({ openNav, onCloseNav }) {
         },
       }}
     >
-      <Logo sx={{ mt: 3, ml: 4 }} />
+      {/* <Logo sx={{ mt: 3, ml: 4 }} /> */}
 
       {renderAccount}
 
       {renderMenu}
 
       <Box sx={{ flexGrow: 1 }} />
-
-      {renderUpgrade}
     </Scrollbar>
   );
 
@@ -199,8 +212,7 @@ function NavItem({ item }) {
       <Box component="span" sx={{ width: 24, height: 24, mr: 2 }}>
         {item.icon}
       </Box>
-
-      <Box component="span">{item.title} </Box>
+      <Box component="span">{item.label} </Box>
     </ListItemButton>
   );
 }

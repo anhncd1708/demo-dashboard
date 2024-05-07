@@ -25,6 +25,7 @@ import {
   applyFilter,
   getComparator,
 } from "../../components/Table/utils";
+import TableLoading from "../../components/Table/table-loading";
 
 // ----------------------------------------------------------------------
 
@@ -116,9 +117,7 @@ export default function EmpPage() {
 
   const notFound = !dataFiltered.length && !!filterName;
 
-  return loading ? (
-    <Loading />
-  ) : (
+  return (
     <Container>
       <Stack
         direction="row"
@@ -196,6 +195,7 @@ export default function EmpPage() {
                 />
 
                 {notFound && <TableNoData query={filterName} />}
+                {loading && <TableLoading />}
               </TableBody>
             </Table>
           </TableContainer>

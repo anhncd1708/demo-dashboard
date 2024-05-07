@@ -1,5 +1,5 @@
 /// gọi axios
-import * as PATH_ACTION from "../PathAction";
+import * as PATH_ACTION from "../pathAction";
 import { jwtDecode } from "jwt-decode";
 import * as API_DOMAIN from "./api_domain";
 import { URL_API } from "../../../config/axios/url/url";
