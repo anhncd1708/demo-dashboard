@@ -32,6 +32,12 @@ export default function reducers(state = initialState, { type, payload }) {
     case PATH_ACTION.GET_LIST_CUSTOMER:
       state.customers = payload;
       break;
+    case PATH_ACTION.GET_LIST_BROKER:
+      state.brokers = payload;
+      break;
+    case PATH_ACTION.GET_LIST_VOCATIVE:
+      state.vocatives = payload;
+      break;
     case PATH_ACTION.GET_LIST_CUSTOMER_TYPE:
       state.customerTypes = payload;
       break;
