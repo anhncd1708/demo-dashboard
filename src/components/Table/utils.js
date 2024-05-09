@@ -48,7 +48,11 @@ export const visuallyHidden = {
   
     if (filterName) {
       inputData = inputData.filter(
-        (user) => user?.employees_name.toLowerCase().indexOf(filterName.toLowerCase()) !== -1
+        (input) => input?.employees_name ? (input?.employees_name.toLowerCase().indexOf(filterName.toLowerCase()) !== -1) 
+        : input?.ten_khach_hang ? (input?.ten_khach_hang.toLowerCase().indexOf(filterName.toLowerCase()) !== -1) 
+        : input?.ten ? (input?.ten.toLowerCase().indexOf(filterName.toLowerCase()) !== -1) 
+        : input?.ten_ke_hoach ? (input?.ten_ke_hoach.toLowerCase().indexOf(filterName.toLowerCase()) !== -1) 
+        : (input?.name.toLowerCase().indexOf(filterName.toLowerCase()) !== -1)
       );
     }
   

@@ -11,12 +11,13 @@ import {
   TablePagination,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { getListEmployee } from "../../context/redux/action/action";
+import {
+  getListAppraisalPlan,
+  getListBroker,
+} from "../../context/redux/action/action";
 import Iconify from "../../components/Iconify/iconify";
 import Scrollbar from "../../components/Scrollbar";
-import Loading from "../../components/Loading/Loading";
 import TableNoData from "../../components/Table/table-no-data";
-import UserTableRow from "../../components/Table/emp-table/emp-table-row";
 import UserTableHead from "../../components/Table/table-head";
 import TableEmptyRows from "../../components/Table/table-empty-rows";
 import UserTableToolbar from "../../components/Table/table-toolbar";
@@ -26,10 +27,11 @@ import {
   getComparator,
 } from "../../components/Table/utils";
 import TableLoading from "../../components/Table/table-loading";
+import AppraisalTableRow from "../../components/Table/appraisal-table/appraisal-table-row";
 
 // ----------------------------------------------------------------------
 
-export default function EmpPage() {
+export default function AppraisalPlanView() {
   const [loading, setLoading] = useState(false);
 
   const [page, setPage] = useState(0);
@@ -38,7 +40,7 @@ export default function EmpPage() {
 
   const [selected, setSelected] = useState([]);
 
-  const [orderBy, setOrderBy] = useState("employees_name");
+  const [orderBy, setOrderBy] = useState("ma_ke_hoach");
 
   const [filterName, setFilterName] = useState("");
 
@@ -57,31 +59,31 @@ export default function EmpPage() {
   useEffect(() => {
     setLoading(true);
     const callAPI = async () => {
-      await dispatch(getListEmployee());
+      await dispatch(getListAppraisalPlan());
       setLoading(false);
     };
     callAPI();
   }, [dispatch]);
 
-  const employees = useSelector((state) => {
-    console.log(26, state.employees);
-    return state.employees;
+  const plans = useSelector((state) => {
+    console.log(27, state.appraisalPlans);
+    return state.appraisalPlans;
   });
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = employees.map((n) => n.employees_name);
+      const newSelecteds = plans?.map((n) => n.ten_ke_hoach);
       setSelected(newSelecteds);
       return;
     }
     setSelected([]);
   };
 
-  const handleClick = (event, employees_name) => {
-    const selectedIndex = selected.indexOf(employees_name);
+  const handleClick = (event, ten_ke_hoach) => {
+    const selectedIndex = selected.indexOf(ten_ke_hoach);
     let newSelected = [];
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, employees_name);
+      newSelected = newSelected.concat(selected, ten_ke_hoach);
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
@@ -110,7 +112,7 @@ export default function EmpPage() {
   };
 
   const dataFiltered = applyFilter({
-    inputData: employees,
+    inputData: plans,
     comparator: getComparator(order, orderBy),
     filterName,
   });
@@ -125,7 +127,7 @@ export default function EmpPage() {
         justifyContent="space-between"
         mb={5}
       >
-        <Typography variant="h4">Nhân viên</Typography>
+        <Typography variant="h4">Danh sách kế hoạch thẩm định</Typography>
 
         {/* <Button
           variant="contained"
@@ -149,49 +151,43 @@ export default function EmpPage() {
               <UserTableHead
                 order={order}
                 orderBy={orderBy}
-                rowCount={employees.length}
+                rowCount={plans.length}
                 numSelected={selected.length}
                 onRequestSort={handleSort}
                 onSelectAllClick={handleSelectAllClick}
                 headLabel={[
-                  { id: "employees_code", label: "Mã nhân viên" },
-                  { id: "employees_name", label: "Tên nhân viên" },
-                  { id: "email", label: "Email" },
-                  { id: "address", label: "Địa chỉ" },
-                  { id: "gender", label: "Giới tính" },
-                  { id: "document_number", label: "Số điện thoại" },
-                  { id: "position_code", label: "Chức vụ" },
-                  { id: "is_active", label: "Hoạt động", align: "center" },
-                  { id: "is_working", label: "Đang làm việc" },
+                  { id: "ma_ke_hoach", label: "Mã kế hoạch" },
+                  { id: "ten_ke_hoach", label: "Tên kế hoạch" },
+                  { id: "mo_ta_ke_hoach", label: "Mô tả" },
+                  { id: "nguoi_them", label: "Người thêm" },
+                  { id: "gia_tri", label: "Giá trị" },
+                  { id: "da_tham_dinh", label: "Thẩm định" },
+                  { id: "create_date", label: "Ngày tạo" },
                   { id: "" },
                 ]}
               />
               <TableBody>
                 {dataFiltered
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row) => (
-                    <UserTableRow
-                      key={row.employees_code}
-                      employees_code={row.employees_code}
-                      employee_image={row.employee_image}
-                      employees_name={row.employees_name}
-                      position_code={row.position_code}
-                      document_number={row.document_number}
-                      address={row.address}
-                      email={row.email}
-                      gender={row.gender}
-                      is_active={row.is_active}
-                      is_working={row.is_working}
-                      selected={selected.indexOf(row.employees_name) !== -1}
+                    <AppraisalTableRow
+                      key={row.ma_ke_hoach}
+                      ma_ke_hoach={row.ma_ke_hoach}
+                      ten_ke_hoach={row.ten_ke_hoach}
+                      mo_ta_ke_hoach={row.mo_ta_ke_hoach}
+                      nguoi_them={row.nguoi_them}
+                      da_tham_dinh={row.da_tham_dinh}
+                      create_date={row.create_date}
+                      selected={selected.indexOf(row.ten_ke_hoach) !== -1}
                       handleClick={(event) =>
-                        handleClick(event, row.employees_name)
+                        handleClick(event, row.ten_ke_hoach)
                       }
                     />
                   ))}
 
                 <TableEmptyRows
                   height={10}
-                  emptyRows={emptyRows(page, rowsPerPage, employees.length)}
+                  emptyRows={emptyRows(page, rowsPerPage, plans.length)}
                 />
 
                 {notFound && <TableNoData query={filterName} />}
@@ -204,7 +200,7 @@ export default function EmpPage() {
         <TablePagination
           page={page}
           component="div"
-          count={employees.length}
+          count={plans.length}
           rowsPerPage={rowsPerPage}
           onPageChange={handleChangePage}
           rowsPerPageOptions={[5, 10, 25]}

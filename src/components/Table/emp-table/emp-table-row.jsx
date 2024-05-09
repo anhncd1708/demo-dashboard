@@ -13,8 +13,8 @@ import {
   IconButton,
 } from "@mui/material";
 
-import Label from "../Label/label";
-import Iconify from "../Iconify/iconify";
+import Label from "../../Label/label";
+import Iconify from "../../Iconify/iconify";
 
 // ----------------------------------------------------------------------
 
@@ -68,12 +68,12 @@ export default function UserTableRow({
         <TableCell>{position_code}</TableCell>
 
         <TableCell align="center">
-          {is_active ? "Active" : "Inactive"}
+          {is_active ? "Đang hoạt động" : "Ngưng hoạt động"}
         </TableCell>
 
         <TableCell>
           <Label color={is_working ? "success" : "error"}>
-            {is_working ? "Working" : "Leave"}
+            {is_working ? "Đang làm việc" : "Ngưng làm việc"}
           </Label>
         </TableCell>
 

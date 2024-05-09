@@ -3,6 +3,9 @@ import { Outlet, Navigate, useRoutes } from "react-router-dom";
 import Cookies from "js-cookie";
 import DashboardLayout from "../components/Dashboard/DashboardLayout";
 import OverviewPage from "../pages/overview";
+import CustomerPage from "../pages/customer";
+import BrokerPage from "../pages/brokers";
+import AppraisalPlansPage from "../pages/appraisal-plans";
 
 export const EmployeesPage = lazy(() => import("../pages/employees"));
 export const LoginPage = lazy(() => import("../pages/login"));
@@ -58,6 +61,13 @@ export default function Router() {
       children: [
         { element: <OverviewPage />, index: true },
         { path: "employees", element: <EmployeesPage /> },
+        { path: "customers", element: <CustomerPage /> },
+        { path: "brokers", element: <BrokerPage /> },
+        { path: "appraisal-plans", element: <AppraisalPlansPage /> },
+        {
+          path: "appraisal-plans/:ma_ke_hoach",
+          element: <AppraisalPlansPage />,
+        },
       ],
     },
     {

@@ -3,6 +3,7 @@ import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import SettingsIcon from "@mui/icons-material/Settings";
 import ReportIcon from "@mui/icons-material/Report";
+import Iconify from "../components/Iconify";
 
 export const DISPLAY_LOADING = "DISPLAY_LOADING";
 export const HIDE_LOADING = "HIDE_LOADING";
@@ -24,24 +25,34 @@ export const navData = [
     subItems: [
       {
         label: "Nhân viên",
-        icon: <PeopleAltIcon />,
+        icon: (
+          <Iconify
+            icon="clarity:employee-solid"
+            sx={{ width: 25, height: 25 }}
+          />
+        ),
         path: "/employees",
       },
       {
         label: "Khách hàng",
-        icon: <ReportIcon />,
-        path: "/profile-details",
+        icon: <Iconify icon="carbon:customer" sx={{ width: 25, height: 25 }} />,
+        path: "/customers",
       },
       {
         label: "Người môi giới",
-        icon: <ReportIcon />,
-        path: "/appraisal",
+        icon: (
+          <Iconify
+            icon="tabler:layout-align-middle-filled"
+            sx={{ width: 25, height: 25 }}
+          />
+        ),
+        path: "/brokers",
       },
-      {
-        label: "Biểu phí",
-        icon: <ReportIcon />,
-        path: "/appraisal-criteria",
-      },
+      // {
+      //   label: "Biểu phí",
+      //   icon: <ReportIcon />,
+      //   path: "/appraisal-criteria",
+      // },
     ],
   },
   {
@@ -49,23 +60,40 @@ export const navData = [
     icon: <GridViewRoundedIcon />,
     subItems: [
       {
-        label: "Tiêu chí đánh giá",
-        icon: <PeopleAltIcon />,
-        path: "/evaluation",
+        label: "Danh sách kế hoạch",
+        icon: (
+          <Iconify
+            icon="clarity:clipboard-solid"
+            sx={{ width: 25, height: 25 }}
+          />
+        ),
+        path: "/appraisal-plans",
       },
       {
         label: "Chi tiết hồ sơ",
-        icon: <ReportIcon />,
+        icon: (
+          <Iconify
+            icon="fluent:clipboard-text-edit-20-filled"
+            sx={{ width: 25, height: 25 }}
+          />
+        ),
         path: "/profile-details",
       },
       {
         label: "Thẩm định cá nhân",
-        icon: <ReportIcon />,
+        icon: (
+          <Iconify icon="mdi:clipboard-person" sx={{ width: 25, height: 25 }} />
+        ),
         path: "/appraisal",
       },
       {
         label: "Tiêu chí thẩm định cá nhân",
-        icon: <ReportIcon />,
+        icon: (
+          <Iconify
+            icon="mdi:clipboard-text-search"
+            sx={{ width: 25, height: 25 }}
+          />
+        ),
         path: "/appraisal-criteria",
       },
     ],

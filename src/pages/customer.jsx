@@ -1,15 +1,15 @@
 import { Helmet } from "react-helmet-async";
-import { EmpView } from "../view/Employees";
+import { CustomerView } from "../view/Customers";
 
 // ----------------------------------------------------------------------
 
-export default function EmpPage() {
+export default function CustomerPage() {
   return (
     <>
       <Helmet>
-        <title> Nhân viên </title>
+        <title> Khách hàng </title>
       </Helmet>
-      <EmpView />
+      <CustomerView />
     </>
   );
 }
