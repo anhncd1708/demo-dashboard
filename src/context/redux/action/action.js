@@ -80,11 +80,14 @@ export const loginFirebase = (idtoken, navigate) => {
   };
 };
 
-export const getListEmployee = (token) => {
+export const getListEmployee = (value, token) => {
   return async (dispatch) => {
     try {
-      const res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_EMPLOYEE, null, token);
-
+      let res;
+      if (value != undefined)
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_EMPLOYEE + "?employee_code=" + value, null, token);
+      else
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_EMPLOYEE, null, token);
       dispatch(
         createAction({
           type: PATH_ACTION.GET_LIST_EMPLOYEE,
@@ -95,11 +98,14 @@ export const getListEmployee = (token) => {
   };
 };
 
-export const getListCustomer = (token) => {
+export const getListCustomer = (value, token) => {
   return async (dispatch) => {
     try {
-      const res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_CUSTOMER, null, token);
-
+      let res;
+      if (value != undefined)
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_CUSTOMER + "?customer_code=" + value, null, token);
+      else
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_CUSTOMER, null, token);
       dispatch(
         createAction({
           type: PATH_ACTION.GET_LIST_CUSTOMER,
@@ -110,11 +116,14 @@ export const getListCustomer = (token) => {
   };
 };
 
-export const getListBroker = (token) => {
+export const getListBroker = (value, token) => {
   return async (dispatch) => {
     try {
-      const res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_BROKER, null, token);
-
+      let res;
+      if (value != undefined)
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_BROKER + "?broker_code=" + value, null, token);
+      else
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_BROKER, null, token);
       dispatch(
         createAction({
           type: PATH_ACTION.GET_LIST_BROKER,
@@ -125,11 +134,14 @@ export const getListBroker = (token) => {
   };
 };
 
-export const getListCustomerType = (token) => {
+export const getListCustomerType = (value, token) => {
   return async (dispatch) => {
     try {
-      const res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_CUSTOMER_TYPE, null, token);
-
+      let res;
+      if (value != undefined)
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_CUSTOMER_TYPE + "?customer_type_code=" + value, null, token);
+      else
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_CUSTOMER_TYPE, null, token);
       dispatch(
         createAction({
           type: PATH_ACTION.GET_LIST_CUSTOMER_TYPE,
@@ -140,10 +152,14 @@ export const getListCustomerType = (token) => {
   };
 };
 
-export const getListVocative = (token) => {
+export const getListVocative = (value, token) => {
   return async (dispatch) => {
     try {
-      const res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_VOCATIVE, null, token);
+      let res;
+      if (value != undefined)
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_VOCATIVE + "?vocative_code=" + value, null, token);
+      else
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_VOCATIVE, null, token);
 
       dispatch(
         createAction({
@@ -155,11 +171,14 @@ export const getListVocative = (token) => {
   };
 };
 
-export const getListEmployeePositions = (token) => {
+export const getListEmployeePositions = (value, token) => {
   return async (dispatch) => {
     try {
-      const res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_EMPLOYEE_POSITIONS, null, token);
-
+      let res;
+      if (value != undefined)
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_EMPLOYEE_POSITIONS + "?employee_position_code=" + value, null, token);
+      else
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_EMPLOYEE_POSITIONS, null, token);
       dispatch(
         createAction({
           type: PATH_ACTION.GET_LIST_EMPLOYEE_POSITIONS,
@@ -170,10 +189,14 @@ export const getListEmployeePositions = (token) => {
   };
 };
 
-export const getListBrief = (token) => {
+export const getListBrief = (value, token) => {
   return async (dispatch) => {
     try {
-      const res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_BRIEF, null, token);
+      let res;
+      if (value != undefined)
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_BRIEF + "?brief_code=" + value, null, token);
+      else
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_BRIEF, null, token);
 
       dispatch(
         createAction({
@@ -185,11 +208,14 @@ export const getListBrief = (token) => {
   };
 };
 
-export const getListBriefPoint = (token) => {
+export const getListBriefPoint = (value, token) => {
   return async (dispatch) => {
     try {
-      const res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_BRIEF_POINT, null, token);
-
+      let res;
+      if (value != undefined)
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_BRIEF_POINT + "?brief_code=" + value, null, token);
+      else
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_BRIEF_POINT, null, token);
       dispatch(
         createAction({
           type: PATH_ACTION.GET_LIST_BRIEF_POINT,
@@ -200,10 +226,14 @@ export const getListBriefPoint = (token) => {
   };
 };
 
-export const getListAsset = (token) => {
+export const getListAsset = (value, token) => {
   return async (dispatch) => {
     try {
-      const res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_ASSET, null, token);
+      let res;
+      if (value != undefined)
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_ASSET + "?asset_code=" + value, null, token);
+      else
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_ASSET, null, token);
 
       dispatch(
         createAction({
@@ -215,11 +245,14 @@ export const getListAsset = (token) => {
   };
 };
 
-export const getListAssetType = (token) => {
+export const getListAssetType = (value, token) => {
   return async (dispatch) => {
     try {
-      const res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_ASSET_TYPE, null, token);
-
+      let res;
+      if (value != undefined)
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_ASSET_TYPE + "?asset_type_code=" + value, null, token);
+      else
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_ASSET_TYPE, null, token);
       dispatch(
         createAction({
           type: PATH_ACTION.GET_LIST_ASSET_TYPE,
@@ -230,11 +263,14 @@ export const getListAssetType = (token) => {
   };
 };
 
-export const getListAppraisalPlan = (token) => {
+export const getListAppraisalPlan = (value, token) => {
   return async (dispatch) => {
     try {
-      const res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_APPRAISAL_PLAN, null, token);
-
+      let res;
+      if (value != undefined)
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_APPRAISAL_PLAN + "?appraisal_plan_code=" + value, null, token);
+      else
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_APPRAISAL_PLAN, null, token);
       dispatch(
         createAction({
           type: PATH_ACTION.GET_LIST_APPRAISAL_PLAN,
@@ -245,11 +281,14 @@ export const getListAppraisalPlan = (token) => {
   };
 };
 
-export const getListAppraisalPlanDetail = (token) => {
+export const getListAppraisalPlanDetail = (value, token) => {
   return async (dispatch) => {
     try {
-      const res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_APPRAISAL_PLAN_DETAIL, null, token);
-
+      let res;
+      if (value != undefined)
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_APPRAISAL_PLAN_DETAIL + "?appraisal_plan_detail_code=" + value, null, token);
+      else
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_APPRAISAL_PLAN_DETAIL, null, token);
       dispatch(
         createAction({
           type: PATH_ACTION.GET_LIST_APPRAISAL_PLAN_DETAIL,
@@ -260,10 +299,14 @@ export const getListAppraisalPlanDetail = (token) => {
   };
 };
 
-export const getListAppraisalPlanType = (token) => {
+export const getListAppraisalPlanType = (value, token) => {
   return async (dispatch) => {
     try {
-      const res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_APPRAISAL_PLAN_TYPE, null, token);
+      let res;
+      if (value != undefined)
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_APPRAISAL_PLAN_TYPE + "?appraisal_plan_type_code=" + value, null, token);
+      else
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_APPRAISAL_PLAN_TYPE, null, token);
 
       dispatch(
         createAction({
@@ -275,11 +318,14 @@ export const getListAppraisalPlanType = (token) => {
   };
 };
 
-export const getListAppraisalDocumentDetail = (token) => {
+export const getListAppraisalDocumentDetail = (value, token) => {
   return async (dispatch) => {
     try {
-      const res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_APPRAISAL_DOCUMENT_DETAIL, null, token);
-
+      let res;
+      if (value != undefined)
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_APPRAISAL_DOCUMENT_DETAIL + "?appraisal_documents_detail_code=" + value, null, token);
+      else
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_APPRAISAL_DOCUMENT_DETAIL, null, token);
       dispatch(
         createAction({
           type: PATH_ACTION.GET_LIST_APPRAISAL_DOCUMENT_DETAIL,
@@ -290,11 +336,14 @@ export const getListAppraisalDocumentDetail = (token) => {
   };
 };
 
-export const getListPriorityLevel = (token) => {
+export const getListPriorityLevel = (value, token) => {
   return async (dispatch) => {
     try {
-      const res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_PRIORITY_LEVEL, null, token);
-
+      let res;
+      if (value != undefined)
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_PRIORITY_LEVEL + "?priority_level_code=" + value, null, token);
+      else
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_PRIORITY_LEVEL, null, token);
       dispatch(
         createAction({
           type: PATH_ACTION.GET_LIST_PRIORITY_LEVEL,

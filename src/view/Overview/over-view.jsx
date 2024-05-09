@@ -32,21 +32,21 @@ export default function OverView() {
   // Get data employees when component mounting
   useEffect(() => {
     const callAPI = async () => {
-      await dispatch(getListEmployee());
-      await dispatch(getListAppraisalDocumentDetail());
-      await dispatch(getListAppraisalPlan());
-      await dispatch(getListAppraisalPlanDetail());
-      await dispatch(getListAppraisalPlanType());
-      await dispatch(getListAsset());
-      await dispatch(getListAssetType());
-      await dispatch(getListBrief());
-      await dispatch(getListBriefPoint());
-      await dispatch(getListBroker());
-      await dispatch(getListCustomer());
-      await dispatch(getListCustomerType());
-      await dispatch(getListEmployeePositions());
-      await dispatch(getListVocative());
-      await dispatch(getListPriorityLevel());
+      // await dispatch(getListEmployee("NV000"));
+      // await dispatch(getListAppraisalDocumentDetail());
+      // await dispatch(getListAppraisalPlan());
+      // await dispatch(getListAppraisalPlanDetail());
+      // await dispatch(getListAppraisalPlanType());
+      // await dispatch(getListAsset());
+      // await dispatch(getListAssetType());
+      // await dispatch(getListBrief());
+      // await dispatch(getListBriefPoint());
+      // await dispatch(getListBroker());
+      // await dispatch(getListCustomer());
+      // await dispatch(getListCustomerType());
+      // await dispatch(getListEmployeePositions());
+      // await dispatch(getListVocative());
+      // await dispatch(getListPriorityLevel());
     }
     callAPI();
   }, [dispatch]);
