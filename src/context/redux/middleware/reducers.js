@@ -15,7 +15,8 @@ const initialState = {
   appraisalPlans: [],
   appraisalPlanDetails: [],
   appraisalPlanTypes: [],
-  appraisalDocumentDetail: []
+  appraisalDocumentDetail: [],
+  priorityLevels: []
 };
 
 export default function reducers(state = initialState, { type, payload }) {
@@ -67,6 +68,9 @@ export default function reducers(state = initialState, { type, payload }) {
       break;
     case PATH_ACTION.GET_LIST_APPRAISAL_PLAN_TYPE:
       state.appraisalPlanTypes = payload;
+      break;
+    case PATH_ACTION.GET_LIST_PRIORITY_LEVEL:
+      state.priorityLevels = payload;
       break;
     default:
       return { ...state };

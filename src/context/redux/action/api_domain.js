@@ -17,3 +17,5 @@ export const GET_LIST_APPRAISAL_PLAN = "/appraisal_plans";
 export const GET_LIST_APPRAISAL_PLAN_DETAIL = "/appraisal_plans_detail";
 export const GET_LIST_APPRAISAL_DOCUMENT_DETAIL = "/appraisal_documents_detail";
 export const GET_LIST_APPRAISAL_PLAN_TYPE = "/appraisal_plan_types";
+
+export const GET_LIST_PRIORITY_LEVEL = "/priority_levels";

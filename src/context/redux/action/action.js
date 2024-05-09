@@ -289,3 +289,19 @@ export const getListAppraisalDocumentDetail = (token) => {
     } catch (err) { }
   };
 };
+
+export const getListPriorityLevel = (token) => {
+  return async (dispatch) => {
+    try {
+      const res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_PRIORITY_LEVEL, null, token);
+
+      dispatch(
+        createAction({
+          type: PATH_ACTION.GET_LIST_PRIORITY_LEVEL,
+          payload: res.data
+        })
+      );
+    } catch (err) { }
+  };
+};
+

@@ -19,7 +19,8 @@ import {
   getListCustomer,
   getListCustomerType,
   getListEmployeePositions,
-  getListVocative
+  getListVocative,
+  getListPriorityLevel
 } from "../../context/redux/action/action";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -45,6 +46,7 @@ export default function OverView() {
       await dispatch(getListCustomerType());
       await dispatch(getListEmployeePositions());
       await dispatch(getListVocative());
+      await dispatch(getListPriorityLevel());
     }
     callAPI();
   }, [dispatch]);
