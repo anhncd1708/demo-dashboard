@@ -68,7 +68,9 @@ export default function UserTableRow({
         <TableCell>{position_code}</TableCell>
 
         <TableCell align="center">
-          {is_active ? "Đang hoạt động" : "Ngưng hoạt động"}
+          <Label color={is_active ? "success" : "error"}>
+            {is_active ? "Đang hoạt động" : "Ngưng hoạt động"}
+          </Label>
         </TableCell>
 
         <TableCell>

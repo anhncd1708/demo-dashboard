@@ -63,10 +63,15 @@ export default function Router() {
         { path: "employees", element: <EmployeesPage /> },
         { path: "customers", element: <CustomerPage /> },
         { path: "brokers", element: <BrokerPage /> },
-        { path: "appraisal-plans", element: <AppraisalPlansPage /> },
         {
-          path: "appraisal-plans/:ma_ke_hoach",
+          path: "appraisal-plans",
           element: <AppraisalPlansPage />,
+          children: [
+            {
+              path: "appraisal-plans/test",
+              element: <AppraisalPlansPage />,
+            },
+          ],
         },
       ],
     },

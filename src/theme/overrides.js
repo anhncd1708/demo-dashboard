@@ -142,5 +142,12 @@ export function overrides(theme) {
         },
       },
     },
+    MuiPopover: {
+      styleOverrides: {
+        paper: {
+          boxShadow: theme.customShadows.z12
+        }
+      }
+    },
   };
 }

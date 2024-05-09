@@ -1,5 +1,5 @@
 import { alpha } from '@mui/material/styles';
-
+import { palette } from './palette';
 import { grey } from './palette';
 
 // ----------------------------------------------------------------------
@@ -36,4 +36,22 @@ export function shadows() {
     `0px 11px 14px -7px ${transparent1},0px 23px 36px 3px ${transparent2},0px 9px 44px 8px ${transparent3}`,
     `0px 11px 15px -7px ${transparent1},0px 24px 38px 3px ${transparent2},0px 9px 46px 8px ${transparent3}`,
   ];
+}
+
+export function customShadows() {
+  const transparent = alpha(grey[500], 0.24);
+  return {
+    z1: `0 1px 2px 0 ${transparent}`,
+    z8: `0 8px 16px 0 ${transparent}`,
+    z12: `0 0 2px 0 ${transparent}, 0 12px 24px 0 ${transparent}`,
+    z16: `0 0 2px 0 ${transparent}, 0 16px 32px -4px ${transparent}`,
+    z20: `0 0 2px 0 ${transparent}, 0 20px 40px -4px ${transparent}`,
+    z24: `0 0 4px 0 ${transparent}, 0 24px 48px 0 ${transparent}`,
+    primary: `0 8px 16px 0 ${alpha(palette.light.primary.main, 0.24)}`,
+    info: `0 8px 16px 0 ${alpha(palette.light.info.main, 0.24)}`,
+    secondary: `0 8px 16px 0 ${alpha(palette.light.secondary.main, 0.24)}`,
+    success: `0 8px 16px 0 ${alpha(palette.light.success.main, 0.24)}`,
+    warning: `0 8px 16px 0 ${alpha(palette.light.warning.main, 0.24)}`,
+    error: `0 8px 16px 0 ${alpha(palette.light.error.main, 0.24)}`
+  }
 }
