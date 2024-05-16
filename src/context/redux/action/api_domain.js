@@ -1,4 +1,4 @@
-export const LOGIN_USER = "LOGIN_USER";
+export const LOGIN_USER = "/auth/login";
 
 export const GET_LIST_EMPLOYEE = "/user/employees";
 export const GET_LIST_CUSTOMER = "/user/customers";

@@ -11,40 +11,32 @@ export const createAction = ({ type, payload }) => {
 };
 
 
-export const LoginAthen = (user, navigate) => {
-  return async (dispatch) => {
-    try {
-      const res = await Axios("POST", URL_API + API_DOMAIN.LOGIN_USER, user);
-      localStorage.setItem("token", res.data.data.token);
-      const token = localStorage.getItem("token");
-      const detoken = jwtDecode(token);
-
-      dispatch(
-        createAction({
-          type: PATH_ACTION.LOGIN_USER,
-          payload: res.data.data,
-        })
-      );
-      if (detoken.RoleName === "{role}") {
-        navigate("{domain}");
-        CustomizedToast({
-          message: "Đăng nhập thành công",
-          type: "SUCCESS",
-        });
-      } else if (detoken.RoleName === "{role}") {
-        navigate("{domain}");
-        CustomizedToast({
-          message: "Đăng nhập thành công",
-          type: "SUCCESS",
-        });
-      }
-    } catch (error) {
+export const LoginAuthen = (username, password) => {
+  try {
+    let user = {
+      "username": username,
+      "password": password
+    };
+    const res = Axios("POST", URL_API + API_DOMAIN.LOGIN_USER, user);
+    if (res) {
       CustomizedToast({
-        message: "Tên đăng nhập hoặc mật khẩu sai",
+        message: "Đăng nhập thành công",
+        type: "SUCCESS",
+      });
+      return res;
+    } else {
+      CustomizedToast({
+        message: "Đăng nhập thất bại",
         type: "ERROR",
       });
+      return undefined;
     }
-  };
+  } catch (error) {
+    CustomizedToast({
+      message: "Tên đăng nhập hoặc mật khẩu sai",
+      type: "ERROR",
+    });
+  }
 };
 
 export const loginFirebase = (idtoken, navigate) => {

@@ -5,6 +5,7 @@ export default function API(method, url, body, token) {
     method: method,
     url: url,
     data: body,
+    body: body,
     headers: { Authorization: `Bearer ${token}` },
   });
 }

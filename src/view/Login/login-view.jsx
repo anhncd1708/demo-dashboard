@@ -23,30 +23,14 @@ import { bgGradient } from "../../theme/css";
 
 // import Logo from "src/components/logo";
 import Iconify from "../../components/Iconify";
+import {
+  LoginAuthen
+} from "../../context/redux/action/action";
 
 // ----------------------------------------------------------------------
 
 export default function LoginView() {
-  // useEffect(() => {
-  //   let userTmp = Cookies.get("user");
-  //   const token = Cookies.get("token");
-  //   if (userTmp && token) {
-  //     router.push("/");
-  //   }
-  // }, []);
-
-  const user = {
-    id: 1,
-    username: "admin",
-    password: "admin",
-    created_at: "2024-05-01T00:00:00",
-    updated_at: "2024-05-01T00:00:00",
-    deleted_at: "2024-05-01T00:00:00",
-    role: "ADMIN",
-    email: "admin@gmail.com",
-    active: true,
-  };
-
+ 
   const token =
     "IEIpLceGWQw6gJ3991U29PDUXVQSULuVAaYO8v4000UouZKJXAFt0u7CaPfwSRDq";
 
@@ -73,13 +57,19 @@ export default function LoginView() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // setLoading(true); // Set loading to true while waiting for the response
-    if (formData.username == "admin" && formData.password == "admin") {
-      Cookies.set("user", JSON.stringify(user));
-      Cookies.set("token", token, { expires: 1 });
-      router.push("/");
-    } else {
-      setError("Sai tên đăng nhập hoặc tài khoản.");
+    try {
+      let data = await LoginAuthen(formData.username, formData.password);
+      if (data.data.username === formData.username) {
+        Cookies.set("user", JSON.stringify(data.data));
+        Cookies.set("token", token, { expires: 1 });
+        router.push("/");
+      } else {
+        setError("Sai tên đăng nhập hoặc tài khoản.");
+      }
+    }
+    catch (err) {
+      console.log(err);
+      setError("Đăng nhập thất bại.");
     }
   };
 
@@ -90,14 +80,14 @@ export default function LoginView() {
           name="username"
           value={formData.username}
           onChange={handleChange}
-          label="Username"
+          label="Tài Khoản"
         />
 
         <TextField
           name="password"
           value={formData.password}
           onChange={handleChange}
-          label="Password"
+          label="Mật khẩu"
           type={showPassword ? "text" : "password"}
           InputProps={{
             endAdornment: (
@@ -133,7 +123,7 @@ export default function LoginView() {
         sx={{ my: 3 }}
       >
         <Link variant="subtitle2" underline="hover">
-          Forgot password?
+          Quên mật khẩu?
         </Link>
       </Stack>
 
@@ -144,7 +134,7 @@ export default function LoginView() {
         variant="contained"
         color="inherit"
       >
-        Login
+        Đăng nhập
       </LoadingButton>
     </form>
   );
@@ -159,13 +149,6 @@ export default function LoginView() {
         height: 1,
       }}
     >
-      {/* <Logo
-        sx={{
-          position: "fixed",
-          top: { xs: 16, md: 24 },
-          left: { xs: 16, md: 24 },
-        }}
-      /> */}
 
       <Stack alignItems="center" justifyContent="center" sx={{ height: 1 }}>
         <Card
@@ -175,12 +158,12 @@ export default function LoginView() {
             maxWidth: 420,
           }}
         >
-          <Typography variant="h4">Sign in</Typography>
+          <Typography variant="h4">Đăng nhập</Typography>
 
           <Typography variant="body2" sx={{ mt: 2, mb: 5 }}>
-            Don’t have an account?
+            Bạn chưa có tài khoản?
             <Link variant="subtitle2" sx={{ ml: 0.5 }}>
-              Get started
+              Bắt đầu
             </Link>
           </Typography>
 
@@ -218,7 +201,7 @@ export default function LoginView() {
 
           <Divider sx={{ my: 3 }}>
             <Typography variant="body2" sx={{ color: "text.secondary" }}>
-              OR
+              HOẶC
             </Typography>
           </Divider>
 

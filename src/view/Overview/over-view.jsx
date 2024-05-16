@@ -23,7 +23,7 @@ import {
   getListPriorityLevel
 } from "../../context/redux/action/action";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export default function OverView() {
   const dispatch = useDispatch();
@@ -50,9 +50,24 @@ export default function OverView() {
     }
     callAPI();
   }, [dispatch]);
+
+
+  const canvasRef = useRef("https://res.cloudinary.com/dj3zy8ivi/image/upload/v1715699337/file/glqlehe0jztmklhjfphp.pdf");
+
   return (
-    <Container maxWidth="xl">
-      <h2>Overview</h2>
-    </Container>
+    <>
+      <Container maxWidth="xl">
+        <h2>Overview</h2>
+        <iframe src={"https://docs.google.com/gview?url=https://res.cloudinary.com/dj3zy8ivi/image/upload/v1715699337/file/glqlehe0jztmklhjfphp.pdf&embedded=true"} 
+        style={{
+          width: "100%",
+          height: "1000px",
+        }}></iframe>
+      </Container>
+
+
+
+
+    </>
   );
 }

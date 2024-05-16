@@ -6,6 +6,7 @@ import OverviewPage from "../pages/overview";
 import CustomerPage from "../pages/customer";
 import BrokerPage from "../pages/brokers";
 import AppraisalPlansPage from "../pages/appraisal-plans";
+import ProfilePage from "../pages/profile";
 
 export const EmployeesPage = lazy(() => import("../pages/employees"));
 export const LoginPage = lazy(() => import("../pages/login"));
@@ -63,6 +64,7 @@ export default function Router() {
         { path: "employees", element: <EmployeesPage /> },
         { path: "customers", element: <CustomerPage /> },
         { path: "brokers", element: <BrokerPage /> },
+        { path: "profile", element: <ProfilePage /> },
         {
           path: "appraisal-plans",
           element: <AppraisalPlansPage />,
