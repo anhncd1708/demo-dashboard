@@ -1,5 +1,6 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
+import { Link, useNavigate } from "react-router-dom";
 
 import {
   Stack,
@@ -19,18 +20,22 @@ import moment from "moment";
 
 // ----------------------------------------------------------------------
 
-export default function AppraisalTableRow({
+export default function BriefTableRow({
   selected,
-  ma_ke_hoach,
-  ten_ke_hoach,
-  mo_ta_ke_hoach,
-  nguoi_them,
-  gia_tri,
-  da_tham_dinh,
+  ma_ho_so,
+  mo_ta,
+  muc_dich_tham_dinh,
+  thoi_gian_tham_dinh,
+  employee_create,
+  employee_approval,
   create_date,
+  da_duyet,
+  priority_name,
   handleClick,
 }) {
   const [open, setOpen] = useState(null);
+
+  const navigate = useNavigate();
 
   const handleOpenMenu = (event) => {
     setOpen(event.currentTarget);
@@ -43,11 +48,12 @@ export default function AppraisalTableRow({
   return (
     <>
       <TableRow hover tabIndex={-1} role="checkbox" selected={selected}>
+
         {/* <TableCell padding="checkbox">
           <Checkbox disableRipple checked={selected} onChange={handleClick} />
         </TableCell> */}
 
-        <TableCell>{ma_ke_hoach}</TableCell>
+        <TableCell>{ma_ho_so}</TableCell>
 
         <TableCell component="th" scope="row" padding="none">
           <Stack direction="row" alignItems="center" spacing={2}>
@@ -56,30 +62,46 @@ export default function AppraisalTableRow({
               {xung_ho}
             </Typography> */}
             <Typography variant="subtitle2" noWrap>
-              {ten_ke_hoach}
+              {muc_dich_tham_dinh}
             </Typography>
           </Stack>
         </TableCell>
-        <TableCell>{mo_ta_ke_hoach}</TableCell>
+        <TableCell>{mo_ta ? mo_ta : "--"}</TableCell>
+        <TableCell>{moment(thoi_gian_tham_dinh).format("DD/MM/YYYY")}</TableCell>
 
-        <TableCell>{nguoi_them}</TableCell>
+        <TableCell>{employee_create}</TableCell>
 
-        <TableCell align="center">{gia_tri ? gia_tri : "--"}</TableCell>
+        <TableCell>{employee_approval}</TableCell>
 
         <TableCell>
-          <Label color={da_tham_dinh ? "success" : "warning"}>
-            {da_tham_dinh ? "Đã thẩm định" : "Chưa thẩm định"}
+          <Label color={da_duyet ? "success" : "warning"}>
+            {da_duyet ? "Đã duyệt" : "Chưa duyệt"}
           </Label>
         </TableCell>
 
-        <TableCell>{moment(create_date).format("DD/MM/YYYY")}</TableCell>
+        <TableCell>
+          <Label color={"success"}>
+            {priority_name}
+          </Label>
+        </TableCell>
+
+        <TableCell align="right">
+          <Link to={`/briefs/${ma_ho_so}`}>
+            <IconButton >
+              <Iconify icon="ic:twotone-read-more" />
+            </IconButton>
+          </Link>
+        </TableCell>
 
         <TableCell align="right">
           <IconButton onClick={handleOpenMenu}>
             <Iconify icon="eva:more-vertical-fill" />
           </IconButton>
         </TableCell>
+
+
       </TableRow>
+
 
       <Popover
         open={!!open}
@@ -105,14 +127,16 @@ export default function AppraisalTableRow({
   );
 }
 
-AppraisalTableRow.propTypes = {
+BriefTableRow.propTypes = {
   selected: PropTypes.any,
-  ma_ke_hoach: PropTypes.any,
-  ten_ke_hoach: PropTypes.any,
-  mo_ta_ke_hoach: PropTypes.any,
-  nguoi_them: PropTypes.any,
-  gia_tri: PropTypes.any,
-  da_tham_dinh: PropTypes.any,
+  ma_ho_so: PropTypes.any,
+  mo_ta: PropTypes.any,
+  muc_dich_tham_dinh: PropTypes.any,
+  thoi_gian_tham_dinh: PropTypes.any,
+  employee_create: PropTypes.any,
+  employee_approval: PropTypes.any,
   create_date: PropTypes.any,
+  da_duyet: PropTypes.any,
+  priority_name: PropTypes.any,
   handleClick: PropTypes.func,
 };

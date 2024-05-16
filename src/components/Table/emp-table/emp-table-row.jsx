@@ -27,7 +27,7 @@ export default function UserTableRow({
   email,
   gender,
   document_number,
-  position_code,
+  position_name,
   is_active,
   is_working,
   handleClick,
@@ -45,9 +45,9 @@ export default function UserTableRow({
   return (
     <>
       <TableRow hover tabIndex={-1} role="checkbox" selected={selected}>
-        <TableCell padding="checkbox">
+        {/* <TableCell padding="checkbox">
           <Checkbox disableRipple checked={selected} onChange={handleClick} />
-        </TableCell>
+        </TableCell> */}
 
         <TableCell>{employees_code}</TableCell>
 
@@ -65,7 +65,7 @@ export default function UserTableRow({
         <TableCell>{gender ? "Nam" : "Nữ"}</TableCell>
         <TableCell>{document_number ? document_number : "--"}</TableCell>
 
-        <TableCell>{position_code}</TableCell>
+        <TableCell>{position_name}</TableCell>
 
         <TableCell align="center">
           <Label color={is_active ? "success" : "error"}>
@@ -119,7 +119,7 @@ UserTableRow.propTypes = {
   gender: PropTypes.any,
   address: PropTypes.any,
   document_number: PropTypes.any,
-  position_code: PropTypes.any,
+  position_name: PropTypes.any,
   is_active: PropTypes.any,
   is_working: PropTypes.any,
   handleClick: PropTypes.func,

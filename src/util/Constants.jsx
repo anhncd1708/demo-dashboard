@@ -70,14 +70,14 @@ export const navData = [
         path: "/appraisal-plans",
       },
       {
-        label: "Chi tiết hồ sơ",
+        label: "Hồ sơ thẩm định",
         icon: (
           <Iconify
             icon="fluent:clipboard-text-edit-20-filled"
             sx={{ width: 25, height: 25 }}
           />
         ),
-        path: "/profile-details",
+        path: "/briefs",
       },
       {
         label: "Thẩm định cá nhân",
