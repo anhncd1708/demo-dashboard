@@ -52,20 +52,29 @@ export default function OverView() {
   }, [dispatch]);
 
 
-  const canvasRef = useRef("https://res.cloudinary.com/dj3zy8ivi/image/upload/v1715699337/file/glqlehe0jztmklhjfphp.pdf");
+  let ref = "https://res.cloudinary.com/dj3zy8ivi/raw/upload/v1715847133/file/ktfhgfq6qzk8savvtkus.docx";
 
   return (
     <>
       <Container maxWidth="xl">
         <h2>Overview</h2>
-        <iframe src={"https://docs.google.com/gview?url=https://res.cloudinary.com/dj3zy8ivi/image/upload/v1715699337/file/glqlehe0jztmklhjfphp.pdf&embedded=true"} 
-        style={{
-          width: "100%",
-          height: "1000px",
-        }}></iframe>
+        <iframe src={'https://view.officeapps.live.com/op/embed.aspx?src=' + ref}
+          style={{
+            width: "80%",
+            height: "700px",
+          }}></iframe>
+
+        <iframe src="https://res-console.cloudinary.com/dj3zy8ivi/media_explorer_thumbnails/cabc568a47041b5aeab1e6a8e98f135a/detailed"
+          style={{
+            width: "80%",
+            height: "700px",
+          }}></iframe>
+             <iframe src="https://docs.google.com/document/d/12CS54auOhnxSwuZ8tWaI_MZLyR6sSEWI0POAOpFlnlc/edit?usp=sharing"
+          style={{
+            width: "80%",
+            height: "700px",
+          }}></iframe>
       </Container>
-
-
 
 
     </>
