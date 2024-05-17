@@ -84,7 +84,7 @@ export const navData = [
         icon: (
           <Iconify icon="mdi:clipboard-person" sx={{ width: 25, height: 25 }} />
         ),
-        path: "/appraisal",
+        path: "/personal-appraisal",
       },
       {
         label: "Tiêu chí thẩm định cá nhân",

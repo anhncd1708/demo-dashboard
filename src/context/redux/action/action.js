@@ -108,6 +108,24 @@ export const getListCustomer = (value, token) => {
   };
 };
 
+export const getListPersonalAppraisal = (value, token) => {
+  return async (dispatch) => {
+    try {
+      let res;
+      if (value != undefined)
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_PERSONAL_APPRAISAL + "?customer_code=" + value, null, token);
+      else
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_PERSONAL_APPRAISAL, null, token);
+      dispatch(
+        createAction({
+          type: PATH_ACTION.GET_LIST_PERSONAL_APPRAISAL,
+          payload: res.data
+        })
+      );
+    } catch (err) { }
+  };
+};
+
 export const getListBroker = (value, token) => {
   return async (dispatch) => {
     try {
@@ -339,6 +357,25 @@ export const getListPriorityLevel = (value, token) => {
       dispatch(
         createAction({
           type: PATH_ACTION.GET_LIST_PRIORITY_LEVEL,
+          payload: res.data
+        })
+      );
+    } catch (err) { }
+  };
+};
+
+export const getListBriefSuperDetail = (value, token) => {
+  return async (dispatch) => {
+    try {
+      let res;
+      if (value != undefined)
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_BRIEF_SUPER_DETAIL + "?brief_code=" + value, null, token);
+      else
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_BRIEF_SUPER_DETAIL, null, token);
+
+      dispatch(
+        createAction({
+          type: PATH_ACTION.GET_LIST_BRIEF_SUPER_DETAIL,
           payload: res.data
         })
       );

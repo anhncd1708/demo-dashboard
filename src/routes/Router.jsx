@@ -48,9 +48,10 @@ export default function Router() {
         { path: "briefs", element: <BriefPage /> },
         { path: "briefs/:id", element: <BriefDetailPage /> },
         { path: "other", element: <OtherPage /> },
-        { path: "appraisal-plans", element: <AppraisalPlansPage />, },
+        { path: "appraisal-plans", element: <AppraisalPlansPage /> },
         { path: "profile", element: <ProfilePage /> },
-
+        { path: "personal-appraisal", element: <CustomerPage /> },
+        { path: "personal-appraisal/:id", element: <CustomerPage /> },
       ],
     },
     {

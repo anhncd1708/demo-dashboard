@@ -9,7 +9,10 @@ import {
   Typography,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { getListBrief, getListEmployee } from "../../context/redux/action/action";
+import {
+  getListBrief,
+  getListEmployee,
+} from "../../context/redux/action/action";
 import Iconify from "../../components/Iconify/iconify";
 import Scrollbar from "../../components/Scrollbar";
 import Loading from "../../components/Loading/Loading";
@@ -27,6 +30,7 @@ import TableLoading from "../../components/Table/table-loading";
 import BriefTableRow from "../../components/Table/briefs-table/briefs-table-row";
 import { useParams } from "react-router-dom";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
+import BriefInfo from "./brief-info/brief-info";
 
 // ----------------------------------------------------------------------
 
@@ -37,7 +41,7 @@ export default function BriefDetailPage() {
 
   const [order, setOrder] = useState("asc");
 
-  const [value, setValue] = useState('1');
+  const [value, setValue] = useState("1");
 
   const [orderBy, setOrderBy] = useState("muc_dich_tham_dinh");
 
@@ -69,9 +73,8 @@ export default function BriefDetailPage() {
     return state.briefs;
   });
 
-
-  let ref = "https://res.cloudinary.com/dj3zy8ivi/raw/upload/v1715847133/file/ktfhgfq6qzk8savvtkus.docx";
-
+  let ref =
+    "https://res.cloudinary.com/dj3zy8ivi/raw/upload/v1715847133/file/ktfhgfq6qzk8savvtkus.docx";
 
   return (
     <Container>
@@ -82,21 +85,19 @@ export default function BriefDetailPage() {
         mb={5}
       >
         <Typography variant="h4">Chi tiết hồ sơ thẩm định</Typography>
-
-
       </Stack>
 
       <Card>
         <Scrollbar>
           <TabContext value={value}>
-            <Box sx={{ px: 3, bgcolor: 'background.neutral' }}>
+            <Box sx={{ px: 3, bgcolor: "background.neutral" }}>
               <TabList onChange={(e, value) => setValue(value)}>
-                <Tab disableRipple value="1" label="Description" />
+                <Tab disableRipple value="1" label="Thông tin chi tiết" />
                 <Tab
                   disableRipple
                   value="2"
                   label="Tài liệu"
-                  sx={{ '& .MuiTab-wrapper': { whiteSpace: 'nowrap' } }}
+                  sx={{ "& .MuiTab-wrapper": { whiteSpace: "nowrap" } }}
                 />
               </TabList>
             </Box>
@@ -105,16 +106,20 @@ export default function BriefDetailPage() {
 
             <TabPanel value="1">
               <Box sx={{ p: 3 }}>
-                <h1>test</h1>
+                <BriefInfo />
               </Box>
             </TabPanel>
             <TabPanel value="2">
-              <iframe src={'https://view.officeapps.live.com/op/embed.aspx?src=' + ref}
+              <iframe
+                src={
+                  "https://view.officeapps.live.com/op/embed.aspx?src=" + ref
+                }
                 style={{
                   border: "0",
                   width: "100%",
                   height: "1000px",
-                }}></iframe>
+                }}
+              ></iframe>
 
               {/* <iframe src="https://res-console.cloudinary.com/dj3zy8ivi/media_explorer_thumbnails/cabc568a47041b5aeab1e6a8e98f135a/detailed"
                 style={{

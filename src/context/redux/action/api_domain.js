@@ -2,12 +2,14 @@ export const LOGIN_USER = "/auth/login";
 
 export const GET_LIST_EMPLOYEE = "/user/employees";
 export const GET_LIST_CUSTOMER = "/user/customers";
+export const GET_LIST_PERSONAL_APPRAISAL = "/user/customers";
 export const GET_LIST_BROKER = "/user/brokers";
 export const GET_LIST_CUSTOMER_TYPE = "/user/customer_types";
 export const GET_LIST_VOCATIVE = "/user/vocatives";
 export const GET_LIST_EMPLOYEE_POSITIONS = "/user/employee_positions";
 
 export const GET_LIST_BRIEF = "/brief/briefs";
+export const GET_LIST_BRIEF_SUPER_DETAIL = "/brief/super_detail_by_brief_code";
 export const GET_LIST_BRIEF_POINT = "/brief/briefs_point";
 
 export const GET_LIST_ASSET = "/assets";

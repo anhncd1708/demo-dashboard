@@ -4,6 +4,7 @@ const initialState = {
   accounts: [],
   employees: [],
   customers: [],
+  personal: [],
   brokers: [],
   customerTypes: [],
   vocatives: [],
@@ -33,6 +34,9 @@ export default function reducers(state = initialState, { type, payload }) {
     case PATH_ACTION.GET_LIST_CUSTOMER:
       state.customers = payload;
       break;
+    case PATH_ACTION.GET_LIST_PERSONAL_APPRAISAL:
+      state.personal = payload;
+      break;
     case PATH_ACTION.GET_LIST_BROKER:
       state.brokers = payload;
       break;
@@ -47,6 +51,9 @@ export default function reducers(state = initialState, { type, payload }) {
       break;
     case PATH_ACTION.GET_LIST_BRIEF:
       state.briefs = payload;
+      break;
+      case PATH_ACTION.GET_LIST_BRIEF_SUPER_DETAIL:
+      state.briefDetail = payload;
       break;
     case PATH_ACTION.GET_LIST_BRIEF_POINT:
       state.briefPoints = payload;
