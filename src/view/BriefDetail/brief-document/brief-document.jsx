@@ -41,7 +41,6 @@ export default function BriefDocument({ document }) {
           ))}
         </Box>
       </Scrollbar> */}
-      Document
       <iframe
         src={
           "https://view.officeapps.live.com/op/embed.aspx?src=https://res.cloudinary.com/dj3zy8ivi/raw/upload/v1715847133/file/ktfhgfq6qzk8savvtkus.docx"

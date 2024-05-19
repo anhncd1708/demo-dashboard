@@ -1,23 +1,10 @@
 import { useState, useEffect } from "react";
-import { Link, Link as RouterLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import {
-  Card,
-  Stack,
   Box,
-  Tab,
-  Container,
-  Divider,
   styled,
-  Grid,
   Typography,
-  TableContainer,
-  Table,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody,
-  LinearProgress,
   Avatar,
 } from "@mui/material";
 import { useParams } from "react-router-dom";

@@ -108,6 +108,24 @@ export const getListCustomer = (value, token) => {
   };
 };
 
+export const getListCustomerDetail = (value, token) => {
+  return async (dispatch) => {
+    try {
+      let res;
+      if (value != undefined)
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_CUSTOMER_FULL_INFORMATION + "?customer_code=" + value, null, token);
+      else
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_CUSTOMER_FULL_INFORMATION, null, token);
+      dispatch(
+        createAction({
+          type: PATH_ACTION.GET_LIST_CUSTOMER_FULL_INFORMATION,
+          payload: res.data
+        })
+      );
+    } catch (err) { }
+  };
+};
+
 export const getListPersonalAppraisal = (value, token) => {
   return async (dispatch) => {
     try {
@@ -248,6 +266,25 @@ export const getListAsset = (value, token) => {
       dispatch(
         createAction({
           type: PATH_ACTION.GET_LIST_ASSET,
+          payload: res.data
+        })
+      );
+    } catch (err) { }
+  };
+};
+
+export const getListAssetDetail = (value, token) => {
+  return async (dispatch) => {
+    try {
+      let res;
+      if (value != undefined)
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_ASSET_DETAIL + "?customer_code=" + value, null, token);
+      else
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_ASSET_DETAIL, null, token);
+
+      dispatch(
+        createAction({
+          type: PATH_ACTION.GET_LIST_ASSET_DETAIL,
           payload: res.data
         })
       );
@@ -396,6 +433,21 @@ export const getListBriefSuperDetail = (value, token) => {
       dispatch(
         createAction({
           type: PATH_ACTION.GET_LIST_BRIEF_SUPER_DETAIL,
+          payload: res.data
+        })
+      );
+    } catch (err) { }
+  };
+};
+
+
+export const postBriefApproval = (value) => {
+  return async (dispatch) => {
+    try {
+       const res = await Axios("POST", URL_API + API_DOMAIN.POST_BRIEF_APPROVAL + "?ma_chi_tiet_ho_so=" + value);
+      dispatch(
+        createAction({
+          type: PATH_ACTION.POST_BRIEF_APPROVAL,
           payload: res.data
         })
       );

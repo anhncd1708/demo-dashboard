@@ -1,7 +1,9 @@
 export const LOGIN_USER = "/auth/login";
+export const POST_BRIEF_APPROVAL = "/brief/aproval";
 
 export const GET_LIST_EMPLOYEE = "/user/employees";
 export const GET_LIST_CUSTOMER = "/user/customers";
+export const GET_LIST_CUSTOMER_FULL_INFORMATION = "/user/customer_full_information";
 export const GET_LIST_PERSONAL_APPRAISAL = "/user/customers";
 export const GET_LIST_BROKER = "/user/brokers";
 export const GET_LIST_CUSTOMER_TYPE = "/user/customer_types";
@@ -13,6 +15,7 @@ export const GET_LIST_BRIEF_SUPER_DETAIL = "/brief/super_detail_by_brief_code";
 export const GET_LIST_BRIEF_POINT = "/brief/briefs_point";
 
 export const GET_LIST_ASSET = "/assets";
+export const GET_LIST_ASSET_DETAIL = "/assets/assets_detail";
 export const GET_LIST_FILES = "/files";
 export const GET_LIST_ASSET_TYPE = "/asset_types";
 

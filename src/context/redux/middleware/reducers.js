@@ -4,6 +4,7 @@ const initialState = {
   accounts: [],
   employees: [],
   customers: [],
+  customerDetail: [],
   personal: [],
   brokers: [],
   customerTypes: [],
@@ -12,13 +13,15 @@ const initialState = {
   briefs: [],
   briefPoints: [],
   assets: [],
+  assetsDetail: [],
   files:[],
   assetTypes: [],
   appraisalPlans: [],
   appraisalPlanDetails: [],
   appraisalPlanTypes: [],
   appraisalDocumentDetail: [],
-  priorityLevels: []
+  priorityLevels: [],
+  briefApproval: []
 };
 
 export default function reducers(state = initialState, { type, payload }) {
@@ -34,6 +37,9 @@ export default function reducers(state = initialState, { type, payload }) {
       break;
     case PATH_ACTION.GET_LIST_CUSTOMER:
       state.customers = payload;
+      break;
+    case PATH_ACTION.GET_LIST_CUSTOMER_FULL_INFORMATION:
+      state.customerDetail = payload;
       break;
     case PATH_ACTION.GET_LIST_PERSONAL_APPRAISAL:
       state.personal = payload;
@@ -59,8 +65,14 @@ export default function reducers(state = initialState, { type, payload }) {
     case PATH_ACTION.GET_LIST_BRIEF_POINT:
       state.briefPoints = payload;
       break;
+    case PATH_ACTION.POST_BRIEF_APPROVAL:
+      state.briefApproval = payload;
+      break;
     case PATH_ACTION.GET_LIST_ASSET:
       state.assets = payload;
+      break;
+    case PATH_ACTION.GET_LIST_ASSET_DETAIL:
+      state.assetsDetail = payload;
       break;
     case PATH_ACTION.GET_LIST_FILES:
       state.files = payload;

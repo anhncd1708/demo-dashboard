@@ -8,12 +8,14 @@ import {
   Divider,
   Typography,
   LinearProgress,
+  Button,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getListBrief,
   getListBriefSuperDetail,
   getListFile,
+  postBriefApproval,
 } from "../../context/redux/action/action";
 import Iconify from "../../components/Iconify/iconify";
 import Scrollbar from "../../components/Scrollbar";
@@ -34,6 +36,7 @@ import { useParams } from "react-router-dom";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import BriefInfo from "./brief-info/brief-info";
 import BriefDocument from "./brief-document/brief-document";
+import Swal from "sweetalert2";
 
 // ----------------------------------------------------------------------
 
@@ -42,23 +45,7 @@ export default function BriefDetailPage() {
 
   const { id } = useParams();
 
-  const [order, setOrder] = useState("asc");
-
   const [value, setValue] = useState("1");
-
-  const [orderBy, setOrderBy] = useState("muc_dich_tham_dinh");
-
-  const [filterName, setFilterName] = useState("");
-
-  const [info, setInfo] = useState([]);
-
-  const handleSort = (event, id) => {
-    const isAsc = orderBy === id && order === "asc";
-    if (id !== "") {
-      setOrder(isAsc ? "desc" : "asc");
-      setOrderBy(id);
-    }
-  };
 
   const dispatch = useDispatch();
 
@@ -88,6 +75,48 @@ export default function BriefDetailPage() {
     return state.files;
   });
 
+  const handleApproved = (id) => {
+    Swal.fire({
+      title: "Xét duyệt hồ sơ",
+      text: "Hãy đảm bảo rằng hồ sơ đã đủ yếu tố xét duyệt!",
+      showCancelButton: true,
+      confirmButtonText: "Xác nhận",
+      cancelButtonText: `Hủy`,
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        let resp = await postBriefApproval(id)
+          .then((resp) => {
+            if (resp) {
+              showSuccess();
+            }
+          })
+          .catch((err) => {
+            showError(err);
+          });
+      }
+    });
+  };
+
+  function showSuccess() {
+    Swal.fire({
+      title: "Duyệt thành công!",
+      text: "Hồ sơ đã được duyệt.",
+      icon: "success",
+      confirmButtonText: "OK",
+    }).then(function () {
+      window.location.reload();
+    });
+  }
+
+  function showError(text) {
+    Swal.fire({
+      title: "Oops...",
+      text: text,
+      icon: "error",
+      confirmButtonText: "OK",
+    });
+  }
+
   let ref =
     "https://res.cloudinary.com/dj3zy8ivi/raw/upload/v1715847133/file/ktfhgfq6qzk8savvtkus.docx";
 
@@ -100,6 +129,15 @@ export default function BriefDetailPage() {
         mb={5}
       >
         <Typography variant="h4">Chi tiết hồ sơ thẩm định</Typography>
+        <Button
+          sx={{ m: 5 }}
+          variant="contained"
+          color="inherit"
+          startIcon={<Iconify icon="mdi:approve" />}
+          onClick={() => handleApproved(id)}
+        >
+          Xét duyệt
+        </Button>
       </Stack>
 
       <Card>

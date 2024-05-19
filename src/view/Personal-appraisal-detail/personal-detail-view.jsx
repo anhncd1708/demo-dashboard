@@ -6,22 +6,46 @@ import Iconify from "../../components/Iconify";
 import Scrollbar from "../../components/Scrollbar";
 
 // ----------------------------------------------------------------------
-import { getListEmployee } from "../../context/redux/action/action";
+import {
+  getListAssetDetail,
+  getListCustomerDetail,
+} from "../../context/redux/action/action";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { Card, Box, Stack, Tab, Divider } from "@mui/material";
+import { Card, Box, Stack, Tab, Divider, LinearProgress } from "@mui/material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
+import { useParams } from "react-router-dom";
+import PersonalInfo from "./Personal-info/personal-info";
+import BriefDocument from "../BriefDetail/brief-document/brief-document";
 
 export default function OverView() {
-  const [value, setValue] = useState("1");
-  const dispatch = useDispatch();
-  // const listEmployees = useSelector((state) => state.listEmployee);
+  const [loading, setLoading] = useState(false);
 
-  // Get data employees when component mounting
-  // useEffect(() => {
-  //   const callAPI = async () => {};
-  //   callAPI();
-  // }, [dispatch]);
+  const [value, setValue] = useState("1");
+
+  const dispatch = useDispatch();
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    setLoading(true);
+    const callAPI = async () => {
+      await dispatch(getListCustomerDetail(`${id}`));
+      await dispatch(getListAssetDetail(`${id}`));
+      setLoading(false);
+    };
+    callAPI();
+  }, [dispatch]);
+
+  const customers = useSelector((state) => {
+    console.log(26, state.customerDetail);
+    return state.customerDetail;
+  });
+
+  const assets = useSelector((state) => {
+    console.log(27, state.assetsDetail);
+    return state.assetsDetail;
+  });
 
   return (
     <>
@@ -54,12 +78,13 @@ export default function OverView() {
 
               <TabPanel value="1">
                 <Box sx={{ p: 3 }}>
-                  <h2>test</h2>
+                  <PersonalInfo customer={customers} assets={assets} id={id} />
                 </Box>
+                {loading && <LinearProgress />}
               </TabPanel>
               <TabPanel value="2">
                 <Box sx={{ p: 3 }}>
-                  <h2>test</h2>
+                  <BriefDocument />
                 </Box>
               </TabPanel>
             </TabContext>
