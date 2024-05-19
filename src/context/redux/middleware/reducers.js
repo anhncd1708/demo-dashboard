@@ -12,6 +12,7 @@ const initialState = {
   briefs: [],
   briefPoints: [],
   assets: [],
+  files:[],
   assetTypes: [],
   appraisalPlans: [],
   appraisalPlanDetails: [],
@@ -60,6 +61,9 @@ export default function reducers(state = initialState, { type, payload }) {
       break;
     case PATH_ACTION.GET_LIST_ASSET:
       state.assets = payload;
+      break;
+    case PATH_ACTION.GET_LIST_FILES:
+      state.files = payload;
       break;
     case PATH_ACTION.GET_LIST_ASSET_TYPE:
       state.assetTypes = payload;

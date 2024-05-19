@@ -13,6 +13,7 @@ export const GET_LIST_BRIEF_SUPER_DETAIL = "/brief/super_detail_by_brief_code";
 export const GET_LIST_BRIEF_POINT = "/brief/briefs_point";
 
 export const GET_LIST_ASSET = "/assets";
+export const GET_LIST_FILES = "/files";
 export const GET_LIST_ASSET_TYPE = "/asset_types";
 
 export const GET_LIST_APPRAISAL_PLAN = "/appraisal_plans";

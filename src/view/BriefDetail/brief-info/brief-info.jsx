@@ -25,25 +25,25 @@ import Scrollbar from "../../../components/Scrollbar";
 import moment from "moment";
 // ----------------------------------------------------------------------
 
-export default function BriefInfo() {
+export default function BriefInfo({ detail }) {
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    setLoading(true);
-    const callAPI = async () => {
-      await dispatch(getListBriefSuperDetail(`${id}`));
-      setLoading(false);
-    };
-    callAPI();
-  }, [dispatch]);
+  // useEffect(() => {
+  //   setLoading(true);
+  //   const callAPI = async () => {
+  //     await dispatch(getListBriefSuperDetail(`${id}`));
+  //     setLoading(false);
+  //   };
+  //   callAPI();
+  // }, [dispatch]);
 
-  const briefDetail = useSelector((state) => {
-    console.log(27, state.briefDetail);
-    return state.briefDetail;
-  });
+  // const briefDetail = useSelector((state) => {
+  //   console.log(27, state.briefDetail);
+  //   return state.briefDetail;
+  // });
 
   const RowResultStyle = styled(TableRow)(({ theme }) => ({
     "& td": {
@@ -54,7 +54,7 @@ export default function BriefInfo() {
 
   return (
     <>
-      {briefDetail?.map((b) => (
+      {detail?.map((b) => (
         <>
           <Card key={b.ma_ho_so_ho_so_tham_dinh} sx={{ pt: 5, px: 5 }}>
             <Grid container>
@@ -245,7 +245,6 @@ export default function BriefInfo() {
               </Grid>
             </Grid>
           </Card>
-          {loading && <LinearProgress />}
         </>
       ))}
     </>

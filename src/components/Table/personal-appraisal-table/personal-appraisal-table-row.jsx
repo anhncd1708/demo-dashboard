@@ -15,6 +15,7 @@ import {
 
 import Label from "../../Label/label";
 import Iconify from "../../Iconify/iconify";
+import { Link } from "react-router-dom";
 
 // ----------------------------------------------------------------------
 
@@ -25,7 +26,6 @@ export default function PersonalAppraisalTableRow({
   loai_khach_hang,
   lam_viec,
   to_chuc,
-  nguoi_them,
   handleClick,
 }) {
   const [open, setOpen] = useState(null);
@@ -40,7 +40,7 @@ export default function PersonalAppraisalTableRow({
 
   return (
     <>
-      <TableRow hover tabIndex={-1} role="checkbox" selected={selected}>
+      <TableRow hover role="checkbox" selected={selected}>
         {/* <TableCell padding="checkbox">
           <Checkbox disableRipple checked={selected} onChange={handleClick} />
         </TableCell> */}
@@ -64,15 +64,22 @@ export default function PersonalAppraisalTableRow({
             {lam_viec ? "Có việc làm" : "Thất nghiệp"}
           </Label>
         </TableCell>
-
         <TableCell align="right">
+          <Link to={`/personal-appraisal/${ma_khach_hang}`}>
+            <IconButton>
+              <Iconify icon="ic:twotone-read-more" />
+            </IconButton>
+          </Link>
+        </TableCell>
+
+        {/* <TableCell align="right">
           <IconButton onClick={handleOpenMenu}>
             <Iconify icon="eva:more-vertical-fill" />
           </IconButton>
-        </TableCell>
+        </TableCell> */}
       </TableRow>
 
-      <Popover
+      {/* <Popover
         open={!!open}
         anchorEl={open}
         onClose={handleCloseMenu}
@@ -91,7 +98,7 @@ export default function PersonalAppraisalTableRow({
           <Iconify icon="eva:trash-2-outline" sx={{ mr: 2 }} />
           Delete
         </MenuItem>
-      </Popover>
+      </Popover> */}
     </>
   );
 }

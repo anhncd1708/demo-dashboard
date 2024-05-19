@@ -255,6 +255,26 @@ export const getListAsset = (value, token) => {
   };
 };
 
+export const getListFile = (value, token) => {
+  return async (dispatch) => {
+    try {
+      let res;
+      if (value != undefined)
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_FILES + "?file_code=" + value, null, token);
+      else
+        res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_FILES, null, token);
+
+      dispatch(
+        createAction({
+          type: PATH_ACTION.GET_LIST_FILES,
+          payload: res.data
+        })
+      );
+    } catch (err) { }
+  };
+};
+
+
 export const getListAssetType = (value, token) => {
   return async (dispatch) => {
     try {

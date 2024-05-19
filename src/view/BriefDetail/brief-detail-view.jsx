@@ -7,11 +7,13 @@ import {
   Container,
   Divider,
   Typography,
+  LinearProgress,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getListBrief,
-  getListEmployee,
+  getListBriefSuperDetail,
+  getListFile,
 } from "../../context/redux/action/action";
 import Iconify from "../../components/Iconify/iconify";
 import Scrollbar from "../../components/Scrollbar";
@@ -31,6 +33,7 @@ import BriefTableRow from "../../components/Table/briefs-table/briefs-table-row"
 import { useParams } from "react-router-dom";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import BriefInfo from "./brief-info/brief-info";
+import BriefDocument from "./brief-document/brief-document";
 
 // ----------------------------------------------------------------------
 
@@ -63,6 +66,8 @@ export default function BriefDetailPage() {
     setLoading(true);
     const callAPI = async () => {
       await dispatch(getListBrief(`${id}`));
+      await dispatch(getListBriefSuperDetail(`${id}`));
+      await dispatch(getListFile());
       setLoading(false);
     };
     callAPI();
@@ -71,6 +76,16 @@ export default function BriefDetailPage() {
   const briefs = useSelector((state) => {
     console.log(26, state.briefs);
     return state.briefs;
+  });
+
+  const briefDetail = useSelector((state) => {
+    console.log(27, state.briefDetail);
+    return state.briefDetail;
+  });
+
+  const files = useSelector((state) => {
+    console.log(28, state.files);
+    return state.files;
   });
 
   let ref =
@@ -106,26 +121,15 @@ export default function BriefDetailPage() {
 
             <TabPanel value="1">
               <Box sx={{ p: 3 }}>
-                <BriefInfo />
+                {loading ? (
+                  <LinearProgress />
+                ) : (
+                  <BriefInfo detail={briefDetail} />
+                )}
               </Box>
             </TabPanel>
             <TabPanel value="2">
-              <iframe
-                src={
-                  "https://view.officeapps.live.com/op/embed.aspx?src=" + ref
-                }
-                style={{
-                  border: "0",
-                  width: "100%",
-                  height: "1000px",
-                }}
-              ></iframe>
-
-              {/* <iframe src="https://res-console.cloudinary.com/dj3zy8ivi/media_explorer_thumbnails/cabc568a47041b5aeab1e6a8e98f135a/detailed"
-                style={{
-                  width: "80%",
-                  height: "700px",
-                }}></iframe> */}
+              <BriefDocument document={files} />
             </TabPanel>
           </TabContext>
         </Scrollbar>

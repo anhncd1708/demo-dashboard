@@ -10,6 +10,8 @@ import ProfilePage from "../pages/profile";
 import BriefDetailPage from "../pages/brief-detail";
 import OtherPage from "../pages/other";
 import BriefPage from "../pages/brief";
+import PersonalAppraisalPage from "../pages/personal-appraisal";
+import PersonalAppDetailPage from "../pages/personal-appraisal-detail";
 
 export const EmployeesPage = lazy(() => import("../pages/employees"));
 export const LoginPage = lazy(() => import("../pages/login"));
@@ -45,13 +47,13 @@ export default function Router() {
         { path: "employees", element: <EmployeesPage /> },
         { path: "customers", element: <CustomerPage /> },
         { path: "brokers", element: <BrokerPage /> },
-        { path: "briefs", element: <BriefPage /> },
-        { path: "briefs/:id", element: <BriefDetailPage /> },
         { path: "other", element: <OtherPage /> },
         { path: "appraisal-plans", element: <AppraisalPlansPage /> },
         { path: "profile", element: <ProfilePage /> },
-        { path: "personal-appraisal", element: <CustomerPage /> },
-        { path: "personal-appraisal/:id", element: <CustomerPage /> },
+        { path: "briefs", element: <BriefPage /> },
+        { path: "briefs/:id", element: <BriefDetailPage /> },
+        { path: "personal-appraisal", element: <PersonalAppraisalPage /> },
+        { path: "personal-appraisal/:id", element: <PersonalAppDetailPage /> },
       ],
     },
     {

@@ -48,7 +48,6 @@ export default function BriefTableRow({
   return (
     <>
       <TableRow hover tabIndex={-1} role="checkbox" selected={selected}>
-
         {/* <TableCell padding="checkbox">
           <Checkbox disableRipple checked={selected} onChange={handleClick} />
         </TableCell> */}
@@ -67,7 +66,9 @@ export default function BriefTableRow({
           </Stack>
         </TableCell>
         <TableCell>{mo_ta ? mo_ta : "--"}</TableCell>
-        <TableCell>{moment(thoi_gian_tham_dinh).format("DD/MM/YYYY")}</TableCell>
+        <TableCell>
+          {moment(thoi_gian_tham_dinh).format("DD/MM/YYYY")}
+        </TableCell>
 
         <TableCell>{employee_create}</TableCell>
 
@@ -80,30 +81,25 @@ export default function BriefTableRow({
         </TableCell>
 
         <TableCell>
-          <Label color={"success"}>
-            {priority_name}
-          </Label>
+          <Label color={"success"}>{priority_name}</Label>
         </TableCell>
 
         <TableCell align="right">
           <Link to={`/briefs/${ma_ho_so}`}>
-            <IconButton >
+            <IconButton>
               <Iconify icon="ic:twotone-read-more" />
             </IconButton>
           </Link>
         </TableCell>
 
-        <TableCell align="right">
+        {/* <TableCell align="right">
           <IconButton onClick={handleOpenMenu}>
             <Iconify icon="eva:more-vertical-fill" />
           </IconButton>
-        </TableCell>
-
-
+        </TableCell> */}
       </TableRow>
 
-
-      <Popover
+      {/* <Popover
         open={!!open}
         anchorEl={open}
         onClose={handleCloseMenu}
@@ -122,7 +118,7 @@ export default function BriefTableRow({
           <Iconify icon="eva:trash-2-outline" sx={{ mr: 2 }} />
           Delete
         </MenuItem>
-      </Popover>
+      </Popover> */}
     </>
   );
 }

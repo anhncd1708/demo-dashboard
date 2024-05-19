@@ -12,14 +12,14 @@ import {
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  getListBrief,
-  getListEmployee,
+  getListCustomer,
+  getListPersonalAppraisal,
 } from "../../context/redux/action/action";
 import Iconify from "../../components/Iconify/iconify";
 import Scrollbar from "../../components/Scrollbar";
 import Loading from "../../components/Loading/Loading";
 import TableNoData from "../../components/Table/table-no-data";
-import UserTableRow from "../../components/Table/emp-table/emp-table-row";
+import CustomerTableRow from "../../components/Table/customer-table/customer-table-row";
 import UserTableHead from "../../components/Table/table-head";
 import TableEmptyRows from "../../components/Table/table-empty-rows";
 import UserTableToolbar from "../../components/Table/table-toolbar";
@@ -29,11 +29,12 @@ import {
   getComparator,
 } from "../../components/Table/utils";
 import TableLoading from "../../components/Table/table-loading";
-import BriefTableRow from "../../components/Table/briefs-table/briefs-table-row";
+import AppraisalTableRow from "../../components/Table/appraisal-table/appraisal-table-row";
+import PersonalAppraisalTableRow from "../../components/Table/personal-appraisal-table/personal-appraisal-table-row";
 
 // ----------------------------------------------------------------------
 
-export default function BriefPage() {
+export default function PersonalAppraisalView() {
   const [loading, setLoading] = useState(false);
 
   const [page, setPage] = useState(0);
@@ -42,7 +43,7 @@ export default function BriefPage() {
 
   const [selected, setSelected] = useState([]);
 
-  const [orderBy, setOrderBy] = useState("ma_ho_so");
+  const [orderBy, setOrderBy] = useState("ten_khach_hang");
 
   const [filterName, setFilterName] = useState("");
 
@@ -61,31 +62,31 @@ export default function BriefPage() {
   useEffect(() => {
     setLoading(true);
     const callAPI = async () => {
-      await dispatch(getListBrief());
+      await dispatch(getListPersonalAppraisal());
       setLoading(false);
     };
     callAPI();
   }, [dispatch]);
 
-  const briefs = useSelector((state) => {
-    console.log(26, state.briefs);
-    return state.briefs;
+  const personal = useSelector((state) => {
+    console.log(26, state.personal);
+    return state.personal;
   });
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = briefs.map((n) => n.muc_dich_tham_dinh);
+      const newSelecteds = personal.map((n) => n.ten_khach_hang);
       setSelected(newSelecteds);
       return;
     }
     setSelected([]);
   };
 
-  const handleClick = (event, muc_dich_tham_dinh) => {
-    const selectedIndex = selected.indexOf(muc_dich_tham_dinh);
+  const handleClick = (event, ten_khach_hang) => {
+    const selectedIndex = selected.indexOf(ten_khach_hang);
     let newSelected = [];
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, muc_dich_tham_dinh);
+      newSelected = newSelected.concat(selected, ten_khach_hang);
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
@@ -114,7 +115,7 @@ export default function BriefPage() {
   };
 
   const dataFiltered = applyFilter({
-    inputData: briefs,
+    inputData: personal,
     comparator: getComparator(order, orderBy),
     filterName,
   });
@@ -129,7 +130,7 @@ export default function BriefPage() {
         justifyContent="space-between"
         mb={5}
       >
-        <Typography variant="h4">Hồ sơ thẩm định</Typography>
+        <Typography variant="h4">DS thẩm định cá nhân</Typography>
 
         {/* <Button
           variant="contained"
@@ -153,19 +154,20 @@ export default function BriefPage() {
               <UserTableHead
                 order={order}
                 orderBy={orderBy}
-                rowCount={briefs.length}
+                rowCount={personal.length}
                 numSelected={selected.length}
                 onRequestSort={handleSort}
                 onSelectAllClick={handleSelectAllClick}
                 headLabel={[
-                  { id: "ma_ho_so", label: "Mã hồ sơ" },
-                  { id: "muc_dich_tham_dinh", label: "Mục đích thẩm định" },
-                  { id: "mo_ta", label: "Mô tả" },
-                  { id: "thoi_gian_tham_dinh", label: "Thời gian thẩm định" },
-                  { id: "employee_create", label: "Nhân viên tiếp nhận" },
-                  { id: "employee_approval", label: "Người duyệt" },
-                  { id: "da_duyet", label: "Xét duyệt" },
-                  { id: "priority_name", label: "Độ ưu tiên", align: "center" },
+                  { id: "ma_khach_hang", label: "Mã khách hàng" },
+                  { id: "ten_khach_hang", label: "Tên khách hàng" },
+                  { id: "loai_khach_hang", label: "Loại" },
+                  { id: "to_chuc", label: "Theo diện" },
+                  {
+                    id: "lam_viec",
+                    label: "Tình trạng công việc",
+                    align: "center",
+                  },
                   { id: "" },
                 ]}
               />
@@ -173,27 +175,23 @@ export default function BriefPage() {
                 {dataFiltered
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row) => (
-                    <BriefTableRow
-                      key={row.ma_ho_so}
-                      ma_ho_so={row.ma_ho_so}
-                      muc_dich_tham_dinh={row.muc_dich_tham_dinh}
-                      mo_ta={row.mo_ta}
-                      thoi_gian_tham_dinh={row.thoi_gian_tham_dinh}
-                      employee_create={row.employee_create}
-                      employee_approval={row.employee_approval}
-                      create_date={row.create_date}
-                      da_duyet={row.da_duyet}
-                      priority_name={row.priority_name}
-                      selected={selected.indexOf(row.muc_dich_tham_dinh) !== -1}
+                    <PersonalAppraisalTableRow
+                      key={row.ma_khach_hang} // Use ma_khach_hang as the key
+                      ma_khach_hang={row.ma_khach_hang}
+                      ten_khach_hang={row.ten_khach_hang}
+                      loai_khach_hang={row.loai_khach_hang}
+                      to_chuc={row.to_chuc}
+                      lam_viec={row.lam_viec}
+                      selected={selected.indexOf(row.ten_khach_hang) !== -1}
                       handleClick={(event) =>
-                        handleClick(event, row.muc_dich_tham_dinh)
+                        handleClick(event, row.ten_khach_hang)
                       }
                     />
                   ))}
 
                 <TableEmptyRows
                   height={10}
-                  emptyRows={emptyRows(page, rowsPerPage, briefs.length)}
+                  emptyRows={emptyRows(page, rowsPerPage, personal.length)}
                 />
 
                 {notFound && <TableNoData query={filterName} />}
@@ -206,7 +204,7 @@ export default function BriefPage() {
         <TablePagination
           page={page}
           component="div"
-          count={briefs.length}
+          count={personal.length}
           rowsPerPage={rowsPerPage}
           onPageChange={handleChangePage}
           rowsPerPageOptions={[5, 10, 25]}
