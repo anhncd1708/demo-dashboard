@@ -99,12 +99,42 @@ export const navData = [
     ],
   },
   {
+    label: "Báo cáo quản lý",
+    subItems: [
+      {
+        label: "Danh sách tài sản",
+        icon: <SettingsIcon />,
+        path: "assets",
+      },
+      {
+        label: "Danh sách hồ sơ",
+        icon: <Person2OutlinedIcon />,
+        path: "briefs",
+      },
+      {
+        label: "Báo cáo về người môi giới",
+        icon: <Person2OutlinedIcon />,
+        path: "report_on_broker",
+      },
+      {
+        label: "Báo cáo về nhân viên",
+        icon: <Person2OutlinedIcon />,
+        path: "report_on_employee",
+      },
+    ],
+  },
+  {
     label: "Khác",
     subItems: [
       {
         label: "Mẫu tiêu chí đánh giá",
         icon: <SettingsIcon />,
         path: "/evaluation-form",
+      },
+      {
+        label: "Quản lý độ ưu tiên",
+        icon: <SettingsIcon />,
+        path: "priority",
       },
       {
         label: "Khác",
