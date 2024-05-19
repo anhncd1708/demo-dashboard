@@ -22,10 +22,11 @@ import { getListBriefSuperDetail } from "../../../context/redux/action/action";
 import { useParams } from "react-router-dom";
 import Label from "../../../components/Label/label";
 import Scrollbar from "../../../components/Scrollbar";
+import { TabContext, TabList, TabPanel } from "@mui/lab";
 import moment from "moment";
 // ----------------------------------------------------------------------
 
-export default function BriefInfo({ detail }) {
+export default function BriefInfo({ detail, info }) {
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
 
@@ -54,35 +55,76 @@ export default function BriefInfo({ detail }) {
 
   return (
     <>
+      {info?.map((i) => (
+        <Grid container>
+          <Grid item xs={12} sm={8} sx={{ mb: 5 }}>
+            <div className="d-flex">
+              <Typography variant="h4">{i.muc_dich_tham_dinh}</Typography>
+              <Typography variant="h4" sx={{ color: "text.disabled", mx: 2 }}>
+                {id}
+              </Typography>
+            </div>
+            <Typography variant="subtitle1">
+              Thời gian thẩm đinh:{" "}
+              {moment(i.thoi_gian_tham_dinh).format("DD/MM/YYYY")}
+            </Typography>
+            <Box>
+              <Label
+                color={i.da_duyet ? "success" : "warning"}
+                sx={{ textTransform: "uppercase", mb: 1 }}
+              >
+                {i.da_duyet ? "Đã duyệt" : "Chưa duyệt"}
+              </Label>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={4} sx={{ mb: 5 }}>
+            <div className="d-flex ">
+              <Typography
+                paragraph
+                variant="overline"
+                sx={{ color: "text.disabled" }}
+              >
+                Thông tin nhân viên tiếp nhận
+              </Typography>
+              <Typography
+                sx={{ color: "text.disabled", mx: 2 }}
+                variant="caption"
+              >
+                NV00X
+              </Typography>
+            </div>
+            <Typography variant="body2">{i.employee_approval}</Typography>
+            <Typography variant="body2">
+              Vị trí: Chuyên Gia Pháp Lý (Legal Expert)
+            </Typography>
+            <Typography variant="body2">
+              Ngày tiếp nhận hồ sơ: {moment(i.create_date).format("DD/MM/YYYY")}
+            </Typography>
+          </Grid>
+        </Grid>
+      ))}
+
       {detail?.map((b) => (
         <>
           <Card key={b.ma_ho_so_ho_so_tham_dinh} sx={{ pt: 5, px: 5 }}>
             <Grid container>
-              <Grid item xs={12} sm={8} sx={{ mb: 5 }}>
-                <Typography variant="h3">
-                  {b.muc_dich_tham_dinh_ho_so_tham_dinh}
-                </Typography>
-                <Typography variant="subtitle1">
-                  Thời gian thẩm đinh:{" "}
-                  {moment(b.thoi_gian_tham_dinh_ho_so_tham_dinh).format(
-                    "DD/MM/YYYY"
-                  )}
-                </Typography>
-              </Grid>
-
-              <Grid item xs={12} sm={4} sx={{ mb: 5 }}>
-                <Box sx={{ textAlign: { sm: "right" } }}>
-                  <Label
-                    color={b.da_duyet_ho_so_tham_dinh ? "success" : "warning"}
-                    sx={{ textTransform: "uppercase", mb: 1 }}
-                  >
-                    {b.da_duyet_ho_so_tham_dinh ? "Đã duyệt" : "Chưa duyệt"}
-                  </Label>
-                  <Typography variant="h6">{id}</Typography>
-                </Box>
-              </Grid>
-
               <Grid item xs={12} sm={6} sx={{ mb: 5 }}>
+                <div className="d-flex">
+                  <Typography
+                    paragraph
+                    variant="h6"
+                    sx={{ color: "text.disabled" }}
+                  >
+                    Chi tiết hồ sơ thẩm định
+                  </Typography>
+                  <Typography
+                    paragraph
+                    variant="h6"
+                    sx={{ color: "text.disabled", mx: 2 }}
+                  >
+                    {b.ma_chi_tiet_chi_tiet_ho_so_tham_dinh}
+                  </Typography>
+                </div>
                 <div className="d-flex ">
                   <Typography
                     paragraph
@@ -108,59 +150,9 @@ export default function BriefInfo({ detail }) {
                   {b.customer_contact_person}
                 </Typography>
               </Grid>
-
-              <Grid item xs={12} sm={6} sx={{ mb: 5 }}>
-                <div className="d-flex ">
-                  <Typography
-                    paragraph
-                    variant="overline"
-                    sx={{ color: "text.disabled" }}
-                  >
-                    Thông tin nhân viên tiếp nhận
-                  </Typography>
-                  <Typography
-                    sx={{ color: "text.disabled", mx: 2 }}
-                    variant="caption"
-                  >
-                    {b.employees_code_nhan_vien_tiep_nhan_ho_so}
-                  </Typography>
-                </div>
-                <Typography variant="body2">
-                  {b.employees_name_nhan_vien_tiep_nhan_ho_so}
-                </Typography>
-                <Typography variant="body2">
-                  Vị trí: Chuyên Gia Pháp Lý (Legal Expert)
-                </Typography>
-                {/* <Typography variant="body2">
-                Liên hệ: {b.document_number_nhan_vien_tiep_nhan_ho_so}
-              </Typography> */}
-                <Typography variant="body2">
-                  Ngày tiếp nhận hồ sơ:{" "}
-                  {moment(b.create_date_nhan_vien_tiep_nhan_ho_so).format(
-                    "DD/MM/YYYY"
-                  )}
-                </Typography>
-              </Grid>
             </Grid>
 
             <Scrollbar>
-              <div className="d-flex">
-                <Typography
-                  paragraph
-                  variant="overline"
-                  sx={{ color: "text.disabled" }}
-                >
-                  Chi tiết hồ sơ thẩm định
-                </Typography>
-                <Typography
-                  paragraph
-                  variant="overline"
-                  sx={{ color: "text.disabled", mx: 2 }}
-                >
-                  {b.ma_chi_tiet_chi_tiet_ho_so_tham_dinh}
-                </Typography>
-              </div>
-
               <TableContainer sx={{ minWidth: 960 }}>
                 <Table>
                   <TableHead>
@@ -225,25 +217,13 @@ export default function BriefInfo({ detail }) {
             </Scrollbar>
 
             <Divider sx={{ mt: 5 }} />
-
+            {/* 
             <Grid container>
               <Grid item xs={12} md={9} sx={{ py: 3 }}>
                 <Typography variant="subtitle2">ĐỘ ƯU TIÊN</Typography>
                 <Typography variant="body2">{b.priority_name}</Typography>
               </Grid>
-              <Grid item xs={12} md={3} sx={{ py: 3, textAlign: "right" }}>
-                {b.employees_name_nguoi_tham_dinh ? (
-                  <>
-                    <Typography variant="subtitle2">Người xét duyệt</Typography>
-                    <Typography variant="body2">
-                      {b.employees_name_nguoi_tham_dinh}
-                    </Typography>
-                  </>
-                ) : (
-                  <></>
-                )}
-              </Grid>
-            </Grid>
+            </Grid> */}
           </Card>
         </>
       ))}

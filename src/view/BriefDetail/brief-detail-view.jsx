@@ -50,7 +50,7 @@ export default function BriefDetailPage() {
 
   const [filterName, setFilterName] = useState("");
 
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [info, setInfo] = useState([]);
 
   const handleSort = (event, id) => {
     const isAsc = orderBy === id && order === "asc";
@@ -124,7 +124,7 @@ export default function BriefDetailPage() {
                 {loading ? (
                   <LinearProgress />
                 ) : (
-                  <BriefInfo detail={briefDetail} />
+                  <BriefInfo detail={briefDetail} info={briefs} />
                 )}
               </Box>
             </TabPanel>

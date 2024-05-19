@@ -28,7 +28,7 @@ import DocumentItems from "./doc-items";
 export default function BriefDocument({ document }) {
   return (
     <>
-      <Scrollbar>
+      {/* <Scrollbar>
         <Box sx={{ minWidth: { md: 800 } }}>
           {document.map((doc) => (
             <DocumentItems
@@ -40,7 +40,7 @@ export default function BriefDocument({ document }) {
             />
           ))}
         </Box>
-      </Scrollbar>
+      </Scrollbar> */}
       Document
       <iframe
         src={
