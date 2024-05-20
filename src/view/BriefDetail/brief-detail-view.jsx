@@ -84,8 +84,9 @@ export default function BriefDetailPage() {
       cancelButtonText: `Hủy`,
     }).then(async (result) => {
       if (result.isConfirmed) {
-        let resp = await postBriefApproval(id)
+        await postBriefApproval(id)
           .then((resp) => {
+            console.log(resp)
             if (resp) {
               showSuccess();
             }

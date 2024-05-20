@@ -1,5 +1,5 @@
 export const LOGIN_USER = "/auth/login";
-export const POST_BRIEF_APPROVAL = "/brief/aproval";
+export const POST_BRIEF_APPROVAL = "/brief/approval";
 
 export const GET_LIST_EMPLOYEE = "/user/employees";
 export const GET_LIST_CUSTOMER = "/user/customers";
@@ -23,5 +23,8 @@ export const GET_LIST_APPRAISAL_PLAN = "/appraisal_plans";
 export const GET_LIST_APPRAISAL_PLAN_DETAIL = "/appraisal_plans_detail";
 export const GET_LIST_APPRAISAL_DOCUMENT_DETAIL = "/appraisal_documents_detail";
 export const GET_LIST_APPRAISAL_PLAN_TYPE = "/appraisal_plan_types";
+
+export const GET_LIST_TRUST_CONTRACT = "/trust_contracts/trust_contracts";
+export const GET_LIST_LOAN_AGREEMENT = "/trust_contracts/loan_agreements";
 
 export const GET_LIST_PRIORITY_LEVEL = "/priority_levels";

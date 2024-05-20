@@ -441,17 +441,42 @@ export const getListBriefSuperDetail = (value, token) => {
 };
 
 
-export const postBriefApproval = (value) => {
+export const getListTrustContract = (value, token) => {
   return async (dispatch) => {
     try {
-       const res = await Axios("POST", URL_API + API_DOMAIN.POST_BRIEF_APPROVAL + "?ma_chi_tiet_ho_so=" + value);
+      let res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_TRUST_CONTRACT, null, token);
+
       dispatch(
         createAction({
-          type: PATH_ACTION.POST_BRIEF_APPROVAL,
+          type: PATH_ACTION.GET_LIST_TRUST_CONTRACT,
           payload: res.data
         })
       );
     } catch (err) { }
   };
+};
+
+export const getListLoanAgreement = (value, token) => {
+  return async (dispatch) => {
+    try {
+      let res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_LOAN_AGREEMENT, null, token);
+
+      dispatch(
+        createAction({
+          type: PATH_ACTION.GET_LIST_LOAN_AGREEMENT,
+          payload: res.data
+        })
+      );
+    } catch (err) { }
+  };
+};
+
+
+export const postBriefApproval = async (value) => {
+  try {
+    const res = await Axios("POST", URL_API + API_DOMAIN.POST_BRIEF_APPROVAL + "?ma_chi_tiet_ho_so=" + value);
+    return res.data;
+  } catch (err) { }
+
 };
 

@@ -14,14 +14,17 @@ const initialState = {
   briefPoints: [],
   assets: [],
   assetsDetail: [],
-  files:[],
+  files: [],
   assetTypes: [],
   appraisalPlans: [],
   appraisalPlanDetails: [],
   appraisalPlanTypes: [],
   appraisalDocumentDetail: [],
   priorityLevels: [],
-  briefApproval: []
+  briefApproval: [],
+  trustContracts: [],
+  loanAgreements: [],
+  group_customer: []
 };
 
 export default function reducers(state = initialState, { type, payload }) {
@@ -59,7 +62,7 @@ export default function reducers(state = initialState, { type, payload }) {
     case PATH_ACTION.GET_LIST_BRIEF:
       state.briefs = payload;
       break;
-      case PATH_ACTION.GET_LIST_BRIEF_SUPER_DETAIL:
+    case PATH_ACTION.GET_LIST_BRIEF_SUPER_DETAIL:
       state.briefDetail = payload;
       break;
     case PATH_ACTION.GET_LIST_BRIEF_POINT:
@@ -95,6 +98,15 @@ export default function reducers(state = initialState, { type, payload }) {
     case PATH_ACTION.GET_LIST_PRIORITY_LEVEL:
       state.priorityLevels = payload;
       break;
+
+    case PATH_ACTION.GET_LIST_TRUST_CONTRACT:
+      state.trustContracts = payload;
+      break;
+    case PATH_ACTION.GET_LIST_LOAN_AGREEMENT:
+      state.loanAgreements = payload;
+      break;
+
+
     default:
       return { ...state };
   }
