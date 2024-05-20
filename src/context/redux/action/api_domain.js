@@ -1,5 +1,5 @@
 export const LOGIN_USER = "/auth/login";
-export const POST_BRIEF_APPROVAL = "/brief/aproval";
+export const POST_BRIEF_APPROVAL = "/brief/approval";
 
 export const GET_LIST_EMPLOYEE = "/user/employees";
 export const GET_LIST_CUSTOMER = "/user/customers";
