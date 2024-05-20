@@ -102,6 +102,24 @@ export default function EmpPage() {
         setSelected([]);
     };
 
+    const handleClick = (event, value) => {
+        const selectedIndex = selected.indexOf(value);
+        let newSelected = [];
+        if (selectedIndex === -1) {
+            newSelected = newSelected.concat(selected, value);
+        } else if (selectedIndex === 0) {
+            newSelected = newSelected.concat(selected.slice(1));
+        } else if (selectedIndex === selected.length - 1) {
+            newSelected = newSelected.concat(selected.slice(0, -1));
+        } else if (selectedIndex > 0) {
+            newSelected = newSelected.concat(
+                selected.slice(0, selectedIndex),
+                selected.slice(selectedIndex + 1)
+            );
+        }
+        setSelected(newSelected);
+    };
+
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
@@ -165,7 +183,8 @@ export default function EmpPage() {
                                             file_url={row.file_url}
                                             file_type={row.file_type}
                                             create_date={row.create_date}
-                                            selected={selected.indexOf(row.employees_name) !== -1}
+                                            selected={selected.indexOf(row.file_name) !== -1}
+                                            handleClick={(event) => handleClick(event, row.file_name)}
                                         />
                                     ))}
 

@@ -111,16 +111,16 @@ export const navData = [
         icon: <Person2OutlinedIcon />,
         path: "briefs",
       },
-      {
-        label: "Báo cáo về người môi giới",
-        icon: <Person2OutlinedIcon />,
-        path: "report_on_broker",
-      },
-      {
-        label: "Báo cáo về nhân viên",
-        icon: <Person2OutlinedIcon />,
-        path: "report_on_employee",
-      },
+      // {
+      //   label: "Báo cáo về người môi giới",
+      //   icon: <Person2OutlinedIcon />,
+      //   path: "report_on_broker",
+      // },
+      // {
+      //   label: "Báo cáo về nhân viên",
+      //   icon: <Person2OutlinedIcon />,
+      //   path: "report_on_employee",
+      // },
     ],
   },
   {
