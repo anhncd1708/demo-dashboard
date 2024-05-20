@@ -17,6 +17,9 @@ import AssetsPage from "../pages/assets";
 import EvaluationPage from "../pages/evaluation-form";
 import PriorityPage from "../pages/priority";
 import PersonalCalcPage from "../pages/personal-calc";
+import LoanEntrustmentPage from "../pages/loan-entrustment";
+import LoanContractPage from "../pages/loan-contract";
+import TrustContractPage from "../pages/trust-contract";
 
 export const EmployeesPage = lazy(() => import("../pages/employees"));
 export const LoginPage = lazy(() => import("../pages/login"));
@@ -67,6 +70,9 @@ export default function Router() {
         { path: "assets", element: <AssetsPage /> },
         { path: "evaluation-form", element: <EvaluationPage /> },
         { path: "priority", element: <PriorityPage /> },
+        { path: "loan-entrustment", element: <LoanEntrustmentPage /> },
+        { path: "loan-contract", element: <LoanContractPage /> },
+        { path: "trust-contract", element: <TrustContractPage /> },
       ],
     },
     {

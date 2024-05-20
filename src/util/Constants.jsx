@@ -124,6 +124,26 @@ export const navData = [
     ],
   },
   {
+    label: "Ủy thác cho vay",
+    subItems: [
+      {
+        label: "Ủy thác cho vay",
+        icon: <SettingsIcon />,
+        path: "loan-entrustment",
+      },
+      {
+        label: "Hợp đồng ủy thác",
+        icon: <Person2OutlinedIcon />,
+        path: "trust-contract",
+      },
+      {
+        label: "Hợp đồng cho vay",
+        icon: <Person2OutlinedIcon />,
+        path: "loan-contract",
+      },
+    ],
+  },
+  {
     label: "Khác",
     subItems: [
       {
