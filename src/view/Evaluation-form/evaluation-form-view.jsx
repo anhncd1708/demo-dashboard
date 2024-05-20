@@ -35,11 +35,11 @@ const TABLE_HEAD = [
         label: "Tên tệp",
         alignRight: false
     },
-    {
-        id: "file_url",
-        label: "Đường dẫn",
-        alignRight: false
-    },
+    // {
+    //     id: "file_url",
+    //     label: "Đường dẫn",
+    //     alignRight: false
+    // },
     {
         id: "file_type",
         label: "Loại tệp",
