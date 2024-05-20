@@ -72,7 +72,7 @@ const TABLE_HEAD = [
   },
   {
     id: "HanMucVay",
-    label: "Hạn mức",
+    label: "Hạn mức vay",
     alignRight: false,
   },
   {
@@ -92,32 +92,32 @@ const TABLE_HEAD = [
   },
   {
     id: "LaiSuat",
-    label: "Ngày mở tài khoản",
+    label: "Lãi suất",
     alignRight: false,
   },
   {
     id: "ChuKyTraGoc",
-    label: "Ngày mở tài khoản",
+    label: "Chu kỳ trả gốc",
     alignRight: false,
   },
   {
     id: "NgayTraGocDauTien",
-    label: "Ngày mở tài khoản",
+    label: "Ngày trả gốc đầu tiên",
     alignRight: false,
   },
   {
     id: "ChuKyTraLai",
-    label: "Ngày mở tài khoản",
+    label: "Chu kỳ trả lãi",
     alignRight: false,
   },
   {
     id: "NgayTraLaiDauTien",
-    label: "Ngày mở tài khoản",
+    label: "Ngày trả lãi đầu tiên",
     alignRight: false,
   },
   {
     id: "TaiSanTheChap",
-    label: "Ngày mở tài khoản",
+    label: "Tài sản thế chấp",
     alignRight: false,
   },
 ];
