@@ -473,7 +473,7 @@ export const getListLoanAgreement = (value, token) => {
 
 export const postBriefApproval = async (value) => {
   try {
-    const res = await Axios("POST", URL_API + API_DOMAIN.POST_BRIEF_APPROVAL + "?ma_chi_tiet_ho_so=" + value);
+    const res = await Axios("POST", URL_API + API_DOMAIN.POST_BRIEF_APPROVAL + "?ma_ho_so=" + value);
     return res.data;
   } catch (err) { }
 };
