@@ -27,4 +27,8 @@ export const GET_LIST_APPRAISAL_PLAN_TYPE = "/appraisal_plan_types";
 export const GET_LIST_TRUST_CONTRACT = "/trust_contracts/trust_contracts";
 export const GET_LIST_LOAN_AGREEMENT = "/trust_contracts/loan_agreements";
 
+export const GET_LIST_INTERNAL_CREDIT_CRITERIAS = "/criteria/internal_credit_criterias";
+export const GET_LIST_ROOT_INTERNAL_CREDIT_CRITERIAS = "/criteria/root_internal_credit_criterias";
+export const GET_LIST_SUB_INTERNAL_CREDIT_CRITERIAS = "/criteria/sub_internal_credit_criterias";
+
 export const GET_LIST_PRIORITY_LEVEL = "/priority_levels";

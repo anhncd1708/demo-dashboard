@@ -1,4 +1,5 @@
 import * as PATH_ACTION from "../pathAction";
+
 const initialState = {
   currentUser: [],
   accounts: [],
@@ -24,7 +25,11 @@ const initialState = {
   briefApproval: [],
   trustContracts: [],
   loanAgreements: [],
-  group_customer: []
+  group_customer: [],
+  internalCreditCriterias: [],
+  rootInternalCreditCriterias: [],
+  subInternalCreditCriterias: []
+
 };
 
 export default function reducers(state = initialState, { type, payload }) {
@@ -106,6 +111,15 @@ export default function reducers(state = initialState, { type, payload }) {
       state.loanAgreements = payload;
       break;
 
+    case PATH_ACTION.GET_LIST_INTERNAL_CREDIT_CRITERIAS:
+      state.internalCreditCriterias = payload;
+      break;
+    case PATH_ACTION.GET_LIST_ROOT_INTERNAL_CREDIT_CRITERIAS:
+      state.rootInternalCreditCriterias = payload;
+      break;
+    case PATH_ACTION.GET_LIST_SUB_INTERNAL_CREDIT_CRITERIAS:
+      state.subInternalCreditCriterias = payload;
+      break;
 
     default:
       return { ...state };

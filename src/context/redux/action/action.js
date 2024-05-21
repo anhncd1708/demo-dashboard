@@ -471,12 +471,57 @@ export const getListLoanAgreement = (value, token) => {
   };
 };
 
-
 export const postBriefApproval = async (value) => {
   try {
     const res = await Axios("POST", URL_API + API_DOMAIN.POST_BRIEF_APPROVAL + "?ma_chi_tiet_ho_so=" + value);
     return res.data;
   } catch (err) { }
-
 };
+
+
+export const getListInternalCreditCriterias = (value, token) => {
+  return async (dispatch) => {
+    try {
+      let res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_INTERNAL_CREDIT_CRITERIAS, null, token);
+
+      dispatch(
+        createAction({
+          type: PATH_ACTION.GET_LIST_INTERNAL_CREDIT_CRITERIAS,
+          payload: res.data
+        })
+      );
+    } catch (err) { }
+  };
+};
+
+export const getListRootInternalCreditCriterias = (value, token) => {
+  return async (dispatch) => {
+    try {
+      let res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_ROOT_INTERNAL_CREDIT_CRITERIAS, null, token);
+
+      dispatch(
+        createAction({
+          type: PATH_ACTION.GET_LIST_ROOT_INTERNAL_CREDIT_CRITERIAS,
+          payload: res.data
+        })
+      );
+    } catch (err) { }
+  };
+};
+
+export const getListSubInternalCreditCriterias = (value, token) => {
+  return async (dispatch) => {
+    try {
+      let res = await Axios("GET", URL_API + API_DOMAIN.GET_LIST_SUB_INTERNAL_CREDIT_CRITERIAS, null, token);
+
+      dispatch(
+        createAction({
+          type: PATH_ACTION.GET_LIST_SUB_INTERNAL_CREDIT_CRITERIAS,
+          payload: res.data
+        })
+      );
+    } catch (err) { }
+  };
+};
+
 
