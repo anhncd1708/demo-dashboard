@@ -87,7 +87,7 @@ export default function BriefDetailPage() {
         await postBriefApproval(id)
           .then((resp) => {
             console.log(resp)
-            if (resp) {
+            if (resp.code === 1) {
               showSuccess();
             }
           })
