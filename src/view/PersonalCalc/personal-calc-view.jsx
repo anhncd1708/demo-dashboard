@@ -63,21 +63,21 @@ export default function PersonalCalcView() {
     return state.subInternalCreditCriterias;
   });
 
-  const [tuoi, setTuoi] = useState();
-  const [hocvan, setHocvan] = useState();
-  const [taisan, setTaisan] = useState();
-  const [thunhapchinh, setThunhapchinh] = useState();
-  const [chitieu, setChitieu] = useState();
-  const [chucvu, setChucvu] = useState();
-  const [thoigiankd, setThoigiankd] = useState();
-  const [thunhapkhac, setThunhapkhac] = useState();
-  const [thunhapphu, setThunhapphu] = useState();
-  const [lienket, setLienket] = useState();
-  const [diachi, setDiachi] = useState();
-  const [songuoiphuthuoc, setSonguoiphuthuoc] = useState();
-  const [sinhsong, setSinhsong] = useState();
-  const [nguoibaolanh, setNguoibaolanh] = useState();
-  const [tindung, setTindung] = useState();
+  const [tuoi, setTuoi] = useState("");
+  const [hocvan, setHocvan] = useState("");
+  const [taisan, setTaisan] = useState("");
+  const [thunhapchinh, setThunhapchinh] = useState("");
+  const [chitieu, setChitieu] = useState("");
+  const [chucvu, setChucvu] = useState("");
+  const [thoigiankd, setThoigiankd] = useState("");
+  const [thunhapkhac, setThunhapkhac] = useState("");
+  const [thunhapphu, setThunhapphu] = useState("");
+  const [lienket, setLienket] = useState("");
+  const [diachi, setDiachi] = useState("");
+  const [songuoiphuthuoc, setSonguoiphuthuoc] = useState("");
+  const [sinhsong, setSinhsong] = useState("");
+  const [nguoibaolanh, setNguoibaolanh] = useState("");
+  const [tindung, setTindung] = useState("");
 
   const sum = () => {
     let sum =
@@ -184,49 +184,45 @@ export default function PersonalCalcView() {
                   </Typography>
 
                   {rootInternalCreditCriterias?.map((b) => (
-                    <>
-                      <Grid key={b?.ID} container>
-                        <Grid item xs={12} sm={6}>
-                          <Typography
-                            paragraph
-                            variant="subtitle2"
-                            sx={{ color: "text.disabled" }}
-                          >
-                            {b?.ma_loai_tieu_chi_tin_dung === a?.ma_loai_tieu_chi ?
-                              (<>
-                                {b?.loai_tieu_chi}
-                                <Grid item xs={12} sm={6}>
-                                  <FormControl sx={{ m: 1, minWidth: 450 }} size="small">
-                                    <Select
-                                      key={b?.ID}
-                                      defaultValue={0}
-                                      displayEmpty
-                                      inputProps={{ "aria-label": "Without label" }}
-                                      onChange={(e) => setTuoi(e.target.value)}
-                                    >
+                    <Grid key={b?.ID} container>
 
-                                      {subInternalCreditCriterias?.map((c) => (
-                                        <>
-                                          {c?.ma_loai_tieu_chi === b?.ma_loai_tieu_chi ?
-                                            (
-                                              <MenuItem value={c.ma_tieu_chi}>{c.ten_tieu_chi}</MenuItem>
-                                            )
-                                            : (<></>)}
-                                        </>
-                                      ))}
-                                      {/* end of root */}
-                                    </Select>
-                                  </FormControl>
-                                </Grid>
-                              </>)
-                              : (
-                                <>
-                                </>
-                              )}
-                          </Typography>
-                        </Grid>
-                      </Grid >
-                    </>
+                      {b?.ma_loai_tieu_chi_tin_dung === a?.ma_loai_tieu_chi ? (
+                        <>
+                          <Grid item xs={12} sm={6}>
+                            <Typography
+                              paragraph
+                              variant="subtitle2"
+                              sx={{ color: "text.disabled" }}
+                            >
+
+                              {b?.loai_tieu_chi}
+                            </Typography>
+                          </Grid>
+                          <Grid item xs={12} sm={6}>
+                            <FormControl sx={{ m: 1, minWidth: 450 }} size="small">
+                              <Select
+                                key={b?.ID}
+                                defaultValue={0}
+                                displayEmpty
+                                inputProps={{ "aria-label": "Without label" }}
+                                onChange={(e) => setTuoi(e.target.value)}
+                              >
+                                {subInternalCreditCriterias?.map((c) => (
+                                  c?.ma_loai_tieu_chi === b?.ma_loai_tieu_chi &&
+                                  <MenuItem value={c.ma_tieu_chi}>{c.ten_tieu_chi}</MenuItem>
+                                ))}
+                              </Select>
+                            </FormControl>
+                          </Grid>
+
+
+                        </>)
+                        : (
+                          <>
+                          </>
+                        )}
+
+                    </Grid >
                   ))}
                   {/* end of internal */}
                 </Card >
