@@ -14,6 +14,7 @@ import {
   useTheme,
   InputAdornment,
   Alert,
+  CircularProgress,
 } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 
@@ -30,11 +31,13 @@ import {
 // ----------------------------------------------------------------------
 
 export default function LoginView() {
- 
+
   const token =
     "IEIpLceGWQw6gJ3991U29PDUXVQSULuVAaYO8v4000UouZKJXAFt0u7CaPfwSRDq";
 
   const [error, setError] = useState("");
+
+  const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     username: "",
@@ -58,18 +61,22 @@ export default function LoginView() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       let data = await LoginAuthen(formData.username, formData.password);
       if (data.data.username === formData.username) {
         Cookies.set("user", JSON.stringify(data.data));
         Cookies.set("token", token, { expires: 1 });
         router.push("/");
+        setLoading(false)
       } else {
         setError("Sai tên đăng nhập hoặc tài khoản.");
+        setLoading(false)
       }
     }
     catch (err) {
       console.log(err);
       setError("Đăng nhập thất bại.");
+      setLoading(false)
     }
   };
 
@@ -133,9 +140,11 @@ export default function LoginView() {
         type="submit"
         variant="contained"
         color="inherit"
+        startIcon={loading && <CircularProgress />}
       >
         Đăng nhập
       </LoadingButton>
+
     </form>
   );
 
