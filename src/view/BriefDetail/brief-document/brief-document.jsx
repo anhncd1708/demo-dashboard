@@ -22,7 +22,7 @@ export default function BriefDocument({ document }) {
         style={{
           border: "none",
           width: "100%",
-          height: "1000px",
+          height: "600px",
         }}
       ></iframe>
       {/* <iframe src="https://res-console.cloudinary.com/dj3zy8ivi/media_explorer_thumbnails/cabc568a47041b5aeab1e6a8e98f135a/detailed"

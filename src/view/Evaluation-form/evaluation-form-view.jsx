@@ -49,6 +49,11 @@ const TABLE_HEAD = [
         id: "create_date",
         label: "Ngày khởi tạo",
         alignRight: false
+    },
+    {
+        id: "",
+        label: "",
+        alignRight: false
     }
 ];
 

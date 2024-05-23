@@ -13,10 +13,13 @@ import {
     Box
 } from "@mui/material";
 
+import { Viewer, Worker } from "@react-pdf-viewer/core";
+import { DefaultLayoutPlugin, defaultLayoutPlugin } from "@react-pdf-viewer/default-layout";
 import moment from "moment";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Iconify from "../../Iconify/iconify";
+import PDFViewer from "pdf-viewer-reactjs";
 // ----------------------------------------------------------------------
 const style = {
     position: 'absolute',
@@ -24,7 +27,7 @@ const style = {
     left: '50%',
     mt: -5,
     transform: 'translate(-50%, -50%)',
-    height: 600,
+    height: '85%',
     width: '80%',
     borderRadius: '15px',
     bgcolor: 'background.paper',
@@ -41,6 +44,8 @@ export default function BriefTableRow({
     create_date,
     handleClick
 }) {
+    const newPlugin = defaultLayoutPlugin();
+
     const [open, setOpen] = useState(null);
 
     const navigate = useNavigate();
@@ -90,19 +95,45 @@ export default function BriefTableRow({
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                         {file_name}
                     </Typography>
+                    {file_type == "pdf" ? (
+                        <>
+                            <iframe
+                                src={
+                                    (file_url)
+                                }
+                                style={{
+                                    border: "none",
+                                    width: "100%",
+                                    height: "90%",
+                                }}
+                            ></iframe>
+                        </>
+                    ) : (
+                        <iframe
+                            src={
+                                ("https://view.officeapps.live.com/op/embed.aspx?src=" + file_url)
+                            }
+                            style={{
+                                border: "none",
+                                width: "100%",
+                                height: "90%",
+                            }}
+                        ></iframe>
+                    )
+                    }
 
-                    <iframe
+                    {/* <iframe
                         src={
                             ("https://view.officeapps.live.com/op/embed.aspx?src=" + file_url)
                         }
                         style={{
                             border: "none",
                             width: "100%",
-                            height: "900px",
+                            height: "90%",
                         }}
-                    ></iframe>
+                    ></iframe> */}
                 </Box>
-            </Modal>
+            </Modal >
         </>
     );
 }

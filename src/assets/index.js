@@ -1,0 +1,1 @@
+export { default as SeoIllustration } from './illustration_seo';

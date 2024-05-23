@@ -110,12 +110,12 @@ export default function BriefDetailPage() {
     "https://res.cloudinary.com/dj3zy8ivi/raw/upload/v1715847133/file/ktfhgfq6qzk8savvtkus.docx";
 
   return (
-    <Container>
+    <Container >
       <Stack
         direction="row"
         alignItems="center"
         justifyContent="space-between"
-        mb={5}
+        mb={2}
       >
         <Typography variant="h4">Chi tiết hồ sơ thẩm định</Typography>
         <Button
