@@ -24,15 +24,15 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-const PERCENT = 2.6;
-const TOTAL_USER = 1765;
-const CHART_DATA = [{ data: [2532, 6632, 4132, 8932, 6332, 2532, 4432, 1232, 3632, 932, 3354] }];
+const PERCENT = -0.06;
+const TOTAL_PLAN = 678;
+const CHART_DATA = [{ data: [25, 66, 41, 89, 63, 25, 44, 12, 36, 9, 54] }];
 
-export default function AppTotalActiveUsers() {
+export default function AppTotalBrief() {
     const theme = useTheme();
 
     const chartOptions = {
-        colors: [theme.palette.primary.main],
+        colors: [theme.palette.error.main],
         chart: { sparkline: { enabled: true } },
         plotOptions: { bar: { columnWidth: '68%', borderRadius: 2 } },
         labels: ['1', '2', '3', '4', '5', '6', '7', '8'],
@@ -52,7 +52,7 @@ export default function AppTotalActiveUsers() {
     return (
         <Card sx={{ display: 'flex', alignItems: 'center', p: 3 }}>
             <Box sx={{ flexGrow: 1 }}>
-                <Typography variant="subtitle2">Thống kê khách hàng</Typography>
+                <Typography variant="subtitle2">Tổng số kế hoạch</Typography>
                 <Stack direction="row" alignItems="center" spacing={1} sx={{ mt: 2, mb: 1 }}>
                     <IconWrapperStyle
                         sx={{
@@ -62,7 +62,6 @@ export default function AppTotalActiveUsers() {
                             })
                         }}
                     >
-                        {/* <Icon width={16} height={16} icon={PERCENT >= 0 ? trendingUpFill : trendingDownFill} /> */}
                         <Iconify icon={PERCENT >= 0 ? `mingcute:trending-up-fill` : `mingcute:trending-down-fill`}></Iconify>
                     </IconWrapperStyle>
                     <Typography component="span" variant="subtitle2">
@@ -71,7 +70,7 @@ export default function AppTotalActiveUsers() {
                     </Typography>
                 </Stack>
 
-                <Typography variant="h3">{fNumber(TOTAL_USER)}</Typography>
+                <Typography variant="h3">{fNumber(TOTAL_PLAN)}</Typography>
             </Box>
 
             <ReactApexChart

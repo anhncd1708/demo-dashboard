@@ -105,3 +105,5 @@ export const typography = {
     textTransform: 'unset',
   },
 };
+
+export default typography;

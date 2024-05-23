@@ -2,32 +2,32 @@ import { merge } from 'lodash';
 import { useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
 // material
-import { Card, CardHeader, Box, TextField } from '@material-ui/core';
+import { Card, CardHeader, Box, TextField } from '@mui/material';
 //
-import { BaseOptionChart } from '../../charts';
+import { BaseOptionChart } from '../Chart'
 import React from 'react';
 
 // ----------------------------------------------------------------------
 
 const CHART_DATA = [
     {
-        year: 2019,
+        year: 2024,
         data: [
-            { name: 'Asia', data: [10, 41, 35, 51, 49, 62, 69, 91, 148] },
-            { name: 'America', data: [10, 34, 13, 56, 77, 88, 99, 77, 45] }
+            { name: 'Xét Duyệt', data: [10, 41, 35, 51, 49, 62, 69, 91, 148] },
+            { name: 'Từ chối', data: [10, 34, 13, 56, 77, 88, 99, 77, 45] }
         ]
     },
     {
-        year: 2020,
+        year: 2023,
         data: [
-            { name: 'Asia', data: [148, 91, 69, 62, 49, 51, 35, 41, 10] },
-            { name: 'America', data: [45, 77, 99, 88, 77, 56, 13, 34, 10] }
+            { name: 'Từ Chối', data: [148, 91, 69, 62, 49, 51, 35, 41, 10] },
+            { name: 'Xét Duyệt', data: [45, 77, 99, 88, 77, 56, 13, 34, 10] }
         ]
     }
 ];
 
-export default function AppAreaInstalled() {
-    const [seriesData, setSeriesData] = useState(2019);
+export default function AppAreaApproved() {
+    const [seriesData, setSeriesData] = useState(2024);
 
     const handleChangeSeriesData = (event) => {
         setSeriesData(Number(event.target.value));
@@ -35,15 +35,15 @@ export default function AppAreaInstalled() {
 
     const chartOptions = merge(BaseOptionChart(), {
         xaxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep']
+            categories: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9']
         }
     });
 
     return (
         <Card>
             <CardHeader
-                title="Area Installed"
-                subheader="(+43%) than last year"
+                title="Thống kê xét duyệt hồ sơ"
+                subheader="(+43%) so với năm ngoái"
                 action={
                     <TextField
                         select

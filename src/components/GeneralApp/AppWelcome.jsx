@@ -33,16 +33,15 @@ export default function AppWelcome({ displayName }) {
                 }}
             >
                 <Typography gutterBottom variant="h4">
-                    Welcome back,
-                    <br /> {!displayName ? '...' : displayName}!
+                    Mừng trở lại, {!displayName ? '...' : displayName}!
                 </Typography>
 
                 <Typography variant="body2" sx={{ pb: { xs: 3, xl: 5 }, maxWidth: 480, mx: 'auto' }}>
-                    If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything
+                    Hãy nhớ kiểm tra những hồ sơ mới cần được xét duyệt
                 </Typography>
 
-                <Button variant="contained" to="#" component={RouterLink}>
-                    Go Now
+                <Button variant="contained" to="/briefs" component={RouterLink}>
+                    Hồ sơ
                 </Button>
             </CardContent>
             <SeoIllustration

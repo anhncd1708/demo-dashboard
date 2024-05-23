@@ -1,8 +1,6 @@
 import { Container, Grid } from "@mui/material";
 import Cookies from "js-cookie";
-import AppWelcome from "../../components/GeneralApp/AppWelcome";
-import SeoIllustration from "../../assets/illustration_seo"
-import { AppTotalActiveUsers } from "../../components/GeneralApp";
+import { AppTotalActiveUsers, AppWelcome, AppTotalBrief, AppTotalPlan, AppCurrentAsset, AppAreaApproved } from "../../components/GeneralApp";
 // ----------------------------------------------------------------------
 
 export default function OverView() {
@@ -11,7 +9,6 @@ export default function OverView() {
   return (
     <>
       <Container maxWidth="xl">
-        <h2>Overview</h2>
         <Grid container spacing={3}>
           <Grid item xs={12} md={8}>
             <AppWelcome displayName={user.username} />
@@ -23,23 +20,23 @@ export default function OverView() {
           <Grid item xs={12} md={4}>
             <AppTotalActiveUsers />
           </Grid>
-          {/*
+
           <Grid item xs={12} md={4}>
-            <AppTotalInstalled />
+            <AppTotalBrief />
           </Grid>
 
           <Grid item xs={12} md={4}>
-            <AppTotalDownloads />
+            <AppTotalPlan />
           </Grid>
 
           <Grid item xs={12} md={6} lg={4}>
-            <AppCurrentDownload />
+            <AppCurrentAsset />
           </Grid>
 
           <Grid item xs={12} md={6} lg={8}>
-            <AppAreaInstalled />
+            <AppAreaApproved />
           </Grid>
-
+          {/*
           <Grid item xs={12} lg={8}>
             <AppNewInvoice />
           </Grid>

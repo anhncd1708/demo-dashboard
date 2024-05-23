@@ -5,7 +5,7 @@ import { Card, CardHeader, useTheme, styled } from '@mui/material';
 // utils
 import { fNumber } from '../../util/formatNumber';
 //
-import { BaseOptionChart } from '../../components/Chart';
+import { BaseOptionChart } from '../Chart';
 
 // ----------------------------------------------------------------------
 
@@ -30,9 +30,10 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-const CHART_DATA = [12244, 53345, 44313, 78343];
+const CHART_DATA = [150, 53, 230, 79, 20];
 
-export default function AppCurrentDownload() {
+
+export default function AppCurrentAsset() {
     const theme = useTheme();
 
     const chartOptions = merge(BaseOptionChart(), {
@@ -42,7 +43,7 @@ export default function AppCurrentDownload() {
             theme.palette.primary.main,
             theme.palette.primary.dark
         ],
-        labels: ['Mac', 'Window', 'iOS', 'Android'],
+        labels: ['BĐS', 'TS CỐ ĐỊNH', 'TS TÀI CHÍNH', 'TS VÔ HÌNH', 'KHÁC'],
         stroke: { colors: [theme.palette.background.paper] },
         legend: { floating: true, horizontalAlign: 'center' },
         tooltip: {
@@ -62,12 +63,7 @@ export default function AppCurrentDownload() {
                         value: {
                             formatter: (val) => fNumber(val)
                         },
-                        total: {
-                            formatter: (seriesTotals) => {
-                                const sum = seriesTotals.reduce((a, b) => a + b, 0);
-                                return fNumber(sum);
-                            }
-                        }
+
                     }
                 }
             }
@@ -76,7 +72,7 @@ export default function AppCurrentDownload() {
 
     return (
         <Card>
-            <CardHeader title="Current Download" />
+            <CardHeader title="THỐNG KÊ TÀI SẢN" />
             <ChartWrapperStyle dir="ltr">
                 <ReactApexChart type="donut" series={CHART_DATA} options={chartOptions} height={280} />
             </ChartWrapperStyle>
