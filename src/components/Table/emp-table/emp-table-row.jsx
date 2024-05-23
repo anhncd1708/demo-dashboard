@@ -23,9 +23,9 @@ export default function UserTableRow({
   employee_image,
   employees_code,
   employees_name,
-  address,
-  email,
-  gender,
+  // address,
+  // email,
+  // gender,
   document_number,
   position_name,
   is_active,
@@ -59,10 +59,10 @@ export default function UserTableRow({
             </Typography>
           </Stack>
         </TableCell>
-
+        {/* 
         <TableCell>{email ? email : "--"}</TableCell>
         <TableCell>{address ? address : "--"}</TableCell>
-        <TableCell>{gender ? "Nam" : "Nữ"}</TableCell>
+        <TableCell>{gender ? "Nam" : "Nữ"}</TableCell> */}
         <TableCell>{document_number ? document_number : "--"}</TableCell>
 
         <TableCell>{position_name}</TableCell>
@@ -115,9 +115,9 @@ UserTableRow.propTypes = {
   employees_code: PropTypes.any,
   employee_image: PropTypes.any,
   employees_name: PropTypes.any,
-  email: PropTypes.any,
-  gender: PropTypes.any,
-  address: PropTypes.any,
+  // email: PropTypes.any,
+  // gender: PropTypes.any,
+  // address: PropTypes.any,
   document_number: PropTypes.any,
   position_name: PropTypes.any,
   is_active: PropTypes.any,

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import PropTypes from "prop-types";
+import logo from "../../assets/logo/logo-web-2.png"
 
 import {
   Box,
@@ -25,6 +26,8 @@ import { NAV } from "./Header/config-layout";
 // import navConfig from "./config-navigation";
 
 import { navData } from "../../util/Constants";
+import Cookies from "js-cookie";
+import Logo from "../Logo/Logo";
 
 // ----------------------------------------------------------------------
 
@@ -42,6 +45,10 @@ export default function Nav({ openNav, onCloseNav }) {
     active: true,
     photoURL: "../../assets/avatar/avatar_9.jpg",
   };
+
+  const user = JSON.parse(Cookies.get("user"))
+
+  console.log(user)
 
   const pathname = usePathname();
 
@@ -67,10 +74,10 @@ export default function Nav({ openNav, onCloseNav }) {
         bgcolor: (theme) => alpha(theme.palette.grey[500], 0.12),
       }}
     >
-      <Avatar src={account.photoURL} alt="photoURL" />
+      <Avatar src={user.employee_image} alt={user.employees_name} />
 
       <Box sx={{ ml: 2 }}>
-        <Typography variant="subtitle2">{account.fullname}</Typography>
+        <Typography variant="subtitle2">{user.employees_name}</Typography>
 
         <Typography variant="body2" sx={{ color: "text.secondary" }}>
           {account.role}
@@ -131,7 +138,9 @@ export default function Nav({ openNav, onCloseNav }) {
         },
       }}
     >
-      {/* <Logo sx={{ mt: 3, ml: 4 }} /> */}
+      <Logo sx={{ mt: 3, ml: 4 }} name={true} />
+
+      {/* <img src={logo} alt="Logo" style={{ width: 50, height: 50, padding: 10 }} /> */}
 
       {renderAccount}
 

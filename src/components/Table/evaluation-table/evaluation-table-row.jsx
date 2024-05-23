@@ -25,11 +25,11 @@ const style = {
     position: 'absolute',
     top: '50%',
     left: '50%',
-    mt: -5,
+    mt: 1,
     transform: 'translate(-50%, -50%)',
-    height: '85%',
-    width: '80%',
-    borderRadius: '15px',
+    height: '90%',
+    width: '90%',
+    borderRadius: '10px',
     bgcolor: 'background.paper',
     boxShadow: 24,
     p: 4,
@@ -76,7 +76,7 @@ export default function BriefTableRow({
                 </TableCell>
                 <TableCell align="right">
                     <IconButton onClick={handleOpenMenu}>
-                        <Iconify icon="eva:more-vertical-fill" />
+                        <Iconify icon="carbon:view-filled" />
                     </IconButton>
                 </TableCell>
             </TableRow>
@@ -89,22 +89,19 @@ export default function BriefTableRow({
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Xem tài liệu
-                    </Typography>
-                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                    <Typography id="modal-modal-title" variant="h6" component="h2" sx={{ textAlign: 'center' }}>
                         {file_name}
                     </Typography>
                     {file_type == "pdf" ? (
                         <>
                             <iframe
                                 src={
-                                    (file_url)
+                                    file_url
                                 }
                                 style={{
                                     border: "none",
                                     width: "100%",
-                                    height: "90%",
+                                    height: "95%",
                                 }}
                             ></iframe>
                         </>
@@ -116,7 +113,7 @@ export default function BriefTableRow({
                             style={{
                                 border: "none",
                                 width: "100%",
-                                height: "90%",
+                                height: "95%",
                             }}
                         ></iframe>
                     )

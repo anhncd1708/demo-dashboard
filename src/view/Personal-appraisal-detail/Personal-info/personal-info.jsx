@@ -31,7 +31,8 @@ import { RouterLink } from "../../../routes/components";
 // ----------------------------------------------------------------------
 
 export default function PersonalInfo({ customer, assets, id }) {
-  const [value, setValue] = useState("0");
+  const [value, setValue] = useState(0);
+
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

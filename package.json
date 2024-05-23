@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@cyntler/react-doc-viewer": "^1.15.0",
+    "@fontsource/poppins": "^5.0.14",
+    "@fontsource/roboto": "^5.0.13",
     "@mui/icons-material": "^5.15.16",
     "@mui/lab": "^5.0.0-alpha.170",
     "@mui/material": "^5.15.16",

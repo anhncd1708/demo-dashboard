@@ -42,26 +42,26 @@ const StyledSearchbar = styled("div")(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function Searchbar() {
-  const [open, setOpen] = useState(false);
+  const [openSearch, setOpenSearch] = useState(false);
 
   const handleOpen = () => {
-    setOpen(!open);
+    setOpenSearch(!openSearch);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setOpenSearch(false);
   };
 
   return (
     <ClickAwayListener onClickAway={handleClose}>
       <div>
-        {!open && (
+        {!openSearch && (
           <IconButton onClick={handleOpen}>
             <Iconify icon="eva:search-fill" />
           </IconButton>
         )}
 
-        <Slide direction="down" in={open} mountOnEnter unmountOnExit>
+        <Slide direction="down" in={openSearch} mountOnEnter unmountOnExit>
           <StyledSearchbar>
             <Input
               autoFocus

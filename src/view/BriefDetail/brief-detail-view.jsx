@@ -141,12 +141,12 @@ export default function BriefDetailPage() {
                   label="Tài liệu"
                   sx={{ "& .MuiTab-wrapper": { whiteSpace: "nowrap" } }}
                 />
-                <Tab
+                {/* <Tab
                   disableRipple
                   value="3"
                   label="Tài liệu có thể chỉnh sửa"
                   sx={{ "& .MuiTab-wrapper": { whiteSpace: "nowrap" } }}
-                />
+                /> */}
               </TabList>
             </Box>
 
@@ -162,11 +162,11 @@ export default function BriefDetailPage() {
               </Box>
             </TabPanel>
             <TabPanel value="2">
-              <BriefDocument document={files} />
+              <BriefDocument file={files} info={briefs} />
             </TabPanel>
-            <TabPanel value="3">
+            {/* <TabPanel value="3">
               <BriefDocumentDRIVE document={files} />
-            </TabPanel>
+            </TabPanel> */}
           </TabContext>
         </Scrollbar>
       </Card>

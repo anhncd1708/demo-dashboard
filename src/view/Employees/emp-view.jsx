@@ -156,9 +156,9 @@ export default function EmpPage() {
                 headLabel={[
                   { id: "employees_code", label: "Mã nhân viên" },
                   { id: "employees_name", label: "Tên nhân viên" },
-                  { id: "email", label: "Email" },
-                  { id: "address", label: "Địa chỉ" },
-                  { id: "gender", label: "Giới tính" },
+                  // { id: "email", label: "Email" },
+                  // { id: "address", label: "Địa chỉ" },
+                  // { id: "gender", label: "Giới tính" },
                   { id: "document_number", label: "Số điện thoại" },
                   { id: "position_name", label: "Chức vụ" },
                   { id: "is_active", label: "Hoạt động", align: "center" },
@@ -177,9 +177,9 @@ export default function EmpPage() {
                       employees_name={row.employees_name}
                       position_name={row.position_name}
                       document_number={row.document_number}
-                      address={row.address}
-                      email={row.email}
-                      gender={row.gender}
+                      // address={row.address}
+                      // email={row.email}
+                      // gender={row.gender}
                       is_active={row.is_active}
                       is_working={row.is_working}
                       selected={selected.indexOf(row.employees_name) !== -1}

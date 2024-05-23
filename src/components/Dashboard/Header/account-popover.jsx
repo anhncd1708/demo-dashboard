@@ -50,6 +50,8 @@ export default function AccountPopover() {
     setOpen(null);
   };
 
+  const user = JSON.parse(Cookies.get("user"))
+
   const handleLogout = () => {
     Cookies.remove("user");
     Cookies.remove("token");
@@ -73,15 +75,15 @@ export default function AccountPopover() {
         }}
       >
         <Avatar
-          src={account.photoURL}
-          alt={account.displayName}
+          src={user?.employee_image}
+          alt={user?.employees_name}
           sx={{
             width: 36,
             height: 36,
             border: (theme) => `solid 2px ${theme.palette.background.default}`,
           }}
         >
-          {account.displayName.charAt(0).toUpperCase()}
+          {user?.employees_name.charAt(0).toUpperCase()}
         </Avatar>
       </IconButton>
 
@@ -102,10 +104,10 @@ export default function AccountPopover() {
       >
         <Box sx={{ my: 1.5, px: 2 }}>
           <Typography variant="subtitle2" noWrap>
-            {account.displayName}
+            {user?.employees_name}
           </Typography>
           <Typography variant="body2" sx={{ color: "text.secondary" }} noWrap>
-            {account.email}
+            {user?.email}
           </Typography>
         </Box>
 

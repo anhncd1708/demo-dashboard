@@ -52,7 +52,7 @@ export default function AppTotalActiveUsers() {
     return (
         <Card sx={{ display: 'flex', alignItems: 'center', p: 3 }}>
             <Box sx={{ flexGrow: 1 }}>
-                <Typography variant="subtitle2">Thống kê khách hàng</Typography>
+                <Typography variant="subtitle2">Tổng số khách hàng</Typography>
                 <Stack direction="row" alignItems="center" spacing={1} sx={{ mt: 2, mb: 1 }}>
                     <IconWrapperStyle
                         sx={{
