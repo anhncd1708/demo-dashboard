@@ -1,29 +1,3 @@
-import { useState, useEffect } from "react";
-import {
-  Card,
-  Stack,
-  Box,
-  Tab,
-  Container,
-  Divider,
-  styled,
-  Grid,
-  Typography,
-  TableContainer,
-  Table,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody,
-  LinearProgress,
-} from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
-import { getListBriefSuperDetail } from "../../../context/redux/action/action";
-import Label from "../../../components/Label/label";
-import Scrollbar from "../../../components/Scrollbar";
-import moment from "moment";
-import DocumentItems from "./doc-items";
-// ----------------------------------------------------------------------
 
 export default function BriefDocument({ document }) {
   return (

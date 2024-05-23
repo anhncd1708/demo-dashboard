@@ -19,23 +19,11 @@ import {
 } from "../../context/redux/action/action";
 import Iconify from "../../components/Iconify/iconify";
 import Scrollbar from "../../components/Scrollbar";
-import Loading from "../../components/Loading/Loading";
-import TableNoData from "../../components/Table/table-no-data";
-import UserTableRow from "../../components/Table/emp-table/emp-table-row";
-import UserTableHead from "../../components/Table/table-head";
-import TableEmptyRows from "../../components/Table/table-empty-rows";
-import UserTableToolbar from "../../components/Table/table-toolbar";
-import {
-  emptyRows,
-  applyFilter,
-  getComparator,
-} from "../../components/Table/utils";
-import TableLoading from "../../components/Table/table-loading";
-import BriefTableRow from "../../components/Table/briefs-table/briefs-table-row";
 import { useParams } from "react-router-dom";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import BriefInfo from "./brief-info/brief-info";
 import BriefDocument from "./brief-document/brief-document";
+import BriefDocumentDRIVE from "./brief-document-drive/brief-document";
 import Swal from "sweetalert2";
 
 // ----------------------------------------------------------------------
@@ -153,6 +141,12 @@ export default function BriefDetailPage() {
                   label="Tài liệu"
                   sx={{ "& .MuiTab-wrapper": { whiteSpace: "nowrap" } }}
                 />
+                <Tab
+                  disableRipple
+                  value="3"
+                  label="Tài liệu có thể chỉnh sửa"
+                  sx={{ "& .MuiTab-wrapper": { whiteSpace: "nowrap" } }}
+                />
               </TabList>
             </Box>
 
@@ -169,6 +163,9 @@ export default function BriefDetailPage() {
             </TabPanel>
             <TabPanel value="2">
               <BriefDocument document={files} />
+            </TabPanel>
+            <TabPanel value="3">
+              <BriefDocumentDRIVE document={files} />
             </TabPanel>
           </TabContext>
         </Scrollbar>
