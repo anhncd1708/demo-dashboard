@@ -1,6 +1,6 @@
 import { ApexOptions } from 'apexcharts';
 // material
-import { useTheme, Theme, } from '@mui/material';
+import { useTheme, Theme } from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles'
 import typography from "../../theme/typography"
 
