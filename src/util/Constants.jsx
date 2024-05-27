@@ -86,16 +86,16 @@ export const navData = [
         ),
         path: "/personal-appraisal",
       },
-      {
-        label: "Tiêu chí thẩm định cá nhân",
-        icon: (
-          <Iconify
-            icon="mdi:clipboard-text-search"
-            sx={{ width: 25, height: 25 }}
-          />
-        ),
-        path: "/appraisal-criteria",
-      },
+      // {
+      //   label: "Tiêu chí thẩm định cá nhân",
+      //   icon: (
+      //     <Iconify
+      //       icon="mdi:clipboard-text-search"
+      //       sx={{ width: 25, height: 25 }}
+      //     />
+      //   ),
+      //   path: "/appraisal-criteria",
+      // },
     ],
   },
   {
@@ -156,11 +156,11 @@ export const navData = [
         icon: <SettingsIcon />,
         path: "priority",
       },
-      {
-        label: "Khác",
-        icon: <Person2OutlinedIcon />,
-        path: "/other",
-      },
+      // {
+      //   label: "Khác",
+      //   icon: <Person2OutlinedIcon />,
+      //   path: "/other",
+      // },
     ],
   },
 
