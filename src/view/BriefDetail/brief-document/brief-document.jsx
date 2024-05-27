@@ -1,4 +1,16 @@
-import { Box, Grid, IconButton, Modal, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import {
+  Box,
+  Grid,
+  IconButton,
+  Modal,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
+} from "@mui/material";
 import moment from "moment";
 import Label from "../../../components/Label/label";
 import { useParams } from "react-router-dom";
@@ -8,29 +20,29 @@ import { useState } from "react";
 export default function BriefDocument({ file, info }) {
   const { id } = useParams();
   const [open, setOpen] = useState(null);
-  const [edit, setEdit] = useState(null)
+  const [edit, setEdit] = useState(null);
   const handleOpenMenu = (event) => {
     setOpen(event.currentTarget);
   };
   const handleOpenEdit = (event) => {
     setOpen(event.currentTarget);
-    setEdit(event.currentTarget)
+    setEdit(event.currentTarget);
   };
 
   const handleCloseMenu = () => {
     setOpen(null);
-    setEdit(null)
+    setEdit(null);
   };
   const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
+    position: "absolute",
+    top: "50%",
+    left: "50%",
     mt: 1,
-    transform: 'translate(-50%, -50%)',
-    height: '95%',
-    width: '90%',
-    borderRadius: '10px',
-    bgcolor: 'background.paper',
+    transform: "translate(-50%, -50%)",
+    height: "95%",
+    width: "90%",
+    borderRadius: "10px",
+    bgcolor: "background.paper",
     boxShadow: 24,
     p: 2,
   };
@@ -58,13 +70,10 @@ export default function BriefDocument({ file, info }) {
               </Label>
             </Box>
           </Grid>
-
         </Grid>
       ))}
 
-      <Typography variant="h6">
-        DANH SÁCH TÀI LIỆU
-      </Typography>
+      <Typography variant="h6">DANH SÁCH TÀI LIỆU</Typography>
 
       <TableContainer sx={{ minWidth: 960, mb: 10 }}>
         <Table>
@@ -81,8 +90,7 @@ export default function BriefDocument({ file, info }) {
           <TableBody>
             <TableRow
               sx={{
-                borderBottom: (theme) =>
-                  `solid 1px ${theme.palette.divider}`,
+                borderBottom: (theme) => `solid 1px ${theme.palette.divider}`,
               }}
             >
               <TableCell>1</TableCell>
@@ -100,12 +108,8 @@ export default function BriefDocument({ file, info }) {
                   </Typography>
                 </Box>
               </TableCell>
-              <TableCell align="left">
-                docx
-              </TableCell>
-              <TableCell align="right">
-                14/05/2024
-              </TableCell>
+              <TableCell align="left">docx</TableCell>
+              <TableCell align="right">14/05/2024</TableCell>
               <TableCell align="right">
                 <IconButton onClick={handleOpenMenu}>
                   <Iconify icon="carbon:view-filled"></Iconify>
@@ -115,7 +119,6 @@ export default function BriefDocument({ file, info }) {
                 </IconButton>
               </TableCell>
             </TableRow>
-
           </TableBody>
         </Table>
       </TableContainer>
@@ -144,37 +147,34 @@ export default function BriefDocument({ file, info }) {
               ></iframe>
             </>
           ) : ( */}
-          {edit ? <iframe
-            src={
-              "https://docs.google.com/document/d/18H4i940POy3BOXcRQiX4FRtaf_fTRb5K/edit?usp=sharing&ouid=113901657240791455584&rtpof=true&sd=true"
-            }
-            style={{
-              border: "none",
-              width: "100%",
-              height: "1000px",
-            }}
-          ></iframe> :
+          {edit ? (
             <iframe
               src={
-                "https://view.officeapps.live.com/op/embed.aspx?src=https://res.cloudinary.com/dj3zy8ivi/raw/upload/v1715847133/file/ktfhgfq6qzk8savvtkus.docx"
+                "https://docs.google.com/document/d/18H4i940POy3BOXcRQiX4FRtaf_fTRb5K/edit?usp=sharing&ouid=113901657240791455584&rtpof=true&sd=true"
+              }
+              style={{
+                border: "none",
+                width: "100%",
+                height: "1000px",
+              }}
+            ></iframe>
+          ) : (
+            <iframe
+              src={
+                "https://view.officeapps.live.com/op/embed.aspx?src=https://res.cloudinary.com/dj3zy8ivi/raw/upload/v1716820988/B%C3%A1o_c%C3%A1o_k%E1%BA%BFt_qu%E1%BA%A3_th%E1%BA%A9m_%C4%91%E1%BB%8Bnh_gi%C3%A1_%C3%A1p_d%E1%BB%A5ng_cho_doanh_nghi%E1%BB%87p_th%E1%BA%A9m_%C4%91%E1%BB%8Bnh_gi%C3%A1_kpsndt.docx"
               }
               style={{
                 border: "none",
                 width: "100%",
                 height: "100%",
               }}
-            ></iframe>}
-
+            ></iframe>
+          )}
 
           {/* )
           } */}
-
         </Box>
-      </Modal >
-
-
-
-
+      </Modal>
     </>
   );
 }
