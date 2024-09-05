@@ -49,7 +49,7 @@ export default function OverView() {
 
   return (
     <>
-      <Container>
+      <>
         <Stack
           direction="row"
           alignItems="center"
@@ -90,7 +90,7 @@ export default function OverView() {
             </TabContext>
           </Scrollbar>
         </Card>
-      </Container>
+      </>
     </>
   );
 }

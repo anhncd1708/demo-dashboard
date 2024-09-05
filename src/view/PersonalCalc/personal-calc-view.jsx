@@ -143,12 +143,12 @@ export default function PersonalCalcView() {
         to={`/personal-appraisal/${id}`}
         color="inherit"
         startIcon={<Iconify icon="ep:back" />}
-      ></Button>
-      <Container>
+      />
+      <div className="p-4">
         <Typography sx={{ textAlign: "center", mb: 2 }} variant="h4">
           Tính điểm thẩm định cá nhân
         </Typography>
-        <Grid container>
+        <Grid spacing={3} container>
 
           {customer?.map((c) => (
             <>
@@ -173,7 +173,7 @@ export default function PersonalCalcView() {
 
           {internalCreditCriterias?.map((a) => (
             <>
-              <Grid xs={12} sm={12} sx={{ my: 2 }}>
+              <Grid xs={6} sm={6} sx={{ my: 1, px: 1 }}>
                 <Card sx={{ p: 5 }}>
                   <Typography
                     sx={{ textAlign: "center", mb: 2 }}
@@ -188,7 +188,7 @@ export default function PersonalCalcView() {
 
                       {b?.ma_loai_tieu_chi_tin_dung === a?.ma_loai_tieu_chi ? (
                         <>
-                          <Grid item xs={12} sm={6}>
+                          <Grid item xs={6} sm={6}>
                             <Typography
                               paragraph
                               variant="subtitle2"
@@ -199,7 +199,7 @@ export default function PersonalCalcView() {
                             </Typography>
                           </Grid>
                           <Grid item xs={12} sm={6}>
-                            <FormControl sx={{ m: 1, minWidth: 450 }} size="small">
+                            <FormControl sx={{ m: 1, width: 300 }} size="small">
                               <Select
                                 key={b?.ID}
                                 defaultValue={0}
@@ -253,7 +253,7 @@ export default function PersonalCalcView() {
             </Button>
           </Grid>
         </Grid>
-      </Container >
+      </div >
     </>
   );
 }

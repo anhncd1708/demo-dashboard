@@ -143,26 +143,21 @@ export const navData = [
       },
     ],
   },
-  {
-    label: "Khác",
-    subItems: [
-      {
-        label: "Mẫu tiêu chí đánh giá",
-        icon: <SettingsIcon />,
-        path: "/evaluation-form",
-      },
-      {
-        label: "Quản lý độ ưu tiên",
-        icon: <SettingsIcon />,
-        path: "priority",
-      },
-      // {
-      //   label: "Khác",
-      //   icon: <Person2OutlinedIcon />,
-      //   path: "/other",
-      // },
-    ],
-  },
+  // {
+  //   label: "Khác",
+  //   subItems: [
+  //     {
+  //       label: "Mẫu tiêu chí đánh giá",
+  //       icon: <SettingsIcon />,
+  //       path: "/evaluation-form",
+  //     },
+  //     {
+  //       label: "Quản lý độ ưu tiên",
+  //       icon: <SettingsIcon />,
+  //       path: "priority",
+  //     },
+  //   ],
+  // },
 
   // Add more manager-specific items
 ];

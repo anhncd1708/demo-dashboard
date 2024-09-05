@@ -121,7 +121,7 @@ export default function CustomerPage() {
   const notFound = !dataFiltered.length && !!filterName;
 
   return (
-    <Container>
+    <>
       <Stack
         direction="row"
         alignItems="center"
@@ -213,6 +213,6 @@ export default function CustomerPage() {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Card>
-    </Container>
+    </>
   );
 }

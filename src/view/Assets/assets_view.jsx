@@ -108,7 +108,7 @@ export default function EmpPage() {
     const notFound = !dataFiltered.length && !!filterName;
 
     return (
-        <Container>
+        <>
             <Stack
                 direction="row"
                 alignItems="center"
@@ -177,6 +177,6 @@ export default function EmpPage() {
                     onRowsPerPageChange={handleChangeRowsPerPage}
                 />
             </Card>
-        </Container>
+        </>
     );
 }

@@ -142,9 +142,10 @@ export default function Nav({ openNav, onCloseNav }) {
 
       {/* <img src={logo} alt="Logo" style={{ width: 50, height: 50, padding: 10 }} /> */}
 
-      {renderAccount}
 
-      {renderMenu}
+      <div className="mt-4">
+        {renderMenu}
+      </div>
 
       <Box sx={{ flexGrow: 1 }} />
     </Scrollbar>

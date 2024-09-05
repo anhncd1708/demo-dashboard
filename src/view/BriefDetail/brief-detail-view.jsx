@@ -110,7 +110,7 @@ export default function BriefDetailPage() {
     "https://res.cloudinary.com/dj3zy8ivi/raw/upload/v1715847133/file/ktfhgfq6qzk8savvtkus.docx";
 
   return (
-    <Container >
+    <>
       <Stack
         direction="row"
         alignItems="center"
@@ -170,6 +170,6 @@ export default function BriefDetailPage() {
           </TabContext>
         </Scrollbar>
       </Card>
-    </Container>
+    </>
   );
 }
