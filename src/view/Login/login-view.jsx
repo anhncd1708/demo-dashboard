@@ -24,14 +24,11 @@ import { bgGradient } from "../../theme/css";
 
 // import Logo from "src/components/logo";
 import Iconify from "../../components/Iconify";
-import {
-  LoginAuthen
-} from "../../context/redux/action/action";
+import { LoginAuthen } from "../../context/redux/action/action";
 
 // ----------------------------------------------------------------------
 
 export default function LoginView() {
-
   const token =
     "IEIpLceGWQw6gJ3991U29PDUXVQSULuVAaYO8v4000UouZKJXAFt0u7CaPfwSRDq";
 
@@ -67,16 +64,15 @@ export default function LoginView() {
         Cookies.set("user", JSON.stringify(data.data));
         Cookies.set("token", token, { expires: 1 });
         router.push("/");
-        setLoading(false)
+        setLoading(false);
       } else {
         setError("Sai tên đăng nhập hoặc tài khoản.");
-        setLoading(false)
+        setLoading(false);
       }
-    }
-    catch (err) {
+    } catch (err) {
       console.log(err);
       setError("Đăng nhập thất bại.");
-      setLoading(false)
+      setLoading(false);
     }
   };
 
@@ -144,21 +140,11 @@ export default function LoginView() {
       >
         Đăng nhập
       </LoadingButton>
-
     </form>
   );
 
   return (
-    <Box
-      sx={{
-        ...bgGradient({
-          color: alpha(theme.palette.background.default, 0.9),
-          imgUrl: "/assets/background/overlay_4.jpg",
-        }),
-        height: 1,
-      }}
-    >
-
+    <Box className="vh-100">
       <Stack alignItems="center" justifyContent="center" sx={{ height: 1 }}>
         <Card
           sx={{
@@ -167,16 +153,18 @@ export default function LoginView() {
             maxWidth: 420,
           }}
         >
-          <Typography variant="h4">Đăng nhập</Typography>
+          <Typography className="mb-3" variant="h4">
+            Đăng nhập
+          </Typography>
 
-          <Typography variant="body2" sx={{ mt: 2, mb: 5 }}>
+          {/* <Typography variant="body2" sx={{ mt: 2, mb: 5 }}>
             Bạn chưa có tài khoản?
             <Link variant="subtitle2" sx={{ ml: 0.5 }}>
               Bắt đầu
             </Link>
-          </Typography>
+          </Typography> */}
 
-          <Stack direction="row" spacing={2}>
+          {/* <Stack direction="row" spacing={2}>
             <Button
               fullWidth
               size="large"
@@ -212,7 +200,7 @@ export default function LoginView() {
             <Typography variant="body2" sx={{ color: "text.secondary" }}>
               HOẶC
             </Typography>
-          </Divider>
+          </Divider> */}
 
           {renderForm}
         </Card>

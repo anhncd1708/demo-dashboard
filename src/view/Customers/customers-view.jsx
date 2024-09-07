@@ -161,7 +161,7 @@ export default function CustomerPage() {
                   { id: "ten_khach_hang", label: "Tên khách hàng" },
                   { id: "xung_ho", label: "Xưng hô" },
                   { id: "loai_khach_hang", label: "Loại" },
-                  { id: "tong_tai_san", label: "Tổng tài sản" },
+                  // { id: "tong_tai_san", label: "Tổng tài sản" },
                   { id: "to_chuc", label: "Theo diện" },
                   {
                     id: "lam_viec",
@@ -181,7 +181,7 @@ export default function CustomerPage() {
                       ten_khach_hang={row.ten_khach_hang}
                       xung_ho={row.xung_ho}
                       loai_khach_hang={row.loai_khach_hang}
-                      tong_tai_san={row.tong_tai_san}
+                      // tong_tai_san={row.tong_tai_san}
                       to_chuc={row.to_chuc}
                       lam_viec={row.lam_viec}
                       selected={selected.indexOf(row.ten_khach_hang) !== -1}

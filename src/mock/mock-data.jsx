@@ -33,3 +33,52 @@ export const account = [
     active: true,
   },
 ];
+
+export const mockCustomers = [
+  {
+    id: "1",
+    name: "Nguyễn Văn A",
+    membershipNumber: "MEM001",
+    gender: "male",
+    contactAddress: "123 Đường Lê Lợi, Quận 1, TP.HCM",
+    residentialAddress: "456 Đường Nguyễn Huệ, Quận 1, TP.HCM",
+    residentialArea: "Quận 1, TP.HCM",
+    phone: "0901234567",
+    email: "nguyenvana@example.com",
+    notes: "Khách hàng VIP",
+    idNumber: "079123456789",
+    idType: "CCCD",
+    idIssuePlace: "TP.HCM",
+    idIssueDate: "2020-01-01",
+    idExpiryDate: "2030-01-01",
+    frontIdImage:
+      "https://cdn.thuvienphapluat.vn/tintuc/uploads/image/2021/01/27/can-cuoc-cong-dan-gan-chip-2(1).jpg",
+    backIdImage:
+      "https://image.plo.vn/w1000/Uploaded/2024/xqeioxdrky/2024_02_11/mau-can-cuoc-tre-tu-6-tuoi-mat-sau-9238.jpg.webp",
+    signatureImage:
+      "https://img6.thuthuatphanmem.vn/uploads/2022/09/13/mau-chu-ky-ten-thiep-dep_013433205.png",
+  },
+  {
+    id: "2",
+    name: "Trần Thị B",
+    membershipNumber: "MEM002",
+    gender: "female",
+    contactAddress: "789 Đường Võ Văn Tần, Quận 3, TP.HCM",
+    residentialAddress: "101 Đường Cách Mạng Tháng 8, Quận 3, TP.HCM",
+    residentialArea: "Quận 3, TP.HCM",
+    phone: "0909876543",
+    email: "tranthib@example.com",
+    notes: "Khách hàng mới",
+    idNumber: "079987654321",
+    idType: "CMND",
+    idIssuePlace: "TP.HCM",
+    idIssueDate: "2015-06-15",
+    idExpiryDate: "2025-06-15",
+    frontIdImage:
+      "https://cdn.thuvienphapluat.vn/tintuc/uploads/image/2021/01/27/can-cuoc-cong-dan-gan-chip-2(1).jpg",
+    backIdImage:
+      "https://image.plo.vn/w1000/Uploaded/2024/xqeioxdrky/2024_02_11/mau-can-cuoc-tre-tu-6-tuoi-mat-sau-9238.jpg.webp",
+    signatureImage:
+      "https://img6.thuthuatphanmem.vn/uploads/2022/09/13/mau-chu-ky-ten-thiep-dep_013433205.png",
+  },
+];

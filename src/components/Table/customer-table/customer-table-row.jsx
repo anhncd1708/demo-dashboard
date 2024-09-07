@@ -64,7 +64,7 @@ export default function CustomerTableRow({
 
         <TableCell>{loai_khach_hang}</TableCell>
 
-        <TableCell align="center">{tong_tai_san}</TableCell>
+        {/* <TableCell align="center">{tong_tai_san}</TableCell> */}
 
         <TableCell>{to_chuc ? "Tổ chức" : "Cá nhân"}</TableCell>
 
