@@ -3,6 +3,14 @@ import { mockCustomers } from "../mock-data";
   
   // Simulate API delay
   const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+  // Fetch all customers
+  export const fetchAllCustomers = async () => {
+    console.log("Fetching all customers");
+    await delay(500); // Simulate network delay
+    console.log("Fetched customers:", mockCustomers);
+    return mockCustomers;
+  };
   
   // Fetch a customer by ID
   export const fetchCustomer = async (customerId) => {

@@ -38,16 +38,16 @@ export const navData = [
         icon: <Iconify icon="carbon:customer" sx={{ width: 25, height: 25 }} />,
         path: "/customers",
       },
-      {
-        label: "Người môi giới",
-        icon: (
-          <Iconify
-            icon="tabler:layout-align-middle-filled"
-            sx={{ width: 25, height: 25 }}
-          />
-        ),
-        path: "/brokers",
-      },
+      // {
+      //   label: "Người môi giới",
+      //   icon: (
+      //     <Iconify
+      //       icon="tabler:layout-align-middle-filled"
+      //       sx={{ width: 25, height: 25 }}
+      //     />
+      //   ),
+      //   path: "/brokers",
+      // },
       // {
       //   label: "Biểu phí",
       //   icon: <ReportIcon />,

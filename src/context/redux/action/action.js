@@ -5,6 +5,7 @@ import * as API_DOMAIN from "./api_domain";
 import { URL_API } from "../../../config/axios/url/url";
 import Axios from "../../../config/axios/axios/axios";
 import { CustomizedToast } from "../../../components/Toast/ToastCustom";
+import { fetchAllCustomers, fetchCustomer } from "../../../mock/fakeAPI/customerAPI";
 
 export const createAction = ({ type, payload }) => {
   return { type, payload };
@@ -107,6 +108,8 @@ export const getListCustomer = (value, token) => {
     } catch (err) { }
   };
 };
+
+
 
 export const getListCustomerDetail = (value, token) => {
   return async (dispatch) => {

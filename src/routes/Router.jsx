@@ -56,9 +56,9 @@ export default function Router() {
         { element: <OverviewPage />, index: true },
         { path: "employees", element: <EmployeesPage /> },
         { path: "customers", element: <CustomerPage /> },
-        { path: "customers/create", element: <CreateCustomerPage /> },
+        { path: "customers/add", element: <CreateCustomerPage /> },
         {
-          path: "customers/update/:customerId",
+          path: "customers/edit/:customerId",
           element: <UpdateCustomerPage />,
         },
         { path: "brokers", element: <BrokerPage /> },
