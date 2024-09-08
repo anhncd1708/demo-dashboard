@@ -60,14 +60,14 @@ export const navData = [
     icon: <GridViewRoundedIcon />,
     subItems: [
       {
-        label: "Danh sách kế hoạch",
+        label: "Kế hoạch thẩm định",
         icon: (
           <Iconify
             icon="clarity:clipboard-solid"
             sx={{ width: 25, height: 25 }}
           />
         ),
-        path: "/appraisal-plans",
+        path: "/loan-request",
       },
       {
         label: "Hồ sơ thẩm định",

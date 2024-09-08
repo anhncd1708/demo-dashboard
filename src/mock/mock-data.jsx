@@ -151,3 +151,67 @@ export const mockCustomers = [
       "https://img6.thuthuatphanmem.vn/uploads/2022/09/13/mau-chu-ky-ten-thiep-dep_013433205.png",
   },
 ];
+
+export const mockLoanRequests = [
+  {
+    id: "LOAN001",
+    customerName: "Nguyễn Văn A",
+    membershipNumber: "MEM001",
+    phone: "0901234567",
+    email: "nguyenvana@example.com",
+    loanAmount: 100000000,
+    loanTerm: 12,
+    interestRate: 8.5,
+    loanPurpose: "Mua xe ô tô",
+    collateral: [
+      {
+        type: "Bất động sản",
+        estimatedValue: 500000000,
+        description: "Căn hộ 2 phòng ngủ tại Quận 2",
+      },
+      {
+        type: "Ô tô",
+        estimatedValue: 300000000,
+        description: "Toyota Camry 2020",
+      },
+    ],
+    attachments: [
+      { title: "Giấy tờ nhà", url: "https://example.com/house-papers.jpg" },
+      { title: "Cavet xe", url: "https://example.com/car-papers.jpg" },
+    ],
+    status: "Đang xử lý",
+    approvalDate: null,
+    notes: "Đang chờ xác minh thông tin",
+  },
+  // Add more mock loan requests here
+  {
+    id: "LOAN002",
+    customerName: "Trần Thị B",
+    membershipNumber: "MEM002",
+    phone: "0902345678",
+    email: "tranthib@example.com",
+    loanAmount: 150000000,
+    loanTerm: 18,
+    interestRate: 9.0,
+    loanPurpose: "Mua nhà ở",
+    collateral: [
+      {
+        type: "Bất động sản",
+        estimatedValue: 600000000,
+        description: "Biệt thự 3 tầng tại Quận 10",
+      },
+      {
+        type: "Ô tô",
+        estimatedValue: 400000000,
+        description: "Toyota Corolla 2021",
+      },
+    ],
+    attachments: [
+      { title: "Giấy tờ nhà", url: "https://example.com/house-papers2.jpg" },
+      { title: "Cavet xe", url: "https://example.com/car-papers2.jpg" },
+    ],
+    status: "Đã phê duyệt",
+    approvalDate: "2024-03-15",
+    notes: "Đã xác minh thông tin và phê duyệt",
+  },
+];

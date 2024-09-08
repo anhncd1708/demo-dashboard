@@ -22,6 +22,8 @@ import LoanContractPage from "../pages/loan-contract";
 import TrustContractPage from "../pages/trust-contract";
 import CreateCustomerPage from "../pages/create-customer";
 import UpdateCustomerPage from "../pages/update-customer";
+import DetailLoanRequestPage from "../pages/detail-loan-request";
+import LoanRequestPage from "../pages/loan-request";
 
 export const EmployeesPage = lazy(() => import("../pages/employees"));
 export const LoginPage = lazy(() => import("../pages/login"));
@@ -70,7 +72,8 @@ export default function Router() {
         { path: "personal-appraisal", element: <PersonalAppraisalPage /> },
         { path: "personal-appraisal/:id", element: <PersonalAppDetailPage /> },
         { path: "personal-appraisal/:id/calc", element: <PersonalCalcPage /> },
-
+        { path: "loan-request", element: <LoanRequestPage /> },
+        { path: "loan-request/:id", element: <DetailLoanRequestPage /> },
         { path: "appraisal-criteria", element: <OtherPage /> },
         { path: "report_on_employee", element: <OtherPage /> },
         { path: "report_on_broker", element: <OtherPage /> },
