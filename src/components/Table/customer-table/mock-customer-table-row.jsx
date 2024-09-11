@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import Iconify from "../../Iconify/iconify";
 
-export default function MockCustomerTableRow({
+export default function CustomerTableRow({
   selected,
   id,
   name,
@@ -22,6 +22,7 @@ export default function MockCustomerTableRow({
   handleClick,
   onEdit,
   onDelete,
+  onView,
 }) {
   const [open, setOpen] = useState(null);
 
@@ -46,7 +47,10 @@ export default function MockCustomerTableRow({
   return (
     <>
       <TableRow hover tabIndex={-1} role="checkbox" selected={selected}>
-        <TableCell>{id}</TableCell>
+        <TableCell padding="checkbox">
+          {/* ... existing checkbox ... */}
+        </TableCell>
+
         <TableCell component="th" scope="row" padding="none">
           <Stack direction="row" alignItems="center" spacing={2}>
             <Typography variant="subtitle2" noWrap>
@@ -54,11 +58,19 @@ export default function MockCustomerTableRow({
             </Typography>
           </Stack>
         </TableCell>
-        <TableCell>{gender}</TableCell>
-        <TableCell>{membershipNumber}</TableCell>
-        <TableCell>{phone}</TableCell>
-        <TableCell>{email}</TableCell>
+
+        <TableCell align="left">{gender}</TableCell>
+
+        <TableCell align="left">{membershipNumber}</TableCell>
+
+        <TableCell align="left">{phone}</TableCell>
+
+        <TableCell align="left">{email}</TableCell>
+
         <TableCell align="right">
+          <IconButton onClick={() => onView(id)}>
+            <Iconify icon="eva:eye-fill" />
+          </IconButton>
           <IconButton onClick={handleOpenMenu}>
             <Iconify icon="eva:more-vertical-fill" />
           </IconButton>
@@ -88,7 +100,7 @@ export default function MockCustomerTableRow({
   );
 }
 
-MockCustomerTableRow.propTypes = {
+CustomerTableRow.propTypes = {
   selected: PropTypes.bool,
   id: PropTypes.string,
   name: PropTypes.string,
@@ -99,4 +111,5 @@ MockCustomerTableRow.propTypes = {
   handleClick: PropTypes.func,
   onEdit: PropTypes.func,
   onDelete: PropTypes.func,
+  onView: PropTypes.func,
 };

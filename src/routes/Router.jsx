@@ -24,6 +24,9 @@ import CreateCustomerPage from "../pages/create-customer";
 import UpdateCustomerPage from "../pages/update-customer";
 import DetailLoanRequestPage from "../pages/detail-loan-request";
 import LoanRequestPage from "../pages/loan-request";
+import CreateLoanRequestPage from "../pages/create-loan-request";
+import CustomerDetailPage from "../pages/customer-detail";
+import DetailAssetsPage from "../pages/detail-assets";
 
 export const EmployeesPage = lazy(() => import("../pages/employees"));
 export const LoginPage = lazy(() => import("../pages/login"));
@@ -58,6 +61,7 @@ export default function Router() {
         { element: <OverviewPage />, index: true },
         { path: "employees", element: <EmployeesPage /> },
         { path: "customers", element: <CustomerPage /> },
+        { path: "customers/:id", element: <CustomerDetailPage /> },
         { path: "customers/add", element: <CreateCustomerPage /> },
         {
           path: "customers/edit/:customerId",
@@ -74,10 +78,12 @@ export default function Router() {
         { path: "personal-appraisal/:id/calc", element: <PersonalCalcPage /> },
         { path: "loan-request", element: <LoanRequestPage /> },
         { path: "loan-request/:id", element: <DetailLoanRequestPage /> },
+        { path: "loan-request/create", element: <CreateLoanRequestPage /> },
         { path: "appraisal-criteria", element: <OtherPage /> },
         { path: "report_on_employee", element: <OtherPage /> },
         { path: "report_on_broker", element: <OtherPage /> },
         { path: "assets", element: <AssetsPage /> },
+        { path: "assets/:id", element: <DetailAssetsPage /> },
         { path: "evaluation-form", element: <EvaluationPage /> },
         { path: "priority", element: <PriorityPage /> },
         { path: "loan-entrustment", element: <LoanEntrustmentPage /> },

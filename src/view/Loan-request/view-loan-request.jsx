@@ -115,6 +115,7 @@ export default function LoanRequestView() {
           <Button
             variant="contained"
             startIcon={<Iconify icon="eva:plus-fill" />}
+            onClick={() => navigate("/loan-request/create")}
           >
             Tạo yêu cầu vay mới
           </Button>

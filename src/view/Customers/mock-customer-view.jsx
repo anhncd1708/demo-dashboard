@@ -14,6 +14,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  IconButton,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { mockCustomers } from "../../mock/mock-data";
@@ -30,6 +31,7 @@ import {
   getComparator,
 } from "../../components/Table/utils";
 import TableLoading from "../../components/Table/table-loading";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 
 export default function MockCustomerView() {
   const [loading, setLoading] = useState(true);
@@ -129,6 +131,10 @@ export default function MockCustomerView() {
     setCustomerToDelete(null);
   };
 
+  const handleViewCustomer = (id) => {
+    navigate(`/customers/${id}`);
+  };
+
   const dataFiltered = applyFilter({
     inputData: customers,
     comparator: getComparator(order, orderBy),
@@ -199,6 +205,7 @@ export default function MockCustomerView() {
                       handleClick={(event) => handleClick(event, row.name)}
                       onEdit={handleEdit}
                       onDelete={handleDeleteClick}
+                      onView={handleViewCustomer}
                     />
                   ))}
 

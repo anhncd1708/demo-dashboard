@@ -10,9 +10,36 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Stepper,
+  Step,
+  StepLabel,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  IconButton,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
 } from "@mui/material";
+import {
+  Description as DescriptionIcon,
+  Image as ImageIcon,
+  PictureAsPdf as PdfIcon,
+  InsertDriveFile as FileIcon,
+  Visibility as ViewIcon,
+  GetApp as DownloadIcon,
+} from "@mui/icons-material";
 import { useParams } from "react-router-dom";
-import { fetchLoanRequest } from "../../mock/fakeAPI/loanRequestAPI"; // You'll need to create this
+import {
+  fetchLoanRequest,
+  approveLoanRequest,
+} from "../../mock/fakeAPI/loanRequestAPI";
+import { formatNumber } from "../../util/formatNumber";
+// You'll need to create this
 
 function ImageDisplay({ title, imageUrl }) {
   return (
@@ -41,24 +68,103 @@ function ImageDisplay({ title, imageUrl }) {
 }
 
 function LabeledInfo({ label, value }) {
+  const formattedValue =
+    typeof value === "number" ? formatNumber(value) : value;
   return (
     <Typography>
       <Box
         component="span"
-        sx={{ color: "#1c252e", fontWeight: "bold", mr: 1 }}
+        sx={{ color: "#56585a", fontWeight: "bold", mr: 1 }}
       >
         {label}:
       </Box>
-      {value}
+      {formattedValue}
     </Typography>
   );
 }
 
-export default function ViewLoanRequest() {
+function StatusStepper({ currentStatus }) {
+  const steps = ["Đã nộp", "Đang xử lý", "Đã duyệt", "Đã giải ngân"];
+  const currentStep = steps.indexOf(currentStatus);
+
+  return (
+    <Box sx={{ width: "100%", mt: 2, mb: 2 }}>
+      <Stepper activeStep={currentStep} alternativeLabel>
+        {steps.map((label) => (
+          <Step key={label}>
+            <StepLabel>{label}</StepLabel>
+          </Step>
+        ))}
+      </Stepper>
+    </Box>
+  );
+}
+
+function getFileIcon(fileType) {
+  switch (fileType.toLowerCase()) {
+    case "pdf":
+      return <PdfIcon />;
+    case "jpg":
+    case "jpeg":
+    case "png":
+    case "gif":
+      return <ImageIcon />;
+    case "doc":
+    case "docx":
+      return <DescriptionIcon />;
+    default:
+      return <FileIcon />;
+  }
+}
+
+function AttachmentGallery({ attachments }) {
+  return (
+    <Box sx={{ width: "100%", maxHeight: 400, overflowY: "auto" }}>
+      <List>
+        {attachments.map((item, index) => {
+          const fileExtension = item.url.split(".").pop();
+          return (
+            <ListItem
+              key={index}
+              secondaryAction={
+                <Box>
+                  <IconButton
+                    edge="end"
+                    aria-label="view"
+                    onClick={() => window.open(item.url, "_blank")}
+                  >
+                    <ViewIcon />
+                  </IconButton>
+                  <IconButton
+                    edge="end"
+                    aria-label="download"
+                    href={item.url}
+                    download
+                  >
+                    <DownloadIcon />
+                  </IconButton>
+                </Box>
+              }
+            >
+              <ListItemIcon>{getFileIcon(fileExtension)}</ListItemIcon>
+              <ListItemText
+                primary={item.title}
+                secondary={`Type: ${fileExtension.toUpperCase()}`}
+              />
+            </ListItem>
+          );
+        })}
+      </List>
+    </Box>
+  );
+}
+
+export default function ViewLoanRequestDetail() {
   const { id } = useParams();
   const [loanRequest, setLoanRequest] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [openDialog, setOpenDialog] = useState(false);
 
   useEffect(() => {
     const loadLoanRequest = async () => {
@@ -80,15 +186,56 @@ export default function ViewLoanRequest() {
     loadLoanRequest();
   }, [id]);
 
+  const handleApproveClick = () => {
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
+
+  const handleConfirmApprove = async () => {
+    try {
+      await approveLoanRequest(id);
+      // Refresh loan request data after approval
+      const updatedLoanRequest = await fetchLoanRequest(id);
+      setLoanRequest(updatedLoanRequest);
+    } catch (err) {
+      console.error("Error approving loan request:", err);
+      setError("Failed to approve loan request. Please try again.");
+    } finally {
+      setOpenDialog(false);
+    }
+  };
+
   if (loading) return <Typography>Loading...</Typography>;
   if (error) return <Typography color="error">{error}</Typography>;
   if (!loanRequest) return <Typography>Loan request not found</Typography>;
 
   return (
     <Box sx={{ p: 3, maxWidth: 1000, margin: "auto" }}>
-      <Typography variant="h5" gutterBottom>
-        Thông tin yêu cầu vay
-      </Typography>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          mb: 2,
+        }}
+      >
+        <Typography variant="h5" gutterBottom>
+          Thông tin yêu cầu vay
+        </Typography>
+        {loanRequest.status !== "Đã phê duyệt" &&
+          loanRequest.status !== "Đã giải ngân" && (
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleApproveClick}
+            >
+              Phê duyệt
+            </Button>
+          )}
+      </Box>
       <Paper sx={{ p: 3 }}>
         <Typography variant="h6" gutterBottom>
           Thông tin khách hàng
@@ -121,7 +268,7 @@ export default function ViewLoanRequest() {
           <Grid item xs={12} sm={6}>
             <LabeledInfo
               label="Số tiền vay"
-              value={`${loanRequest.loanAmount} VND`}
+              value={`${formatNumber(loanRequest.loanAmount)} VND`}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -157,7 +304,7 @@ export default function ViewLoanRequest() {
               {loanRequest.collateral.map((item, index) => (
                 <TableRow key={index}>
                   <TableCell>{item.type}</TableCell>
-                  <TableCell>{item.estimatedValue} VND</TableCell>
+                  <TableCell>{formatNumber(item.estimatedValue)} VND</TableCell>
                   <TableCell>{item.description}</TableCell>
                 </TableRow>
               ))}
@@ -168,21 +315,12 @@ export default function ViewLoanRequest() {
         <Typography variant="h6" gutterBottom sx={{ mt: 4 }}>
           Tài liệu đính kèm
         </Typography>
-        <Grid container spacing={3}>
-          {loanRequest.attachments.map((attachment, index) => (
-            <Grid item xs={12} sm={6} key={index}>
-              <ImageDisplay
-                title={attachment.title}
-                imageUrl={attachment.url}
-              />
-            </Grid>
-          ))}
-        </Grid>
+        <AttachmentGallery attachments={loanRequest.attachments} />
 
         <Typography variant="h6" gutterBottom sx={{ mt: 4 }}>
           Trạng thái yêu cầu
         </Typography>
-        <LabeledInfo label="Trạng thái" value={loanRequest.status} />
+        <StatusStepper currentStatus={loanRequest.status} />
         {loanRequest.approvalDate && (
           <LabeledInfo
             label="Ngày phê duyệt"
@@ -193,6 +331,28 @@ export default function ViewLoanRequest() {
           <LabeledInfo label="Ghi chú" value={loanRequest.notes} />
         )}
       </Paper>
+
+      <Dialog
+        open={openDialog}
+        onClose={handleCloseDialog}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Xác nhận phê duyệt yêu cầu vay"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Bạn có chắc chắn muốn phê duyệt yêu cầu vay này không?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDialog}>Hủy</Button>
+          <Button onClick={handleConfirmApprove} autoFocus>
+            Xác nhận
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 }

@@ -18,3 +18,18 @@ import { mockLoanRequests } from "../mock-data";
     }
     return loanRequest;
   };
+  
+  export const approveLoanRequest = async (loanRequestId) => {
+    console.log("Approving loan request with ID:", loanRequestId);
+    await delay(500); // Simulate network delay
+    const loanRequestIndex = mockLoanRequests.findIndex(lr => lr.id === loanRequestId);
+    if (loanRequestIndex === -1) {
+      throw new Error('Loan request not found');
+    }
+    mockLoanRequests[loanRequestIndex] = {
+      ...mockLoanRequests[loanRequestIndex],
+      status: "Đã phê duyệt",
+      approvalDate: new Date().toISOString().split('T')[0], // Current date in YYYY-MM-DD format
+    };
+    return mockLoanRequests[loanRequestIndex];
+  };

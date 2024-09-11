@@ -15,12 +15,18 @@ export const STATUS_CODE = {
 
 export const navData = [
   {
-    label: "Thống kê",
+    label: "TỔNG QUAN",
     icon: <GridViewRoundedIcon />,
-    path: "/",
+    subItems: [
+      {
+        label: "Thống kê",
+        icon: <GridViewRoundedIcon />,
+        path: "/",
+      },
+    ],
   },
   {
-    label: "Quản lý",
+    label: "QUẢN LÝ",
     icon: <GridViewRoundedIcon />,
     subItems: [
       {
@@ -56,7 +62,7 @@ export const navData = [
     ],
   },
   {
-    label: "Hợp đồng thẩm định",
+    label: "HỢP ĐỒNG THẨM ĐỊNH",
     icon: <GridViewRoundedIcon />,
     subItems: [
       {
@@ -99,7 +105,7 @@ export const navData = [
     ],
   },
   {
-    label: "Báo cáo quản lý",
+    label: "BÁO CÁO UỶ THÁC",
     subItems: [
       {
         label: "Danh sách tài sản",
@@ -124,7 +130,7 @@ export const navData = [
     ],
   },
   {
-    label: "Ủy thác cho vay",
+    label: "UỶ THÁC CHO VAY",
     subItems: [
       // {
       //   label: "Ủy thác cho vay",

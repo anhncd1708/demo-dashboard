@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import ViewLoanRequest from "../view/Loan-request/detail-loan-request";
+import ViewLoanRequestDetail from "../view/Loan-request/detail-loan-request";
 // ----------------------------------------------------------------------
 
 export default function DetailLoanRequestPage() {
@@ -8,7 +8,7 @@ export default function DetailLoanRequestPage() {
       <Helmet>
         <title>Đề nghị vay vốn</title>
       </Helmet>
-      <ViewLoanRequest />
+      <ViewLoanRequestDetail />
     </>
   );
 }

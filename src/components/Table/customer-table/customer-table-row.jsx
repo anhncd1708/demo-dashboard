@@ -3,32 +3,28 @@ import PropTypes from "prop-types";
 
 import {
   Stack,
-  Avatar,
   Popover,
   TableRow,
-  Checkbox,
   MenuItem,
   TableCell,
   Typography,
   IconButton,
 } from "@mui/material";
 
-import Label from "../../Label/label";
 import Iconify from "../../Iconify/iconify";
-
-// ----------------------------------------------------------------------
 
 export default function CustomerTableRow({
   selected,
-  ma_khach_hang,
-  ten_khach_hang,
-  loai_khach_hang,
-  lam_viec,
-  xung_ho,
-  to_chuc,
-  tong_tai_san,
-  nguoi_them,
+  id,
+  name,
+  gender,
+  membershipNumber,
+  phone,
+  email,
   handleClick,
+  onEdit,
+  onDelete,
+  onView,
 }) {
   const [open, setOpen] = useState(null);
 
@@ -40,41 +36,43 @@ export default function CustomerTableRow({
     setOpen(null);
   };
 
+  const handleEdit = () => {
+    onEdit(id);
+    handleCloseMenu();
+  };
+
+  const handleDelete = () => {
+    onDelete(id);
+    handleCloseMenu();
+  };
+
   return (
     <>
       <TableRow hover tabIndex={-1} role="checkbox" selected={selected}>
-        {/* <TableCell padding="checkbox">
-          <Checkbox disableRipple checked={selected} onChange={handleClick} />
-        </TableCell> */}
-
-        <TableCell>{ma_khach_hang}</TableCell>
+        <TableCell padding="checkbox">
+          {/* ... existing checkbox ... */}
+        </TableCell>
 
         <TableCell component="th" scope="row" padding="none">
           <Stack direction="row" alignItems="center" spacing={2}>
-            {/* <Avatar alt={employees_name} src={employee_image} /> */}
-            {/* <Typography variant="subtitle2" noWrap>
-              {xung_ho}
-            </Typography> */}
             <Typography variant="subtitle2" noWrap>
-              {ten_khach_hang}
+              {name}
             </Typography>
           </Stack>
         </TableCell>
-        <TableCell>{xung_ho}</TableCell>
 
-        <TableCell>{loai_khach_hang}</TableCell>
+        <TableCell align="left">{gender}</TableCell>
 
-        {/* <TableCell align="center">{tong_tai_san}</TableCell> */}
+        <TableCell align="left">{membershipNumber}</TableCell>
 
-        <TableCell>{to_chuc ? "Tổ chức" : "Cá nhân"}</TableCell>
+        <TableCell align="left">{phone}</TableCell>
 
-        <TableCell align="center">
-          <Label color={lam_viec ? "success" : "error"}>
-            {lam_viec ? "Có việc làm" : "Thất nghiệp"}
-          </Label>
-        </TableCell>
+        <TableCell align="left">{email}</TableCell>
 
         <TableCell align="right">
+          <IconButton onClick={() => onView(id)}>
+            <Iconify icon="eva:eye-fill" />
+          </IconButton>
           <IconButton onClick={handleOpenMenu}>
             <Iconify icon="eva:more-vertical-fill" />
           </IconButton>
@@ -91,12 +89,11 @@ export default function CustomerTableRow({
           sx: { width: 140 },
         }}
       >
-        <MenuItem onClick={handleCloseMenu}>
+        <MenuItem onClick={handleEdit}>
           <Iconify icon="eva:edit-fill" sx={{ mr: 2 }} />
           Edit
         </MenuItem>
-
-        <MenuItem onClick={handleCloseMenu} sx={{ color: "error.main" }}>
+        <MenuItem onClick={handleDelete} sx={{ color: "error.main" }}>
           <Iconify icon="eva:trash-2-outline" sx={{ mr: 2 }} />
           Delete
         </MenuItem>
@@ -106,13 +103,15 @@ export default function CustomerTableRow({
 }
 
 CustomerTableRow.propTypes = {
-  selected: PropTypes.any,
-  ma_khach_hang: PropTypes.any,
-  ten_khach_hang: PropTypes.any,
-  xung_ho: PropTypes.any,
-  loai_khach_hang: PropTypes.any,
-  tong_tai_san: PropTypes.any,
-  to_chuc: PropTypes.any,
-  lam_viec: PropTypes.any,
+  selected: PropTypes.bool,
+  id: PropTypes.string,
+  name: PropTypes.string,
+  gender: PropTypes.string,
+  membershipNumber: PropTypes.string,
+  phone: PropTypes.string,
+  email: PropTypes.string,
   handleClick: PropTypes.func,
+  onEdit: PropTypes.func,
+  onDelete: PropTypes.func,
+  onView: PropTypes.func,
 };
