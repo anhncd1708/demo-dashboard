@@ -59,9 +59,23 @@ export default function LoginView() {
     e.preventDefault();
     try {
       setLoading(true);
-      let data = await LoginAuthen(formData.username, formData.password);
-      if (data.data.username === formData.username) {
-        Cookies.set("user", JSON.stringify(data.data));
+      // let data = await LoginAuthen(formData.username, formData.password);
+      let data = {
+        id: 1,
+        username: "admin",
+        password: "admin",
+        fullname: "Admin",
+        created_at: "2024-05-01T00:00:00",
+        updated_at: "2024-05-01T00:00:00",
+        deleted_at: "2024-05-01T00:00:00",
+        role: "ADMIN",
+        email: "admin@gmail.com",
+        active: true,
+        photoURL: "../../assets/avatar/avatar_9.jpg",
+      };
+    
+      if (data.username === formData.username) {
+        Cookies.set("user", JSON.stringify(data));
         Cookies.set("token", token, { expires: 1 });
         router.push("/");
         setLoading(false);

@@ -5,6 +5,19 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import ReportIcon from "@mui/icons-material/Report";
 import Iconify from "../components/Iconify";
 
+import ReportGmailerrorredIcon from '@mui/icons-material/ReportGmailerrorred';
+import ReportProblemOutlinedIcon from "@mui/icons-material/ReportProblemOutlined";
+import AssessmentIcon from "@mui/icons-material/Assessment";
+import CampaignIcon from "@mui/icons-material/Campaign";
+import MapsHomeWorkIcon from "@mui/icons-material/MapsHomeWork";
+import RecentActorsIcon from "@mui/icons-material/RecentActors";
+import ContentPasteSearchIcon from "@mui/icons-material/ContentPasteSearch";
+import DocumentScannerIcon from "@mui/icons-material/DocumentScanner";
+import PostAddIcon from "@mui/icons-material/PostAdd";
+import DescriptionIcon from "@mui/icons-material/Description";
+import DifferenceIcon from "@mui/icons-material/Difference";
+import SaveAsIcon from "@mui/icons-material/SaveAs";
+
 export const DISPLAY_LOADING = "DISPLAY_LOADING";
 export const HIDE_LOADING = "HIDE_LOADING";
 export const DOMAIN = "https://dummyjson.com";
@@ -15,18 +28,12 @@ export const STATUS_CODE = {
 
 export const navData = [
   {
-    label: "TỔNG QUAN",
+    label: "Thống kê",
     icon: <GridViewRoundedIcon />,
-    subItems: [
-      {
-        label: "Thống kê",
-        icon: <GridViewRoundedIcon />,
-        path: "/",
-      },
-    ],
+    path: "/",
   },
   {
-    label: "QUẢN LÝ",
+    label: "Quản lý",
     icon: <GridViewRoundedIcon />,
     subItems: [
       {
@@ -45,6 +52,33 @@ export const navData = [
         path: "/customers",
       },
       // {
+      //   label: "Tình trạng hồ sơ vay",
+      //   icon: (
+      //     <AssessmentIcon
+      //       icon="clarity:employee-solid"
+      //       sx={{ width: 25, height: 25 }}
+      //     />
+      //   ),
+      //   path: "/employees",
+      // },
+      // {
+      //   label: "Báo cáo hồ sơ đến hạn",
+      //   icon: (
+      //     <ReportProblemOutlinedIcon
+      //       icon="carbon:customer"
+      //       sx={{ width: 25, height: 25 }}
+      //     />
+      //   ),
+      //   path: "/customers",
+      // },
+      // {
+      //   label: "Thông báo nhắc nợ",
+      //   icon: (
+      //     <CampaignIcon icon="carbon:customer" sx={{ width: 25, height: 25 }} />
+      //   ),
+      //   path: "/customers",
+      // },
+      // {
       //   label: "Người môi giới",
       //   icon: (
       //     <Iconify
@@ -62,13 +96,23 @@ export const navData = [
     ],
   },
   {
-    label: "HỢP ĐỒNG THẨM ĐỊNH",
+    label: "Tín dụng",
     icon: <GridViewRoundedIcon />,
     subItems: [
       {
-        label: "Kế hoạch thẩm định",
+        label: "Hồ sơ vay",
         icon: (
           <Iconify
+            icon="clarity:clipboard-solid"
+            sx={{ width: 25, height: 25 }}
+          />
+        ),
+        path: "/loan-request",
+      },
+      {
+        label: "Kế hoạch thẩm định",
+        icon: (
+          <DescriptionIcon
             icon="clarity:clipboard-solid"
             sx={{ width: 25, height: 25 }}
           />
@@ -86,84 +130,105 @@ export const navData = [
         path: "/briefs",
       },
       {
-        label: "Thẩm định cá nhân",
+        label: "Định giá tài sản bảo đảm",
         icon: (
           <Iconify icon="mdi:clipboard-person" sx={{ width: 25, height: 25 }} />
         ),
         path: "/personal-appraisal",
       },
-      // {
-      //   label: "Tiêu chí thẩm định cá nhân",
-      //   icon: (
-      //     <Iconify
-      //       icon="mdi:clipboard-text-search"
-      //       sx={{ width: 25, height: 25 }}
-      //     />
-      //   ),
-      //   path: "/appraisal-criteria",
-      // },
+      {
+        label: "Xếp hạng tín dụng",
+        icon: (
+          <Iconify
+            icon="mdi:clipboard-text-search"
+            sx={{ width: 25, height: 25 }}
+          />
+        ),
+        path: "/appraisal-criteria",
+      },
+      {
+        label: "Phê duyệt tín dụng",
+        icon: (
+          <SaveAsIcon
+            icon="clarity:clipboard-solid"
+            sx={{ width: 25, height: 25 }}
+          />
+        ),
+        path: "/loan-request",
+      },
+      {
+        label: "Hợp đồng giải ngân",
+        icon: (
+          <DifferenceIcon
+            icon="clarity:clipboard-solid"
+            sx={{ width: 25, height: 25 }}
+          />
+        ),
+        path: "/loan-request",
+      },
     ],
   },
   {
-    label: "BÁO CÁO UỶ THÁC",
+    label: "Quản lý sau vay",
+    icon: <GridViewRoundedIcon />,
+    subItems: [
+      {
+        label: "Thông báo nhắc nợ",
+        icon: <CampaignIcon />,
+        path: "/appraisal-criteria",
+      },
+      {
+        label: "Báo cáo hồ sơ đến hạn",
+        icon: <ReportGmailerrorredIcon />,
+        path: "/appraisal-criteria",
+      },
+    ],
+  },
+  {
+    label: "Báo cáo quản lý",
     subItems: [
       {
         label: "Danh sách tài sản",
-        icon: <SettingsIcon />,
+        icon: <MapsHomeWorkIcon />,
         path: "assets",
       },
       {
-        label: "Danh sách hồ sơ",
-        icon: <Person2OutlinedIcon />,
+        label: "Danh sách hồ sơ đã duyệt",
+        icon: <DocumentScannerIcon />,
         path: "briefs",
       },
-      // {
-      //   label: "Báo cáo về người môi giới",
-      //   icon: <Person2OutlinedIcon />,
-      //   path: "report_on_broker",
-      // },
-      // {
-      //   label: "Báo cáo về nhân viên",
-      //   icon: <Person2OutlinedIcon />,
-      //   path: "report_on_employee",
-      // },
+      {
+        label: "Danh sách hồ sơ chưa duyệt",
+        icon: <ContentPasteSearchIcon />,
+        path: "briefs",
+      },
+      {
+        label: "Báo cáo về người môi giới",
+        icon: <RecentActorsIcon />,
+        path: "report_on_broker",
+      },
+      {
+        label: "Báo cáo về nhân viên",
+        icon: <ReportIcon />,
+        path: "report_on_employee",
+      },
     ],
   },
   {
-    label: "UỶ THÁC CHO VAY",
+    label: "Khác",
     subItems: [
-      // {
-      //   label: "Ủy thác cho vay",
-      //   icon: <SettingsIcon />,
-      //   path: "loan-entrustment",
-      // },
       {
-        label: "Hợp đồng ủy thác",
-        icon: <Person2OutlinedIcon />,
-        path: "trust-contract",
+        label: "Mẫu tiêu chí đánh giá",
+        icon: <SettingsIcon />,
+        path: "/evaluation-form",
       },
       {
-        label: "Hợp đồng cho vay",
-        icon: <Person2OutlinedIcon />,
-        path: "loan-contract",
+        label: "Quản lý độ ưu tiên",
+        icon: <SettingsIcon />,
+        path: "priority",
       },
     ],
   },
-  // {
-  //   label: "Khác",
-  //   subItems: [
-  //     {
-  //       label: "Mẫu tiêu chí đánh giá",
-  //       icon: <SettingsIcon />,
-  //       path: "/evaluation-form",
-  //     },
-  //     {
-  //       label: "Quản lý độ ưu tiên",
-  //       icon: <SettingsIcon />,
-  //       path: "priority",
-  //     },
-  //   ],
-  // },
 
   // Add more manager-specific items
 ];
