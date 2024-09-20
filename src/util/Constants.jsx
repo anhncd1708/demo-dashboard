@@ -117,7 +117,7 @@ export const navData = [
             sx={{ width: 25, height: 25 }}
           />
         ),
-        path: "/loan-request",
+        path: "##",
       },
       {
         label: "Hồ sơ thẩm định",
@@ -154,7 +154,7 @@ export const navData = [
             sx={{ width: 25, height: 25 }}
           />
         ),
-        path: "/loan-request",
+        path: "##",
       },
       {
         label: "Hợp đồng giải ngân",
@@ -164,7 +164,7 @@ export const navData = [
             sx={{ width: 25, height: 25 }}
           />
         ),
-        path: "/loan-request",
+        path: "##",
       },
     ],
   },
