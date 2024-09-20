@@ -10,10 +10,29 @@ import {
   MenuItem,
   FormControl,
   InputLabel,
+  IconButton,
+  CircularProgress,
 } from "@mui/material";
 import { useParams } from "react-router-dom";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
 import { fetchCustomer, updateCustomer } from "../../mock/fakeAPI/customerAPI";
+import { styled } from '@mui/material/styles';
+
+// Custom styled TextField
+const CustomTextField = styled(TextField)(({ theme, isEmpty }) => ({
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: isEmpty ? 'red' : "#e5e8eb",
+    },
+    '&:hover fieldset': {
+      borderColor: isEmpty ? 'red' : '#1C252E',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: isEmpty ? 'red' : theme.palette.primary.main,
+    },
+  },
+}));
 
 function ImageUpload({ title, initialImage }) {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -54,8 +73,8 @@ function ImageUpload({ title, initialImage }) {
         />
       ) : (
         <>
-          <CloudUploadIcon sx={{ fontSize: 48, color: "primary.main" }} />
-          <Typography>{title}</Typography>
+          <ImageNotSupportedIcon sx={{ fontSize: 48, color: "text.secondary" }} />
+          <Typography color="text.secondary">No image uploaded</Typography>
         </>
       )}
       <input
@@ -66,8 +85,14 @@ function ImageUpload({ title, initialImage }) {
         id={`file-upload-${title}`}
       />
       <label htmlFor={`file-upload-${title}`}>
-        <Button variant="text" color="primary" component="span">
-          {selectedFile || initialImage ? "Chọn file khác" : "Chọn file"}
+        <Button
+          variant="contained"
+          color="primary"
+          component="span"
+          startIcon={<CloudUploadIcon />}
+          sx={{ mt: 1 }}
+        >
+          {previewUrl ? "Chọn file khác" : "Chọn file"}
         </Button>
       </label>
     </Box>
@@ -124,9 +149,25 @@ export default function UpdateCustomer() {
     }
   };
 
-  if (loading) return <Typography>Loading...</Typography>;
+  if (loading) return <CircularProgress />;
   if (error) return <Typography color="error">{error}</Typography>;
   if (!customer) return <Typography>Customer not found</Typography>;
+
+  const renderTextField = (name, label, value, multiline = false, rows = 1) => (
+    <CustomTextField
+      fullWidth
+      label={label}
+      variant="outlined"
+      name={name}
+      value={value}
+      onChange={handleChange}
+      multiline={multiline}
+      rows={rows}
+      isEmpty={!value}
+      error={!value}
+      helperText={!value ? 'This field is required' : ''}
+    />
+  );
 
   return (
     <Box sx={{ p: 3, maxWidth: 1000, margin: "auto" }}>
@@ -141,24 +182,10 @@ export default function UpdateCustomer() {
 
           <Grid container spacing={3}>
             <Grid item xs={12}>
-              <TextField
-                fullWidth
-                label="Tên khách hàng"
-                variant="outlined"
-                name="name"
-                value={customer.name}
-                onChange={handleChange}
-              />
+              {renderTextField("name", "Tên khách hàng", customer.name)}
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField
-                fullWidth
-                label="Số thẻ thành viên"
-                variant="outlined"
-                name="membershipNumber"
-                value={customer.membershipNumber}
-                onChange={handleChange}
-              />
+              {renderTextField("membershipNumber", "Số thẻ thành viên", customer.membershipNumber)}
             </Grid>
             <Grid item xs={12} sm={6}>
               <FormControl fullWidth variant="outlined">
@@ -175,54 +202,19 @@ export default function UpdateCustomer() {
               </FormControl>
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                fullWidth
-                label="Địa chỉ liên lạc"
-                variant="outlined"
-                name="contactAddress"
-                value={customer.contactAddress}
-                onChange={handleChange}
-              />
+              {renderTextField("contactAddress", "Địa chỉ liên lạc", customer.contactAddress)}
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                fullWidth
-                label="Địa chỉ cư trú"
-                variant="outlined"
-                name="residentialAddress"
-                value={customer.residentialAddress}
-                onChange={handleChange}
-              />
+              {renderTextField("residentialAddress", "Địa chỉ cư trú", customer.residentialAddress)}
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                fullWidth
-                label="Địa bàn cư trú"
-                variant="outlined"
-                name="residentialArea"
-                value={customer.residentialArea}
-                onChange={handleChange}
-              />
+              {renderTextField("residentialArea", "Địa bàn cư trú", customer.residentialArea)}
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField
-                fullWidth
-                label="Điện thoại"
-                variant="outlined"
-                name="phone"
-                value={customer.phone}
-                onChange={handleChange}
-              />
+              {renderTextField("phone", "Điện thoại", customer.phone)}
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField
-                fullWidth
-                label="Email"
-                variant="outlined"
-                name="email"
-                value={customer.email}
-                onChange={handleChange}
-              />
+              {renderTextField("email", "Email", customer.email)}
             </Grid>
           </Grid>
 
@@ -231,16 +223,7 @@ export default function UpdateCustomer() {
               <Typography variant="subtitle1" gutterBottom>
                 Ghi chú
               </Typography>
-              <TextField
-                fullWidth
-                variant="outlined"
-                multiline
-                rows={4}
-                placeholder="Thêm ghi chú..."
-                name="notes"
-                value={customer.notes}
-                onChange={handleChange}
-              />
+              {renderTextField("notes", "Ghi chú", customer.notes, true, 4)}
             </Grid>
             <Grid item xs={12}>
               <Typography variant="subtitle1" gutterBottom>
@@ -272,14 +255,7 @@ export default function UpdateCustomer() {
           </Typography>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6}>
-              <TextField
-                fullWidth
-                label="Số giấy tờ"
-                variant="outlined"
-                name="idNumber"
-                value={customer.idNumber}
-                onChange={handleChange}
-              />
+              {renderTextField("idNumber", "Số giấy tờ", customer.idNumber)}
             </Grid>
             <Grid item xs={12} sm={6}>
               <FormControl fullWidth variant="outlined">
@@ -297,38 +273,13 @@ export default function UpdateCustomer() {
               </FormControl>
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                fullWidth
-                label="Nơi cấp"
-                variant="outlined"
-                name="idIssuePlace"
-                value={customer.idIssuePlace}
-                onChange={handleChange}
-              />
+              {renderTextField("idIssuePlace", "Nơi cấp", customer.idIssuePlace)}
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField
-                fullWidth
-                label="Ngày cấp"
-                variant="outlined"
-                type="date"
-                name="idIssueDate"
-                value={customer.idIssueDate}
-                onChange={handleChange}
-                InputLabelProps={{ shrink: true }}
-              />
+              {renderTextField("idIssueDate", "Ngày cấp", customer.idIssueDate, true)}
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField
-                fullWidth
-                label="Ngày hết hạn"
-                variant="outlined"
-                type="date"
-                name="idExpiryDate"
-                value={customer.idExpiryDate}
-                onChange={handleChange}
-                InputLabelProps={{ shrink: true }}
-              />
+              {renderTextField("idExpiryDate", "Ngày hết hạn", customer.idExpiryDate, true)}
             </Grid>
           </Grid>
 

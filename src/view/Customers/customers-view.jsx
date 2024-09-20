@@ -157,7 +157,7 @@ export default function CustomerPage() {
                 onRequestSort={handleSort}
                 onSelectAllClick={handleSelectAllClick}
                 headLabel={[
-                  { id: "ma_khach_hang", label: "Mã khách hàng" },
+                  { id: "ma_khach_hang", label: "ID" },
                   { id: "ten_khach_hang", label: "Tên khách hàng" },
                   { id: "xung_ho", label: "Xưng hô" },
                   { id: "loai_khach_hang", label: "Loại" },

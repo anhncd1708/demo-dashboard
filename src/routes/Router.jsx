@@ -27,6 +27,7 @@ import LoanRequestPage from "../pages/loan-request";
 import CreateLoanRequestPage from "../pages/create-loan-request";
 import CustomerDetailPage from "../pages/customer-detail";
 import DetailAssetsPage from "../pages/detail-assets";
+import DocxEditor from "../pages/newpage";
 
 export const EmployeesPage = lazy(() => import("../pages/employees"));
 export const LoginPage = lazy(() => import("../pages/login"));
@@ -67,6 +68,7 @@ export default function Router() {
           path: "customers/edit/:customerId",
           element: <UpdateCustomerPage />,
         },
+        { path: "editor", element: <DocxEditor /> },
         { path: "brokers", element: <BrokerPage /> },
         { path: "other", element: <OtherPage /> },
         { path: "appraisal-plans", element: <AppraisalPlansPage /> },

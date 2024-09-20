@@ -205,10 +205,10 @@ export default function ViewCustomerDetail() {
             <LabeledInfo label="Loại giấy tờ" value={customer.idType} />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <LabeledInfo label="Nơi cấp" value={customer.idIssuedPlace} />
+            <LabeledInfo label="Nơi cấp" value={customer.idIssuePlace} />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <LabeledInfo label="Ngày cấp" value={customer.idIssuedDate} />
+            <LabeledInfo label="Ngày cấp" value={customer.idIssueDate} />
           </Grid>
           <Grid item xs={12} sm={6}>
             <LabeledInfo label="Ngày hết hạn" value={customer.idExpiryDate} />

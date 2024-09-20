@@ -47,9 +47,11 @@ export default function CustomerTableRow({
   return (
     <>
       <TableRow hover tabIndex={-1} role="checkbox" selected={selected}>
-        <TableCell padding="checkbox">
-          {/* ... existing checkbox ... */}
-        </TableCell>
+        {/* <TableCell padding="checkbox">
+         
+        </TableCell> */}
+
+        <TableCell>{id}</TableCell>
 
         <TableCell component="th" scope="row" padding="none">
           <Stack direction="row" alignItems="center" spacing={2}>

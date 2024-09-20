@@ -150,6 +150,106 @@ export const mockCustomers = [
     signatureImage:
       "https://img6.thuthuatphanmem.vn/uploads/2022/09/13/mau-chu-ky-ten-thiep-dep_013433205.png",
   },
+  {
+    id: "CUST006",
+    name: "Trần Văn F",
+    membershipNumber: "MEM006",
+    gender: "male",
+    contactAddress: "234 Đường Hai Bà Trưng, Quận 1, TP.HCM",
+    residentialAddress: "",  // Empty field
+    residentialArea: "Quận 1, TP.HCM",
+    phone: "0903456789",
+    email: "tranvanf@example.com",
+    notes: "",  // Empty field
+    idNumber: "079234567890",
+    idType: "CCCD",
+    idIssuePlace: "TP.HCM",
+    idIssueDate: "2021-03-15",
+    idExpiryDate: "2031-03-15",
+    frontIdImage: "https://cdn.thuvienphapluat.vn/tintuc/uploads/image/2021/01/27/can-cuoc-cong-dan-gan-chip-2(1).jpg",
+    backIdImage: "",
+    signatureImage: "",  // Empty field
+  },
+  {
+    id: "CUST007",
+    name: "Lê Thị G",
+    membershipNumber: "MEM007",
+    gender: "female",
+    contactAddress: "567 Đường Điện Biên Phủ, Quận 3, TP.HCM",
+    residentialAddress: "567 Đường Điện Biên Phủ, Quận 3, TP.HCM",
+    residentialArea: "Quận 3, TP.HCM",
+    phone: "0904567890",
+    email: "",  // Empty field
+    notes: "Khách hàng tiềm năng",
+    idNumber: "079345678901",
+    idType: "CMND",
+    idIssuePlace: "TP.HCM",
+    idIssueDate: "2018-09-20",
+    idExpiryDate: null,  // Empty field
+    frontIdImage: "https://cdn.thuvienphapluat.vn/tintuc/uploads/image/2021/01/27/can-cuoc-cong-dan-gan-chip-2(1).jpg",
+    backIdImage: "",
+    signatureImage: "",
+  },
+  {
+    id: "CUST008",
+    name: "Phạm Văn H",
+    membershipNumber: "MEM008",
+    gender: "male",
+    contactAddress: "890 Đường Nam Kỳ Khởi Nghĩa, Quận 3, TP.HCM",
+    residentialAddress: "890 Đường Nam Kỳ Khởi Nghĩa, Quận 3, TP.HCM",
+    residentialArea: "Quận 3, TP.HCM",
+    phone: "0905678901",
+    email: "phamvanh@example.com",
+    notes: "Khách hàng doanh nghiệp",
+    idNumber: "",  // Empty field
+    idType: "",  // Empty field
+    idIssuePlace: "",  // Empty field
+    idIssueDate: "",  // Empty field
+    idExpiryDate: "",  // Empty field
+    frontIdImage: "https://cdn.thuvienphapluat.vn/tintuc/uploads/image/2021/01/27/can-cuoc-cong-dan-gan-chip-2(1).jpg",  // Empty field
+    backIdImage: "",  // Empty field
+    signatureImage: "",
+  },
+  {
+    id: "CUST009",
+    name: "Nguyễn Thị I",
+    membershipNumber: "MEM009",
+    gender: "female",
+    contactAddress: "123 Đường Lý Tự Trọng, Quận 1, TP.HCM",
+    residentialAddress: "456 Đường Nguyễn Thị Minh Khai, Quận 3, TP.HCM",
+    residentialArea: "Quận 3, TP.HCM",
+    phone: "0906789012",
+    email: "nguyenthi@example.com",
+    notes: "Khách hàng thường xuyên",
+    idNumber: "079567890123",
+    idType: "CCCD",
+    idIssuePlace: "TP.HCM",
+    idIssueDate: "2022-05-10",
+    idExpiryDate: "2032-05-10",
+    frontIdImage: "",
+    backIdImage: "",
+    signatureImage: "",
+  },
+  {
+    id: "CUST010",
+    name: "Trần Văn K",
+    membershipNumber: "",  // Empty field
+    gender: "male",
+    contactAddress: "789 Đường Cách Mạng Tháng 8, Quận 3, TP.HCM",
+    residentialAddress: "789 Đường Cách Mạng Tháng 8, Quận 3, TP.HCM",
+    residentialArea: "Quận 3, TP.HCM",
+    phone: "0907890123",
+    email: "tranvank@example.com",
+    notes: "Khách hàng mới",
+    idNumber: "079678901234",
+    idType: "CMND",
+    idIssuePlace: "TP.HCM",
+    idIssueDate: "2019-11-30",
+    idExpiryDate: "2029-11-30",
+    frontIdImage: "",
+    backIdImage: "",
+    signatureImage: "",
+  }
 ];
 
 export const mockLoanRequests = [
