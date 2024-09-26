@@ -1,17 +1,16 @@
 import { useState, useEffect } from "react";
+import { fetchAllEmployees } from "../../mock/fakeAPI/empAPI";
 import {
   Card,
   Stack,
   Table,
   Button,
-
   TableBody,
   Typography,
   TableContainer,
   TablePagination,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { getListEmployee } from "../../context/redux/action/action";
 import Iconify from "../../components/Iconify/iconify";
 import Scrollbar from "../../components/Scrollbar";
 import Loading from "../../components/Loading/Loading";
@@ -30,6 +29,7 @@ import TableLoading from "../../components/Table/table-loading";
 // ----------------------------------------------------------------------
 
 export default function EmpPage() {
+  const [employees, setEmployees] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const [page, setPage] = useState(0);
@@ -56,17 +56,19 @@ export default function EmpPage() {
 
   useEffect(() => {
     setLoading(true);
-    const callAPI = async () => {
-      await dispatch(getListEmployee());
-      setLoading(false);
+    const fetchEmployees = async () => {
+      try {
+        const data = await fetchAllEmployees();
+        setEmployees(data);
+      } catch (error) {
+        console.error("Error fetching employees:", error);
+        // Handle error (e.g., show error message to user)
+      } finally {
+        setLoading(false);
+      }
     };
-    callAPI();
-  }, [dispatch]);
-
-  const employees = useSelector((state) => {
-    console.log(26, state.employees);
-    return state.employees;
-  });
+    fetchEmployees();
+  }, []);
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
@@ -198,18 +200,17 @@ export default function EmpPage() {
                 {loading && <TableLoading />}
               </TableBody>
             </Table>
+            <TablePagination
+              page={page}
+              component="div"
+              count={employees.length}
+              rowsPerPage={rowsPerPage}
+              onPageChange={handleChangePage}
+              rowsPerPageOptions={[5, 10, 25]}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+            />
           </TableContainer>
         </Scrollbar>
-
-        <TablePagination
-          page={page}
-          component="div"
-          count={employees.length}
-          rowsPerPage={rowsPerPage}
-          onPageChange={handleChangePage}
-          rowsPerPageOptions={[5, 10, 25]}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
       </Card>
     </>
   );
