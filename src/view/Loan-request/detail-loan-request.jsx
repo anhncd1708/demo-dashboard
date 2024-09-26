@@ -213,7 +213,7 @@ export default function ViewLoanRequestDetail() {
   if (!loanRequest) return <Typography>Loan request not found</Typography>;
 
   return (
-    <Box sx={{ p: 3, maxWidth: 1000, margin: "auto" }}>
+    <Box sx={{ p: 3, maxWidth: 1500 }}>
       <Box
         sx={{
           display: "flex",
@@ -316,9 +316,33 @@ export default function ViewLoanRequestDetail() {
           Tài liệu đính kèm
         </Typography>
         <AttachmentGallery attachments={loanRequest.attachments} />
+        {loanRequest.notes && (
+          <Box>
+            <Typography sx={{ color: "#56585a", fontWeight: "bold", mr: 1 }}>
+              Ghi chú:
+            </Typography>
+
+            <textarea
+              rows={3}
+              style={{
+                width: "100%",
+                padding: "10px",
+                resize: "none",
+                minHeight: "50px",
+                backgroundColor: "#f5f5f5",
+                color: "#666",
+                border: "none",
+                borderRadius: "4px",
+              }}
+              value={loanRequest.notes || ""}
+              readOnly
+              disabled
+            />
+          </Box>
+        )}
 
         <Typography variant="h6" gutterBottom sx={{ mt: 4 }}>
-          Trạng thái yêu cầu
+          Trạng thái hồ sơ
         </Typography>
         <StatusStepper currentStatus={loanRequest.status} />
         {loanRequest.approvalDate && (
@@ -326,9 +350,6 @@ export default function ViewLoanRequestDetail() {
             label="Ngày phê duyệt"
             value={loanRequest.approvalDate}
           />
-        )}
-        {loanRequest.notes && (
-          <LabeledInfo label="Ghi chú" value={loanRequest.notes} />
         )}
       </Paper>
 

@@ -6,26 +6,39 @@ import {
   Button,
   Grid,
   Paper,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
 } from "@mui/material";
-import DocumentUpload from "./document-upload"; // Assuming you have this component
+import DocumentUpload from "./document-upload";
+import CustomerSelectionModal from "./customer-selection-modal";
 
-export default function CreateLoanRequest({ onComplete }) {
+export default function CreateLoanRequest({ onComplete, initialData }) {
   const [formData, setFormData] = useState({
-    customerName: "",
-    membershipNumber: "",
-    phoneNumber: "",
-    email: "",
-    loanAmount: "",
-    loanTerm: "",
-    loanPurpose: "",
-    assetType: "",
-    assetValue: "",
-    assetDescription: "",
-    notes: "",
+    customerName: initialData?.customerName || "",
+    membershipNumber: initialData?.membershipNumber || "",
+    phoneNumber: initialData?.phoneNumber || "",
+    email: initialData?.email || "",
+    requestedLoanAmount: initialData?.requestedLoanAmount || "",
+    loanTerm: initialData?.loanTerm || "",
+    loanPurpose: initialData?.loanPurpose || "",
+    assetType: initialData?.assetType || "",
+    assetValue: initialData?.assetValue || "",
+    monthlyIncome: initialData?.monthlyIncome || "",
+    expenses: initialData?.expenses || "",
+    accumulatedIncome: initialData?.accumulatedIncome || "",
+    borrowerType: initialData?.borrowerType || "",
+    assetDescription: initialData?.assetDescription || "", // Add this line
+    notes: initialData?.notes || "", // Add this line
+    // Add any other fields you have in your form
   });
 
-  const [attachments, setAttachments] = useState([]);
+  const [attachments, setAttachments] = useState(
+    initialData?.attachments || []
+  );
   const [isFormValid, setIsFormValid] = useState(false);
+  const [isCustomerModalOpen, setIsCustomerModalOpen] = useState(false);
 
   useEffect(() => {
     // Check if all required fields are filled
@@ -33,7 +46,6 @@ export default function CreateLoanRequest({ onComplete }) {
       "customerName",
       "membershipNumber",
       "phoneNumber",
-      "email",
       "loanAmount",
       "loanTerm",
       "loanPurpose",
@@ -42,7 +54,9 @@ export default function CreateLoanRequest({ onComplete }) {
       "assetDescription",
     ];
 
-    const allFieldsFilled = requiredFields.every(field => formData[field].trim() !== "");
+    const allFieldsFilled = requiredFields.every(
+      (field) => formData[field] !== ""
+    );
     setIsFormValid(allFieldsFilled);
   }, [formData]);
 
@@ -58,6 +72,17 @@ export default function CreateLoanRequest({ onComplete }) {
     setAttachments(files);
   };
 
+  const handleCustomerSelect = (customer) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      customerName: customer.name,
+      membershipNumber: customer.membershipNumber,
+      phoneNumber: customer.phone,
+      email: customer.email,
+    }));
+    setIsCustomerModalOpen(false);
+  };
+
   const handleSubmit = () => {
     if (isFormValid) {
       onComplete({ ...formData, attachments });
@@ -68,9 +93,9 @@ export default function CreateLoanRequest({ onComplete }) {
   };
 
   return (
-    <Box sx={{ p: 3, maxWidth: 1000, margin: "auto" }}>
+    <Box sx={{ p: 3, maxWidth: 1500, margin: "auto" }}>
       <Typography variant="h5" gutterBottom>
-        Tạo yêu cầu vay
+        Đề nghị vay vốn
       </Typography>
       <Paper sx={{ p: 3 }}>
         <Typography variant="h6" gutterBottom>
@@ -87,8 +112,13 @@ export default function CreateLoanRequest({ onComplete }) {
               name="customerName"
               value={formData.customerName}
               onChange={handleChange}
+              onClick={() => setIsCustomerModalOpen(true)}
+              InputProps={{
+                readOnly: true,
+              }}
             />
           </Grid>
+
           <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
@@ -98,6 +128,10 @@ export default function CreateLoanRequest({ onComplete }) {
               name="membershipNumber"
               value={formData.membershipNumber}
               onChange={handleChange}
+              InputProps={{
+                readOnly: true,
+                disabled: true,
+              }}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -109,17 +143,24 @@ export default function CreateLoanRequest({ onComplete }) {
               name="phoneNumber"
               value={formData.phoneNumber}
               onChange={handleChange}
+              InputProps={{
+                readOnly: true,
+                disabled: true,
+              }}
             />
           </Grid>
           <Grid item xs={12}>
             <TextField
               fullWidth
-              required
               label="Email"
               variant="outlined"
               name="email"
               value={formData.email}
               onChange={handleChange}
+              InputProps={{
+                readOnly: true,
+                disabled: true,
+              }}
             />
           </Grid>
         </Grid>
@@ -128,7 +169,7 @@ export default function CreateLoanRequest({ onComplete }) {
           Thông tin khoản vay
         </Typography>
         <Grid container spacing={3}>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12}>
             <TextField
               fullWidth
               required
@@ -139,6 +180,24 @@ export default function CreateLoanRequest({ onComplete }) {
               value={formData.loanAmount}
               onChange={handleChange}
             />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <FormControl fullWidth required>
+              <InputLabel id="borrower-type-label">
+                Đối tượng vay vốn
+              </InputLabel>
+              <Select
+                labelId="borrower-type-label"
+                id="borrower-type"
+                name="borrowerType"
+                value={formData.borrowerType}
+                onChange={handleChange}
+                label="Đối tượng vay vốn"
+              >
+                <MenuItem value="individual">Cá nhân</MenuItem>
+                <MenuItem value="entity">Pháp nhân</MenuItem>
+              </Select>
+            </FormControl>
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
@@ -212,7 +271,10 @@ export default function CreateLoanRequest({ onComplete }) {
         <Typography variant="h6" gutterBottom sx={{ mt: 4 }}>
           Tài liệu đính kèm
         </Typography>
-        <DocumentUpload onFilesChange={handleAttachmentsChange} />
+        <DocumentUpload
+          onFilesChange={handleAttachmentsChange}
+          initialFiles={attachments}
+        />
 
         <Typography variant="h6" gutterBottom sx={{ mt: 4 }}>
           Ghi chú
@@ -231,6 +293,12 @@ export default function CreateLoanRequest({ onComplete }) {
             />
           </Grid>
         </Grid>
+
+        <CustomerSelectionModal
+          open={isCustomerModalOpen}
+          onClose={() => setIsCustomerModalOpen(false)}
+          onSelect={handleCustomerSelect}
+        />
 
         <Box sx={{ mt: 4, display: "flex", justifyContent: "flex-end" }}>
           <Button
