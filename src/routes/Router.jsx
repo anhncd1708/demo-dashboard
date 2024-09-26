@@ -28,6 +28,10 @@ import CreateLoanRequestPage from "../pages/create-loan-request";
 import CustomerDetailPage from "../pages/customer-detail";
 import DetailAssetsPage from "../pages/detail-assets";
 import DocxEditor from "../pages/newpage";
+import LoanRequestProcess from "../view/Loan-request/loan-request-process";
+import CreateLoanRequest from "../view/Loan-request/create-loan-request";
+import CreateLoanOption from "../view/Loan-request/create-loan-option";
+
 
 export const EmployeesPage = lazy(() => import("../pages/employees"));
 export const LoginPage = lazy(() => import("../pages/login"));
@@ -80,7 +84,15 @@ export default function Router() {
         { path: "personal-appraisal/:id/calc", element: <PersonalCalcPage /> },
         { path: "loan-request", element: <LoanRequestPage /> },
         { path: "loan-request/:id", element: <DetailLoanRequestPage /> },
-        { path: "loan-request/create", element: <CreateLoanRequestPage /> },
+        {
+          path: "loan-request/new",
+          element: <LoanRequestProcess />,
+          children: [
+            { path: "", element: <CreateLoanRequest /> },
+            { path: "options", element: <CreateLoanOption /> },
+            { path: "confirm", element: <LoanRequestProcess /> },
+          ],
+        },
         { path: "appraisal-criteria", element: <OtherPage /> },
         { path: "report_on_employee", element: <OtherPage /> },
         { path: "report_on_broker", element: <OtherPage /> },

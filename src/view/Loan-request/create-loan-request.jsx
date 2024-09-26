@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Typography,
@@ -6,108 +6,65 @@ import {
   Button,
   Grid,
   Paper,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  IconButton,
 } from "@mui/material";
-import {
-  CloudUpload as CloudUploadIcon,
-  Description as DescriptionIcon,
-  Image as ImageIcon,
-  PictureAsPdf as PdfIcon,
-  InsertDriveFile as FileIcon,
-  Delete as DeleteIcon,
-} from "@mui/icons-material";
+import DocumentUpload from "./document-upload"; // Assuming you have this component
 
-function getFileIcon(fileType) {
-  switch (fileType.toLowerCase()) {
-    case "pdf":
-      return <PdfIcon />;
-    case "jpg":
-    case "jpeg":
-    case "png":
-    case "gif":
-      return <ImageIcon />;
-    case "doc":
-    case "docx":
-      return <DescriptionIcon />;
-    default:
-      return <FileIcon />;
-  }
-}
+export default function CreateLoanRequest({ onComplete }) {
+  const [formData, setFormData] = useState({
+    customerName: "",
+    membershipNumber: "",
+    phoneNumber: "",
+    email: "",
+    loanAmount: "",
+    loanTerm: "",
+    loanPurpose: "",
+    assetType: "",
+    assetValue: "",
+    assetDescription: "",
+    notes: "",
+  });
 
-function DocumentUpload({ onFilesChange }) {
-  const [files, setFiles] = useState([]);
-
-  const handleFileChange = (event) => {
-    const newFiles = Array.from(event.target.files);
-    setFiles((prevFiles) => [...prevFiles, ...newFiles]);
-    if (onFilesChange) {
-      onFilesChange([...files, ...newFiles]);
-    }
-  };
-
-  const handleDelete = (index) => {
-    const newFiles = files.filter((_, i) => i !== index);
-    setFiles(newFiles);
-    if (onFilesChange) {
-      onFilesChange(newFiles);
-    }
-  };
-
-  return (
-    <Box>
-      <input
-        type="file"
-        multiple
-        onChange={handleFileChange}
-        style={{ display: "none" }}
-        id="document-upload"
-      />
-      <label htmlFor="document-upload">
-        <Button
-          variant="outlined"
-          component="span"
-          startIcon={<CloudUploadIcon />}
-        >
-          Tải lên tài liệu
-        </Button>
-      </label>
-      <List>
-        {files.map((file, index) => (
-          <ListItem
-            key={index}
-            secondaryAction={
-              <IconButton
-                edge="end"
-                aria-label="delete"
-                onClick={() => handleDelete(index)}
-              >
-                <DeleteIcon />
-              </IconButton>
-            }
-          >
-            <ListItemIcon>
-              {getFileIcon(file.name.split(".").pop())}
-            </ListItemIcon>
-            <ListItemText
-              primary={file.name}
-              secondary={`${(file.size / 1024 / 1024).toFixed(2)} MB`}
-            />
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
-}
-
-export default function CreateLoanRequest() {
   const [attachments, setAttachments] = useState([]);
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  useEffect(() => {
+    // Check if all required fields are filled
+    const requiredFields = [
+      "customerName",
+      "membershipNumber",
+      "phoneNumber",
+      "email",
+      "loanAmount",
+      "loanTerm",
+      "loanPurpose",
+      "assetType",
+      "assetValue",
+      "assetDescription",
+    ];
+
+    const allFieldsFilled = requiredFields.every(field => formData[field].trim() !== "");
+    setIsFormValid(allFieldsFilled);
+  }, [formData]);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
   const handleAttachmentsChange = (files) => {
     setAttachments(files);
+  };
+
+  const handleSubmit = () => {
+    if (isFormValid) {
+      onComplete({ ...formData, attachments });
+    } else {
+      // Optionally, you can add an error message or alert here
+      console.log("Please fill all required fields");
+    }
   };
 
   return (
@@ -122,16 +79,48 @@ export default function CreateLoanRequest() {
 
         <Grid container spacing={3}>
           <Grid item xs={12}>
-            <TextField fullWidth label="Tên khách hàng" variant="outlined" />
+            <TextField
+              fullWidth
+              required
+              label="Tên khách hàng"
+              variant="outlined"
+              name="customerName"
+              value={formData.customerName}
+              onChange={handleChange}
+            />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextField fullWidth label="Số thẻ thành viên" variant="outlined" />
+            <TextField
+              fullWidth
+              required
+              label="Số thẻ thành viên"
+              variant="outlined"
+              name="membershipNumber"
+              value={formData.membershipNumber}
+              onChange={handleChange}
+            />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextField fullWidth label="Số điện thoại" variant="outlined" />
+            <TextField
+              fullWidth
+              required
+              label="Số điện thoại"
+              variant="outlined"
+              name="phoneNumber"
+              value={formData.phoneNumber}
+              onChange={handleChange}
+            />
           </Grid>
           <Grid item xs={12}>
-            <TextField fullWidth label="Email" variant="outlined" />
+            <TextField
+              fullWidth
+              required
+              label="Email"
+              variant="outlined"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+            />
           </Grid>
         </Grid>
 
@@ -142,26 +131,38 @@ export default function CreateLoanRequest() {
           <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
+              required
               label="Số tiền vay (VND)"
               variant="outlined"
               type="number"
+              name="loanAmount"
+              value={formData.loanAmount}
+              onChange={handleChange}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
+              required
               label="Thời hạn vay (tháng)"
               variant="outlined"
               type="number"
+              name="loanTerm"
+              value={formData.loanTerm}
+              onChange={handleChange}
             />
           </Grid>
           <Grid item xs={12}>
             <TextField
               fullWidth
+              required
               label="Mục đích vay"
               variant="outlined"
               multiline
               rows={3}
+              name="loanPurpose"
+              value={formData.loanPurpose}
+              onChange={handleChange}
             />
           </Grid>
         </Grid>
@@ -171,23 +172,39 @@ export default function CreateLoanRequest() {
         </Typography>
         <Grid container spacing={3}>
           <Grid item xs={12}>
-            <TextField fullWidth label="Loại tài sản" variant="outlined" />
-          </Grid>
-          <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
-              label="Giá trị ước tính (VND)"
+              required
+              label="Loại tài sản"
               variant="outlined"
-              type="number"
+              name="assetType"
+              value={formData.assetType}
+              onChange={handleChange}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
+              required
+              label="Giá trị ước tính (VND)"
+              variant="outlined"
+              type="number"
+              name="assetValue"
+              value={formData.assetValue}
+              onChange={handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              fullWidth
+              required
               label="Mô tả tài sản"
               variant="outlined"
               multiline
               rows={3}
+              name="assetDescription"
+              value={formData.assetDescription}
+              onChange={handleChange}
             />
           </Grid>
         </Grid>
@@ -208,13 +225,21 @@ export default function CreateLoanRequest() {
               multiline
               rows={4}
               placeholder="Thêm ghi chú..."
+              name="notes"
+              value={formData.notes}
+              onChange={handleChange}
             />
           </Grid>
         </Grid>
 
         <Box sx={{ mt: 4, display: "flex", justifyContent: "flex-end" }}>
-          <Button variant="contained" color="primary">
-            Tạo yêu cầu vay
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleSubmit}
+            disabled={!isFormValid}
+          >
+            Tiếp tục
           </Button>
         </Box>
       </Paper>
