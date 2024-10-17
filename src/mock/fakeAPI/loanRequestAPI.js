@@ -33,3 +33,12 @@ import { mockLoanRequests } from "../mock-data";
     };
     return mockLoanRequests[loanRequestIndex];
   };
+
+  // New function to fetch loan requests by status
+  export const fetchLoanRequestsByStatus = async (status) => {
+    console.log("Fetching loan requests with status:", status);
+    await delay(500); // Simulate network delay
+    const filteredLoanRequests = mockLoanRequests.filter(lr => lr.status === status);
+    console.log("Found loan requests:", filteredLoanRequests);
+    return filteredLoanRequests;
+  };

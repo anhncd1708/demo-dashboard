@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Card,
   Stack,
@@ -10,11 +11,7 @@ import {
   TableContainer,
   TablePagination,
 } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  getListAppraisalPlan,
-  getListBroker,
-} from "../../context/redux/action/action";
+import { fetchLoanRequestsByStatus } from "../../mock/fakeAPI/loanRequestAPI";
 import Iconify from "../../components/Iconify/iconify";
 import Scrollbar from "../../components/Scrollbar";
 import TableNoData from "../../components/Table/table-no-data";
@@ -32,19 +29,15 @@ import AppraisalTableRow from "../../components/Table/appraisal-table/appraisal-
 // ----------------------------------------------------------------------
 
 export default function AppraisalPlanView() {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-
   const [page, setPage] = useState(0);
-
   const [order, setOrder] = useState("asc");
-
   const [selected, setSelected] = useState([]);
-
-  const [orderBy, setOrderBy] = useState("ma_ke_hoach");
-
+  const [orderBy, setOrderBy] = useState("id");
   const [filterName, setFilterName] = useState("");
-
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [appraisalPlans, setAppraisalPlans] = useState([]);
 
   const handleSort = (event, id) => {
     const isAsc = orderBy === id && order === "asc";
@@ -54,36 +47,36 @@ export default function AppraisalPlanView() {
     }
   };
 
-  const dispatch = useDispatch();
-
   useEffect(() => {
-    setLoading(true);
-    const callAPI = async () => {
-      await dispatch(getListAppraisalPlan());
-      setLoading(false);
+    const fetchAppraisalPlans = async () => {
+      setLoading(true);
+      try {
+        const plans = await fetchLoanRequestsByStatus("under-appraisal");
+        setAppraisalPlans(plans);
+      } catch (error) {
+        console.error("Error fetching appraisal plans:", error);
+      } finally {
+        setLoading(false);
+      }
     };
-    callAPI();
-  }, [dispatch]);
 
-  const plans = useSelector((state) => {
-    console.log(27, state.appraisalPlans);
-    return state.appraisalPlans;
-  });
+    fetchAppraisalPlans();
+  }, []);
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = plans?.map((n) => n.ten_ke_hoach);
+      const newSelecteds = appraisalPlans.map((n) => n.customerName);
       setSelected(newSelecteds);
       return;
     }
     setSelected([]);
   };
 
-  const handleClick = (event, ten_ke_hoach) => {
-    const selectedIndex = selected.indexOf(ten_ke_hoach);
+  const handleClick = (event, customerName) => {
+    const selectedIndex = selected.indexOf(customerName);
     let newSelected = [];
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, ten_ke_hoach);
+      newSelected = newSelected.concat(selected, customerName);
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
@@ -112,12 +105,16 @@ export default function AppraisalPlanView() {
   };
 
   const dataFiltered = applyFilter({
-    inputData: plans,
+    inputData: appraisalPlans,
     comparator: getComparator(order, orderBy),
     filterName,
   });
 
   const notFound = !dataFiltered.length && !!filterName;
+
+  const handleViewDetails = (id) => {
+    navigate(`/appraisal-plan/${id}`);
+  };
 
   return (
     <>
@@ -128,14 +125,6 @@ export default function AppraisalPlanView() {
         mb={5}
       >
         <Typography variant="h4">Danh sách kế hoạch thẩm định</Typography>
-
-        {/* <Button
-          variant="contained"
-          color="inherit"
-          startIcon={<Iconify icon="eva:plus-fill" />}
-        >
-          New Employee
-        </Button> */}
       </Stack>
 
       <Card>
@@ -151,43 +140,47 @@ export default function AppraisalPlanView() {
               <UserTableHead
                 order={order}
                 orderBy={orderBy}
-                rowCount={plans.length}
+                rowCount={appraisalPlans.length}
                 numSelected={selected.length}
                 onRequestSort={handleSort}
                 onSelectAllClick={handleSelectAllClick}
                 headLabel={[
-                  { id: "ma_ke_hoach", label: "Mã kế hoạch" },
-                  { id: "ten_ke_hoach", label: "Tên kế hoạch" },
-                  { id: "mo_ta_ke_hoach", label: "Mô tả" },
-                  { id: "nguoi_them", label: "Người thêm" },
-                  { id: "gia_tri", label: "Giá trị" },
-                  { id: "da_tham_dinh", label: "Thẩm định" },
-                  { id: "create_date", label: "Ngày tạo" },
+                  { id: "id", label: "Mã kế hoạch" },
+                  { id: "customerName", label: "Tên khách hàng" },
+                  { id: "loanAmount", label: "Số tiền vay" },
+                  { id: "loanPurpose", label: "Mục đích vay" },
+                  { id: "assetType", label: "Loại tài sản" },
+                  { id: "assetValue", label: "Giá trị tài sản" },
                   { id: "" },
                 ]}
               />
               <TableBody>
                 {dataFiltered
-                  ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row) => (
                     <AppraisalTableRow
-                      key={row.ma_ke_hoach}
-                      ma_ke_hoach={row.ma_ke_hoach}
-                      ten_ke_hoach={row.ten_ke_hoach}
-                      mo_ta_ke_hoach={row.mo_ta_ke_hoach}
-                      nguoi_them={row.nguoi_them}
-                      da_tham_dinh={row.da_tham_dinh}
-                      create_date={row.create_date}
-                      selected={selected.indexOf(row.ten_ke_hoach) !== -1}
+                      key={row.id}
+                      id={row.id}
+                      customerName={row.customerName}
+                      loanAmount={row.loanAmount}
+                      loanPurpose={row.loanPurpose}
+                      assetType={row.assetType}
+                      assetValue={row.assetValue}
+                      selected={selected.indexOf(row.customerName) !== -1}
                       handleClick={(event) =>
-                        handleClick(event, row.ten_ke_hoach)
+                        handleClick(event, row.customerName)
                       }
+                      onViewDetails={handleViewDetails}
                     />
                   ))}
 
                 <TableEmptyRows
                   height={10}
-                  emptyRows={emptyRows(page, rowsPerPage, plans.length)}
+                  emptyRows={emptyRows(
+                    page,
+                    rowsPerPage,
+                    appraisalPlans.length
+                  )}
                 />
 
                 {notFound && <TableNoData query={filterName} />}
@@ -200,7 +193,7 @@ export default function AppraisalPlanView() {
         <TablePagination
           page={page}
           component="div"
-          count={plans.length}
+          count={appraisalPlans.length}
           rowsPerPage={rowsPerPage}
           onPageChange={handleChangePage}
           rowsPerPageOptions={[5, 10, 25]}

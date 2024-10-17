@@ -18,7 +18,7 @@ import Iconify from "../../components/Iconify/iconify";
 import Scrollbar from "../../components/Scrollbar";
 import UserTableHead from "../../components/Table/table-head";
 import TableToolbar from "../../components/Table/table-toolbar";
-import { fetchLoanRequests } from "../../mock/fakeAPI/loanRequestAPI"; // You'll need to create this
+import { fetchLoanRequestsByStatus } from "../../mock/fakeAPI/loanRequestAPI"; // You'll need to create this
 
 const TABLE_HEAD = [
   { id: "id", label: "Mã yêu cầu", alignRight: false },
@@ -42,7 +42,7 @@ export default function LoanRequestView() {
 
   useEffect(() => {
     const loadLoanRequests = async () => {
-      const data = await fetchLoanRequests();
+      const data = await fetchLoanRequestsByStatus("created");
       setLoanRequests(data);
     };
     loadLoanRequests();
@@ -164,7 +164,7 @@ export default function LoanRequestView() {
 
                           <TableCell align="left">{loanTerm} tháng</TableCell>
 
-                          <TableCell align="left">{status}</TableCell>
+                          <TableCell align="left">Đã tạo</TableCell>
 
                           <TableCell align="right">
                             <Button

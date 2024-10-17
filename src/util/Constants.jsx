@@ -3,7 +3,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import ReportIcon from "@mui/icons-material/Report";
 import Iconify from "../components/Iconify";
 
-import ReportGmailerrorredIcon from '@mui/icons-material/ReportGmailerrorred';
+import ReportGmailerrorredIcon from "@mui/icons-material/ReportGmailerrorred";
 import CampaignIcon from "@mui/icons-material/Campaign";
 import MapsHomeWorkIcon from "@mui/icons-material/MapsHomeWork";
 import RecentActorsIcon from "@mui/icons-material/RecentActors";
@@ -46,48 +46,6 @@ export const navData = [
         icon: <Iconify icon="carbon:customer" sx={{ width: 25, height: 25 }} />,
         path: "/customers",
       },
-      // {
-      //   label: "Tình trạng hồ sơ vay",
-      //   icon: (
-      //     <AssessmentIcon
-      //       icon="clarity:employee-solid"
-      //       sx={{ width: 25, height: 25 }}
-      //     />
-      //   ),
-      //   path: "/employees",
-      // },
-      // {
-      //   label: "Báo cáo hồ sơ đến hạn",
-      //   icon: (
-      //     <ReportProblemOutlinedIcon
-      //       icon="carbon:customer"
-      //       sx={{ width: 25, height: 25 }}
-      //     />
-      //   ),
-      //   path: "/customers",
-      // },
-      // {
-      //   label: "Thông báo nhắc nợ",
-      //   icon: (
-      //     <CampaignIcon icon="carbon:customer" sx={{ width: 25, height: 25 }} />
-      //   ),
-      //   path: "/customers",
-      // },
-      // {
-      //   label: "Người môi giới",
-      //   icon: (
-      //     <Iconify
-      //       icon="tabler:layout-align-middle-filled"
-      //       sx={{ width: 25, height: 25 }}
-      //     />
-      //   ),
-      //   path: "/brokers",
-      // },
-      // {
-      //   label: "Biểu phí",
-      //   icon: <ReportIcon />,
-      //   path: "/appraisal-criteria",
-      // },
     ],
   },
   {
@@ -112,7 +70,7 @@ export const navData = [
             sx={{ width: 25, height: 25 }}
           />
         ),
-        path: "##",
+        path: "/appraisal-plans",
       },
       {
         label: "Hồ sơ thẩm định",
