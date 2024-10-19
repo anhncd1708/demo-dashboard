@@ -19,6 +19,11 @@ import { mockLoanRequests, mockEmployees } from "../../mock/mock-data";
 import { formatNumber } from "../../util/formatNumber";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import AssignAppraiserModal from "./assign-appraiser-modal";
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+import Iconify from '../../components/Iconify/iconify';
+
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 export default function ViewLoanRequestDetail() {
   const { id } = useParams();
@@ -62,9 +67,74 @@ export default function ViewLoanRequestDetail() {
     window.open(url, "_blank");
   };
 
+  const exportToPDF = () => {
+    // Define the document definition
+    const docDefinition = {
+      content: [
+        { text: 'Thông tin yêu cầu vay', style: 'header' },
+        { text: `Khách hàng: ${loanRequest.customerName}` },
+        { text: `Mã khách hàng: ${loanRequest.membershipNumber}` },
+        { text: `Số điện thoại: ${loanRequest.phoneNumber}` },
+        { text: `Email: ${loanRequest.email}` },
+        { text: 'Thông tin khoản vay', style: 'subheader' },
+        {
+          table: {
+            headerRows: 1,
+            widths: ['*', '*', '*'],
+            body: [
+              ['Số tiền vay', 'Thời hạn vay', 'Mục đích vay'],
+              [`${formatNumber(loanRequest.loanAmount)} VND`, `${loanRequest.loanTerm} tháng`, loanRequest.loanPurpose || 'N/A']
+            ]
+          }
+        },
+        { text: 'Tài sản thế chấp', style: 'subheader' },
+        {
+          table: {
+            headerRows: 1,
+            widths: ['*', '*', '*'],
+            body: [
+              ['Loại tài sản', 'Giá trị tài sản', 'Mô tả tài sản'],
+              [loanRequest.assetType, `${formatNumber(loanRequest.assetValue)} VND`, loanRequest.assetDescription || 'N/A']
+            ]
+          }
+        },
+        { text: 'Tài liệu đính kèm', style: 'subheader' },
+        {
+          table: {
+            headerRows: 1,
+            widths: ['*', '*'],
+            body: [
+              ['Tên tài liệu', 'Kích thước'],
+              ...loanRequest.attachments.map(file => [file.title, file.size ? `${(file.size / 1024 / 1024).toFixed(2)} MB` : 'N/A'])
+            ]
+          }
+        },
+        { text: 'Ghi chú', style: 'subheader' },
+        { text: loanRequest.notes || 'Không có ghi chú' }
+      ],
+      styles: {
+        header: {
+          fontSize: 18,
+          bold: true,
+          margin: [0, 0, 0, 10]
+        },
+        subheader: {
+          fontSize: 16,
+          bold: true,
+          margin: [0, 10, 0, 5]
+        }
+      },
+      defaultStyle: {
+        font: 'Roboto'
+      }
+    };
+
+    pdfMake.createPdf(docDefinition).download('thong_tin_yeu_cau_vay.pdf');
+  };
+
   if (loading) return <Typography>Loading...</Typography>;
   if (error) return <Typography color="error">{error}</Typography>;
-  if (!loanRequest) return <Typography>Loan request not found</Typography>;
+  if (!loanRequest) return <Typography>Không tìm thấy yêu cầu vay</Typography>;
 
   const appraisers = mockEmployees.filter(
     (employee) => employee.position_name === "Cấp nhân viên tín dụng"
@@ -95,6 +165,15 @@ export default function ViewLoanRequestDetail() {
           )}
       </Box>
       <Paper sx={{ p: 3 }}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={exportToPDF}
+          startIcon={<Iconify icon="mdi:file-pdf-box" />}
+          sx={{ mb: 2 }}
+        >
+          Xuất file PDF
+        </Button>
         <Typography variant="h6" gutterBottom>
           Thông tin khách hàng
         </Typography>

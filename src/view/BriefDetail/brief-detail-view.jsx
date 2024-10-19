@@ -23,7 +23,7 @@ import { useParams } from "react-router-dom";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import BriefInfo from "./brief-info/brief-info";
 import BriefDocument from "./brief-document/brief-document";
-import BriefDocumentDRIVE from "./brief-document-drive/brief-document";
+import { dataBriefDetail, dataBrief } from "../../mock/data-brief";
 import Swal from "sweetalert2";
 
 // ----------------------------------------------------------------------
@@ -38,25 +38,28 @@ export default function BriefDetailPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setLoading(true);
+    setLoading(false);
     const callAPI = async () => {
-      await dispatch(getListBrief(`${id}`));
-      await dispatch(getListBriefSuperDetail(`${id}`));
-      await dispatch(getListFile());
+      // await dispatch(getListBrief(`${id}`));
+      // await dispatch(getListBriefSuperDetail(`${id}`));
+      // await dispatch(getListFile());
       setLoading(false);
     };
     callAPI();
   }, [dispatch]);
 
-  const briefs = useSelector((state) => {
-    console.log(26, state.briefs);
-    return state.briefs;
-  });
+  // const briefs = useSelector((state) => {
+  //   console.log(26, state.briefs);
+  //   return state.briefs;
+  // });
 
-  const briefDetail = useSelector((state) => {
-    console.log(27, state.briefDetail);
-    return state.briefDetail;
-  });
+  // const briefDetail = useSelector((state) => {
+  //   console.log(27, state.briefDetail);
+  //   return state.briefDetail;
+  // });
+
+  const briefDetail = dataBriefDetail;
+  const briefs = dataBrief;
 
   const files = useSelector((state) => {
     console.log(28, state.files);
@@ -74,7 +77,7 @@ export default function BriefDetailPage() {
       if (result.isConfirmed) {
         await postBriefApproval(id)
           .then((resp) => {
-            console.log(resp)
+            console.log(resp);
             if (resp.code === 1) {
               showSuccess();
             }

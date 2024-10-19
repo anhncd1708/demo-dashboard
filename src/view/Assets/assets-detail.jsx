@@ -16,6 +16,7 @@ import {
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css"; // This only needs to be imported once in your app
 import { createPortal } from "react-dom";
+import MapComponent from '../../components/Map/Map';
 
 // Assume you have a function to fetch asset data
 import { fetchAsset } from "../../mock/fakeAPI/assetAPI";
@@ -162,6 +163,14 @@ export default function ViewAssetDetail() {
                 label="Địa chỉ thường trú chủ sở hữu"
                 value={asset.ownerAddress}
               />
+            </Grid>
+
+            <Grid item xs={12}>
+              <Divider sx={{ my: 2 }} />
+            </Grid>
+
+            <Grid item xs={12}>
+              <MapComponent />
             </Grid>
 
             <Grid item xs={12}>

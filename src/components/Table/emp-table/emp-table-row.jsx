@@ -44,11 +44,14 @@ export default function UserTableRow({
 
   return (
     <>
-      <TableRow hover tabIndex={-1} role="checkbox" selected={selected}>
-        {/* <TableCell padding="checkbox">
-          <Checkbox disableRipple checked={selected} onChange={handleClick} />
-        </TableCell> */}
-
+      <TableRow 
+        hover 
+        tabIndex={-1} 
+        role="checkbox" 
+        selected={selected}
+        onClick={(event) => handleClick(event, { employees_name, employees_code, position_name, document_number, is_active, is_working })}
+        sx={{ cursor: 'pointer' }}
+      >
         <TableCell>{employees_code}</TableCell>
 
         <TableCell component="th" scope="row" padding="none">
@@ -78,15 +81,15 @@ export default function UserTableRow({
             {is_working ? "Đang làm việc" : "Ngưng làm việc"}
           </Label>
         </TableCell>
-
+{/* 
         <TableCell align="right">
           <IconButton onClick={handleOpenMenu}>
             <Iconify icon="eva:more-vertical-fill" />
           </IconButton>
-        </TableCell>
+        </TableCell> */}
       </TableRow>
 
-      <Popover
+      {/* <Popover
         open={!!open}
         anchorEl={open}
         onClose={handleCloseMenu}
@@ -105,7 +108,7 @@ export default function UserTableRow({
           <Iconify icon="eva:trash-2-outline" sx={{ mr: 2 }} />
           Delete
         </MenuItem>
-      </Popover>
+      </Popover> */}
     </>
   );
 }

@@ -104,12 +104,75 @@ export default function BriefDocument({ file, info }) {
                     sx={{ color: "text.secondary" }}
                     noWrap
                   >
+                    ĐỀ NGHỊ THẨM ĐỊNH VÀ PHÊ DUYỆT KHOẢN VAY
+                  </Typography>
+                </Box>
+              </TableCell>
+              <TableCell align="left">PDF</TableCell>
+              <TableCell align="right">20/05/2024</TableCell>
+              <TableCell align="right">
+                <IconButton onClick={handleOpenMenu}>
+                  <Iconify icon="carbon:view-filled"></Iconify>
+                </IconButton>
+                <IconButton onClick={handleOpenEdit}>
+                  <Iconify icon="flowbite:edit-outline"></Iconify>
+                </IconButton>
+              </TableCell>
+            </TableRow>
+            <TableRow
+              sx={{
+                borderBottom: (theme) => `solid 1px ${theme.palette.divider}`,
+              }}
+            >
+              <TableCell>2</TableCell>
+              <TableCell align="left">
+                <Box sx={{ maxWidth: 560 }}>
+                  {/* <Typography variant="subtitle2">
+                            {b.ma_tai_san}
+                          </Typography> */}
+                  <Typography
+                    variant="body2"
+                    sx={{ color: "text.secondary" }}
+                    noWrap
+                  >
+                    {" "}
                     BÁO CÁO THẨM ĐỊNH VÀ ĐỀ NGHỊ PHÊ DUYỆT KHOẢN VAY
                   </Typography>
                 </Box>
               </TableCell>
-              <TableCell align="left">docx</TableCell>
-              <TableCell align="right">14/05/2024</TableCell>
+              <TableCell align="left">DOCX</TableCell>
+              <TableCell align="right">12/06/2024</TableCell>
+              <TableCell align="right">
+                <IconButton onClick={handleOpenMenu}>
+                  <Iconify icon="carbon:view-filled"></Iconify>
+                </IconButton>
+                <IconButton onClick={handleOpenEdit}>
+                  <Iconify icon="flowbite:edit-outline"></Iconify>
+                </IconButton>
+              </TableCell>
+            </TableRow>
+            <TableRow
+              sx={{
+                borderBottom: (theme) => `solid 1px ${theme.palette.divider}`,
+              }}
+            >
+              <TableCell>3</TableCell>
+              <TableCell align="left">
+                <Box sx={{ maxWidth: 560 }}>
+                  {/* <Typography variant="subtitle2">
+                            {b.ma_tai_san}
+                          </Typography> */}
+                  <Typography
+                    variant="body2"
+                    sx={{ color: "text.secondary" }}
+                    noWrap
+                  >
+                    BÁO CÁO THẨM ĐỊNH TÀI SẢN NHÀ ĐẤT
+                  </Typography>
+                </Box>
+              </TableCell>
+              <TableCell align="left">PDF</TableCell>
+              <TableCell align="right">15/06/2024</TableCell>
               <TableCell align="right">
                 <IconButton onClick={handleOpenMenu}>
                   <Iconify icon="carbon:view-filled"></Iconify>
